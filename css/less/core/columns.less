@@ -1,0 +1,39 @@
+// ***************************************************************************
+// COLUMNS
+// ***************************************************************************
+
+
+[class*="columns-"],
+[class*="invert-columns-"] {  
+
+	margin: 0 -@width-gap;
+
+    .box &:last-child & {
+
+        margin-bottom: 0;
+
+    } 
+
+    > div, 
+    > li {
+        
+        padding: 0 @width-gap;
+        .border-box();        
+
+        
+    } // > div, > li   
+
+    &.no-space {
+
+    	margin: 0; 
+
+		> div, 
+	    > li {
+	        
+	        padding: 0;
+	        
+	    } // > div, > li   
+
+    }    
+
+} // .*-cols

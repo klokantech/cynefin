@@ -1,0 +1,49 @@
+// ******************************************************************************************************************
+// min-width: 480px - max-width: 640px
+// *****************************************************************************************************************/
+
+
+// ******************************************************************************************************************
+// COLUMNS                                                                                                            
+// *****************************************************************************************************************/
+
+// 3 sloupce (do 3 radku)
+.columns-3 {    
+
+    .make-column(@width-column-s2);
+
+    .make-wide-column(@width-column-s2);
+
+} // .columns-3
+
+// 4 sloupce (do 2 radku)
+.columns-4 {    
+
+    .make-column(100%);
+
+    .make-wide-column(100%);
+
+    .make-thin-column(100%);
+
+} // .columns-4
+
+// 5 sloupcu (do 3 sloupcu)
+.columns-5 {
+
+    .make-column(@width-column-s2);
+
+} // .columns-5 
+
+// 6 sloupcu (do 3 radku)
+.columns-6 {
+
+    .make-column(@width-column-s2);
+
+} // .columns-6 
+
+// 2 sloupce
+.invert-columns-2 {
+
+    .make-column(@width-column-s2);        
+
+} // .columns-2

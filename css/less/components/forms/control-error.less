@@ -1,0 +1,21 @@
+&-error {
+
+	label {
+		
+		color: @error-color;
+
+	} // label
+
+	input[type=text],
+	input[type=email],
+	input[type=password],
+	input[type=number],
+	textarea,
+	.selectboxit {
+
+		border-color: @field-border-error;
+		.box-shadow(0 0 3px 0 @field-border-error);
+
+	} // all inputs 		
+
+} // .control-error

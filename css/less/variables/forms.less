@@ -1,0 +1,173 @@
+// ******************************************************************************************************************
+// FORMS                                                                                                         
+// *****************************************************************************************************************/
+
+/*
+* Defaults
+*/
+
+	@btn-radius: 								@radius;
+	@btn-counts: 								3;
+	@btn-types: 								default inactive primary;
+	@btn-darkness-hover: 						5%;
+
+
+/*
+* .btn
+*/
+	
+	// Default
+	@btn-default-background: 	   				#db4f00;
+	@btn-default-background-darken: 			#d23d00;
+	@btn-default-border:             			0;
+	@btn-default-shadow:             			0 0 6px fade(#000000,50%);
+	@btn-default-shadow-inner:             		inset 0 0 0 4px fade(#ffffff,10%);
+	@btn-default-shadow-outer:  				inset 0 0 0 1px fade(#000000,10%);
+	@btn-default-color:                 		@color-invert;
+	@btn-default-icon:                 			@color-invert;	
+
+	// Hover	
+	@btn-default-background-hover:      		lighten(@btn-default-background,10%);
+	@btn-default-background-darken-hover: 		lighten(@btn-default-background-darken,10%);
+	@btn-default-border-hover:          		@btn-default-border;	
+	@btn-default-shadow-hover:             		0 0 6px fade(#000000,60%);
+	@btn-default-shadow-inner-hover:       		inset 0 0 0 4px fade(#ffffff,20%);
+	@btn-default-shadow-outer-hover:  			inset 0 0 0 1px fade(#000000,20%);
+	@btn-default-color-hover:           		@color-invert;
+	@btn-default-icon-hover:          			@color-invert;	
+
+
+/*
+* .btn-primary
+*/
+	
+	// Default
+	@btn-primary-background: 	   				#4d7c8e;
+	@btn-primary-background-darken: 			#4d7c8e;
+	@btn-primary-border:             			0;
+	@btn-primary-shadow:             			none;
+	@btn-primary-shadow-inner:             		none;
+	@btn-primary-shadow-outer:  				none;
+	@btn-primary-color:                 		@color-invert;
+	@btn-primary-icon:                 			@color-invert;	
+
+	// Hover	
+	@btn-primary-background-hover:      		darken(@btn-primary-background,5%);
+	@btn-primary-background-darken-hover: 		darken(@btn-primary-background-darken,5%);
+	@btn-primary-border-hover:          		@btn-primary-border;	
+	@btn-primary-shadow-hover:             		none;
+	@btn-primary-shadow-inner-hover:       		none;
+	@btn-primary-shadow-outer-hover:  			none;
+	@btn-primary-color-hover:           		@color-invert;
+	@btn-primary-icon-hover:          			@color-invert;
+
+/*
+* .btn-inactive
+*/
+	
+	// Default
+	@btn-inactive-background: 	   				#726b59;
+	@btn-inactive-background-darken: 			#726b59;
+	@btn-inactive-border:             			0;
+	@btn-inactive-shadow:             			0 0 6px fade(#000000,50%);
+	@btn-inactive-shadow-inner:             	inset 0 0 0 4px fade(#ffffff,10%);
+	@btn-inactive-shadow-outer:  				inset 0 0 0 1px fade(#000000,10%);
+	@btn-inactive-color:                 		@color-invert;
+	@btn-inactive-icon:                 		@color-invert;	
+
+	// Hover	
+	@btn-inactive-background-hover:      		darken(@btn-inactive-background,5%);
+	@btn-inactive-background-darken-hover: 		darken(@btn-inactive-background-darken,5%);
+	@btn-inactive-border-hover:          		@btn-inactive-border;	
+	@btn-inactive-shadow-hover:             	0 0 6px fade(#000000,60%);
+	@btn-inactive-shadow-inner-hover:       	inset 0 0 0 4px fade(#ffffff,20%);
+	@btn-inactive-shadow-outer-hover:  			inset 0 0 0 1px fade(#000000,20%);
+	@btn-inactive-color-hover:           		@color-invert;
+	@btn-inactive-icon-hover:          			@color-invert;	
+
+
+
+/*
+* Fields
+*/
+
+	@field-shadow: 						none;
+
+	@field-border:              		1px solid #cdcdcd;
+	@field-border-hover: 				1px solid #cdcdcd;
+	@field-border-focus: 				1px solid @color-primary;
+	@field-border-error: 				1px solid @error-border;
+	@field-border-disabled: 			#cccccc;
+	@field-radius: 						0px;
+	@field-color:   					#000000;
+	@field-color-hover:   				@color-base;
+	@field-color-focus:   				#000000;
+	@field-color-disabled: 				#999999;
+	@field-color-placeholder:   		@color-weak;
+	@field-background:          		#ffffff;
+	@field-background-hover:    		#f7f7f7;
+	@field-background-focus:    		#ffffff;
+	@field-background-disabled:    		#f7f7f7;
+
+	@field-padding-side-xsmall: 		10px;
+	@field-padding-side-small: 			10px;
+	@field-padding-side-default: 		10px;
+	@field-padding-side-large: 			15px;
+	@field-padding-side-xlarge: 		15px;
+
+	@select-shadow: 					none;
+
+	@select-border:              		1px solid #cdcdcd;
+	@select-border-hover: 				1px solid darken(#cdcdcd,5%);
+	@select-border-focus: 				1px solid @color-primary;
+	@select-border-error: 				1px solid @error-border;
+	@select-border-disabled: 			1px solid #cccccc;
+	@select-radius: 					0;
+	@select-color:   					#000000;
+	@select-color-hover:   				@color-base;
+	@select-color-focus:   				#000000;
+	@select-color-disabled: 			#999999;
+	@select-color-placeholder:   		@color-weak;
+	@select-background:          		#ffffff;
+	@select-background-hover:    		#f7f7f7;
+	@select-background-focus:    		#ffffff;
+	@select-background-disabled:    	#f7f7f7;
+
+	@select-padding-side-xsmall: 		10px;
+	@select-padding-side-small: 		10px;
+	@select-padding-side-default: 		10px;
+	@select-padding-side-large: 		15px;
+	@select-padding-side-xlarge: 		15px;
+	
+	// Addond
+	@control-addon-xsmall-size: 		20px; // Default input height
+	@control-addon-small-size: 			27px; // Default input height
+	@control-addon-default-size: 		32px; // Default input height
+	@control-addon-large-size: 			42px; // Default input height
+	@control-addon-xlarge-size: 		59px; // Default input height
+
+
+
+/*
+* Alerts
+*/
+
+	// Warning
+	@warning-color:              		#ab6434;
+	@warning-background:        		#fef2d3;
+	@warning-border:            		#ead8a9;
+
+	// Error
+	@error-color:                		#c22c45;
+	@error-background:          		#fde7ea;
+	@error-border:              		#ecc7cc;
+
+	// Success
+	@success-color:              		#168b53;
+	@success-background:        		#dcffe3;
+	@success-border:            		#bbeac5;
+
+	// Info
+	@info-color:                		#386d92;
+	@info-background:          			#def0ff;
+	@info-border:              			#c2dcf1;

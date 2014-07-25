@@ -1,0 +1,370 @@
+// ***************************************************************************
+// BOXES
+// ***************************************************************************
+
+.box {
+    
+    background: #fbfdf6;    
+    margin-bottom: 10px; 
+    .border-box();
+
+    *:last-child {
+
+        margin-bottom: 0;
+        
+    }
+
+    &-border-bottom {
+
+        border-bottom: 1px solid @border;
+
+    }
+
+    &-title {
+        
+        color: @color-dark;
+        &:extend(h2);
+        background: #e7e4d5;
+        font-size: 1.1em;
+        line-height: 1.1em;
+        font-weight: bold;
+
+        a {
+
+            text-decoration: none;
+
+            &:hover {
+
+                span {
+
+                    color: @color-primary;
+
+                }
+
+            }
+            
+        }
+
+        .box-toggle-details {
+
+            float: right;
+            font-size: @font-size-small;
+            font-weight: normal;
+            text-decoration: none;
+            cursor: pointer;
+
+            .more-details & {
+
+                .hide {
+
+                    display: block;
+
+                }
+
+                .show {
+
+                    display: none;
+
+                }
+
+            }
+
+            .hide {
+
+                display: none;
+
+            }
+
+            &:hover {
+
+                text-decoration: underline;
+
+            }
+
+        }
+
+        .icon-link {
+
+            top: 3px;
+            margin-left: 5px;
+
+        }
+
+        .box-inner & {
+            
+            padding: 10px 20px;
+            margin: -15px -20px 15px;
+
+        }
+
+        .box-inner-large & {
+            
+            padding: 10px 30px;
+            margin: -25px -30px 25px;
+
+        }
+
+        .box-inner-small & {
+            
+            padding: 5px 10px 10px;
+            margin: -5px -10px 10px;
+
+        }
+
+        .box-inner-xsmall & {
+            
+           padding: 10px 5px;
+           margin: -5px -5px 5px;
+
+        }
+
+    } // .box-title  
+
+    &-inner {
+
+    	padding: 15px 20px;
+        .border-box();
+    	
+    	&-large {
+
+    		padding: 25px 30px;
+            .border-box();
+
+    	} // .box-inner-large
+
+        &-small {
+
+            padding: 10px 10px;
+            .border-box();
+
+        } // .box-inner-small
+
+        &-xsmall {
+
+            padding: 5px;
+
+        } // .box-inner-xsmall
+
+    } // .box-inner
+
+    &-outer,
+    &-outer:last-child {
+
+        margin: -15px -20px;
+
+    }
+
+    &-details-list {
+        
+        &.box-content-scroll {    
+            
+            position: absolute;             
+            overflow-y: scroll; 
+            top: 77px;bottom: 0;
+            left: 246px;right: 0;    
+
+        }
+
+        &-on-right {
+            
+            &.box-content-scroll {    
+                
+                position: absolute;             
+                overflow-y: scroll; 
+                top: 77px;bottom: 0;
+                left: 0;right: 0;    
+
+            }
+
+        }
+
+    }
+
+    &-details {
+
+        background: #ffffff;       
+
+        &-hover,
+        &.hovered {
+
+            .box-title {
+
+                color: #fff;
+                background: #c71200;
+
+                a {
+
+                    color: #fff;
+
+                }
+
+            }
+
+        }
+
+        &-active,
+        &.opened {
+
+            .box-title {
+
+                color: #fff;
+                background: #4e7b8e;
+
+                a {
+
+                    color: #fff;
+
+                }
+
+            }
+            
+        }
+
+        &-closed {            
+
+            .box-content-collapse {
+
+                display: none;
+
+            }
+
+        }
+
+        p {
+
+            margin-bottom: 10px;
+        }
+
+    }
+    
+    &-counties {
+
+        background: none;
+
+        .box-title {
+            
+            background: none;
+            .background("box-counties-title.png");
+            margin: 0;
+            padding-top: 27px;
+            height: 77px;
+            color: #464646;
+            font-weight: normal;
+            font-size: @font-size-xxxlarge;
+
+        }
+
+        .box-content {
+
+            background: #ede9dc;
+
+            &-scroll {
+
+                top: 77px;bottom: 0;
+                left: 0;right: 485px;      
+
+            }
+
+        }
+
+    }
+
+    &-county {
+
+        background: none;
+
+        .box-title {
+            
+            position: relative;
+            .size(100%,92px);
+            background: none;
+            .background("box-county-title.png");
+            margin: 0;
+            padding-top: 25px;
+            color: #464646;
+            font-weight: normal;
+            font-size: @font-size-xxxlarge;
+            .cfx();
+            z-index: 200;
+
+            a {
+
+                float: left;
+                margin-right: 10px;
+                font-size: @font-size-xxxlarge + 3;
+                color: #464646;
+                position: relative;
+                top: 5px;
+
+                &:hover {
+
+                    color: @color-dark;
+                    text-decoration: none;
+
+                }
+
+            }
+
+            .icon-remove {
+
+                &:hover {
+
+                    color: @color-negative;
+                    cursor: pointer;
+
+                }
+
+            }
+
+        }  
+
+        .box-content {
+
+            background: #fff;
+
+            &-scroll {
+                
+                top: 78px;bottom: 0;
+                left: 175px;right: 9px; 
+
+            }
+
+        }      
+
+    }
+
+    &-records {
+
+        .box-content {
+
+            &-scroll {
+                
+                background: #fbfdf6;
+                top: 163px;bottom: 0;
+                left: 0;right: 256px;     
+
+            }
+
+        }
+
+    }
+
+    .box-content {
+
+        &-scroll {
+
+            position: absolute;             
+            overflow-y: scroll;     
+
+        }
+
+    }
+    
+
+    .column {
+
+    	margin-bottom: 0;
+
+    } // .column    
+
+} // .box

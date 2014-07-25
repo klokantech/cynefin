@@ -1,0 +1,272 @@
+&-addon {
+
+	position: relative;
+	.inline-block();
+	font-size: @font-size;
+
+	&-block {
+
+		display: block;
+
+		.control-input {
+
+			width: 100%;
+
+		} // .control-input
+
+	} // .control-addon-block
+
+	// Default	
+	&-item {		
+		
+		.size(@control-addon-default-size);
+		
+		span {
+
+			.size(@control-addon-default-size);	
+			font-size: @font-size + 5;
+			line-height: @line-height + 8;			
+
+		} // span
+
+	} // .control-addon-item
+
+	.control-input:first-child {
+
+		padding-right: 5 + @control-addon-default-size;
+
+	}
+
+	.control-input:last-child {
+
+		padding-left: 5 + @control-addon-default-size;
+
+	}
+
+	span + .control-input:not(:last-child) {
+
+		padding-left: 5 + @control-addon-default-size;
+		padding-right: 5 + @control-addon-default-size;
+
+	}
+
+	// xsmall	
+	&-xsmall &-item {
+
+		.size(@control-addon-xsmall-size);
+
+		span {
+
+			.size(@control-addon-xsmall-size);
+			font-size: @font-size-xsmall;
+			line-height: @line-height-xsmall + 2;
+
+		} // span
+
+	} // .control-addon-item
+
+	&-xsmall {
+
+		.control-input {
+
+			.field-xsmall();
+
+		} // .control-input
+
+		.control-input:first-child {
+
+			padding-right: 5 + @control-addon-xsmall-size;
+
+		}
+
+		.control-input:last-child {
+
+			padding-left: 5 + @control-addon-xsmall-size;
+
+		}
+
+		span + .control-input:not(:last-child) {
+
+			padding-left: 5 + @control-addon-xsmall-size;
+			padding-right: 5 + @control-addon-xsmall-size;
+
+		}
+
+	}
+
+	// small	
+	&-small &-item {
+
+		.size(@control-addon-small-size);
+
+		span {
+
+			.size(@control-addon-small-size);
+			font-size: @font-size-small + 2;
+			line-height: @line-height-small + 7;
+
+		} // span
+
+	} // .control-addon-item
+
+	&-small {
+
+		.control-input {
+
+			.field-small();
+
+		} // .control-input
+
+		.control-input:first-child {
+
+			padding-right: 5 + @control-addon-small-size;
+
+		}
+
+		.control-input:last-child {
+
+			padding-left: 5 + @control-addon-small-size;
+
+		}
+
+		span + .control-input:not(:last-child) {
+
+			padding-left: 5 + @control-addon-small-size;
+			padding-right: 5 + @control-addon-small-size;
+
+		}
+
+	}		
+
+	// Default	
+	&-large &-item {
+
+		.size(@control-addon-large-size);
+
+		span {
+
+			.size(@control-addon-large-size);
+			font-size: @font-size-large + 5;
+			line-height: @line-height-large + 15;
+
+		} // span
+
+	} // .control-addon-item
+
+	&-large {
+
+		.control-input {
+
+			.field-large();
+
+		} // .control-input
+
+		.control-input:first-child {
+
+			padding-right: 5 + @control-addon-large-size;
+
+		}
+
+		.control-input:last-child {
+
+			padding-left: 5 + @control-addon-large-size;
+
+		}
+
+		span + .control-input:not(:last-child) {
+
+			padding-left: 5 + @control-addon-large-size;
+			padding-right: 5 + @control-addon-large-size;
+
+		}
+
+	}
+
+	// Default	
+	&-xlarge &-item {
+
+		.size(@control-addon-xlarge-size);
+
+		span {
+
+			.size(@control-addon-xlarge-size);
+			font-size: @font-size-xlarge + 10;
+			line-height: @line-height-xlarge + 25;
+
+		} // span
+
+	} // .control-addon-item
+
+	&-xlarge {
+
+		.control-input {
+
+			.field-xlarge();
+
+		} // .control-input
+
+		.control-input:first-child {
+
+			padding-right: 5 + @control-addon-xlarge-size;
+
+		}
+
+		.control-input:last-child {
+
+			padding-left: 5 + @control-addon-xlarge-size;
+
+		}
+
+		span + .control-input:not(:last-child) {
+
+			padding-left: 5 + @control-addon-xlarge-size;
+			padding-right: 5 + @control-addon-xlarge-size;
+
+		}
+
+	}
+
+	// Other styles
+	&-item {
+		
+		display: block;
+		color: @color-weak;
+		position: absolute;
+		top: 0;			
+		text-align: center;
+		vertical-align: middle;
+
+		span {
+
+			/*display: table-cell;				*/
+			/*text-align: center;*/
+			/*vertical-align: middle;				*/
+
+			position: absolute;
+			top: 50%;left: 50%;
+			.translate(-50%,-50%);
+
+			&:before {
+
+				vertical-align: middle;
+
+			} // span:before
+
+		} // span
+
+	} // .control-addon-item
+
+	&-item:first-child {
+		
+		left: 1px;
+
+	} // .control-addon-item:first-child
+
+	&-item:last-child {
+		
+		right: 1px;
+
+	} // .control-addon-item:last-child
+	
+
+} // .control-addon

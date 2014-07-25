@@ -1,0 +1,35 @@
+// ***************************************************************************
+// COUNTIES LIST
+// ***************************************************************************
+
+.counties-list {
+
+	margin: 0 -20px;
+	font-size: @font-size-small;
+
+	li {
+
+		a {
+
+			display: block;
+			padding: 2px 20px;
+			text-decoration: none;
+			font-weight: bold;
+
+		}
+
+		&.active {
+			
+			.background("active-pattern.png", repeat);
+
+			a {
+
+				color: #fff;
+
+			}
+
+		}
+
+	}
+
+}

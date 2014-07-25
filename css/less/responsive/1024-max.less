@@ -1,0 +1,156 @@
+// ******************************************************************************************************************
+// max-width: 1024px
+// *****************************************************************************************************************/
+
+.navigation-header {
+    
+    text-align: left;  
+    margin-left: 10px; 
+
+    li {
+
+        a {
+
+            margin: 0 5px;
+            padding: 0 5px;            
+
+        } // a      
+
+    } // li
+
+}
+
+.fixed-col {
+
+    padding: 0 0 30px 0;
+
+}
+
+.fluid-col {
+
+    .column {
+
+        padding-bottom: 30px;
+
+    }
+}
+
+.navigation-panel {
+
+    li {
+
+        a {
+
+            padding: 0 13px;
+
+        }
+
+    }
+
+}
+
+.application-georeference {
+
+    #adjustModeBtn {
+
+        top: 210px;
+
+    }
+
+    #geocoderForm {
+
+        top: 170px;
+        margin-left: 0;
+        left: auto;
+        right: 30px;
+
+    }
+}
+
+// ******************************************************************************************************************
+// COLUMNS                                                                                                            
+// *****************************************************************************************************************/
+
+// 2 sloupce
+.columns-2.break-lg {
+
+    .make-column(100%); 
+
+    .column-fluid {
+
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 0;
+        padding-left: 0;
+        margin-bottom: 170px;
+
+    }    
+
+    .column-fixed {
+
+        max-width: 300px;
+        float: none !important;
+        margin: 0 auto;
+
+    }   
+
+} // .columns-2
+
+// 3 sloupce
+.columns-3.break-lg {
+
+    .make-column(100%);        
+
+} // .columns-3
+
+// 4 sloupce
+.columns-4.break-lg {
+
+    .make-column(100%);        
+
+} // .columns-4
+
+// 5 sloupce
+.columns-5.break-lg {
+
+    .make-column(100%);        
+
+} // .columns-5
+
+// 6 sloupce
+.columns-6.break-lg {
+
+    .make-column(100%);        
+
+} // .columns-6
+
+[class*="invert-columns-"] {
+
+    .cfx(); 
+
+    > div, 
+    > li {
+        
+        float: left;
+
+        &.pull-right {
+
+            float: right;
+
+        }   
+
+        &.pull-left {
+
+            float: left;
+            
+        }            
+
+        [class*="columns-"] { 
+            
+            margin-bottom: -@margin-gap;    
+
+        }
+        
+    } // > div, > li
+
+} // .*-cols

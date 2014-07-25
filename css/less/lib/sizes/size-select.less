@@ -1,0 +1,15 @@
+// SELECTS
+.sizeX (@index) when (@index > 0) {
+	
+  	.size-@{index} + .selectboxit-container {
+		
+		.select-width(~'@{index}%');	   
+
+  	}
+
+  	.sizeX(@index - 1);
+
+}
+
+.sizeX(0) {}
+.sizeX(100);

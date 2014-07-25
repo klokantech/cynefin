@@ -1,0 +1,396 @@
+// ***************************************************************************
+// application
+// ***************************************************************************
+
+.application {
+
+	padding: 0 35px;
+	min-width: 640px;
+
+	&-map {
+
+		&-sidebar {
+
+			width: 298px;			
+			position: absolute;
+			top: 120px;bottom: 0;
+			left: 0;
+			.transition(all 0.3s ease-in-out);
+			margin-left: -295px;
+			z-index: 10;			
+
+			&.opened {
+
+				margin-left: 0;
+
+			}
+
+			.inner {
+
+				padding: 20px 30px 20px 20px;
+				.background("background-panel.png", repeat-y);
+				.border-box();
+				position: absolute;
+				top: 0;left: 0;
+				.size(100%);
+
+			}
+
+			.links {
+
+				border-bottom: 1px solid #ccc;
+				padding-bottom: 15px;
+				margin-bottom: 15px;
+
+				a {
+
+					text-decoration: none;
+					color: @color-weak;
+
+					&:hover {
+
+						color: @color-base;
+						text-decoration: underline;
+
+					}
+
+				}
+
+				a + a {
+
+					margin-left: 15px;
+
+				}
+
+			}
+
+			p {
+
+				font-size: @font-size-small;
+				line-height: @line-height-small;
+				color: @color-weak;
+
+			}
+
+			#side-toggle {
+
+				.background("navigation-active.png");
+				padding: 15px 8px 8px;
+				color: #fff;
+				text-decoration: none;
+				position: absolute;
+				top: 60px;left: 100%;
+				margin-left: -45px;
+				white-space: nowrap;
+				.rotate(-90deg);
+				z-index: -1;
+				.transition(all 0.3s ease-in-out);
+
+				&:hover {
+
+					margin-left: -40px;
+
+				}
+
+				span span {
+
+					margin-left: 5px;
+					position: relative;
+					top: 2px;
+
+				}
+
+				&.opened {
+					
+					#side-toggle-left {
+
+						display: inline;
+
+					}
+
+					#side-toggle-right {
+
+						display: none;
+
+					}
+
+				}
+
+				#side-toggle-left {
+
+					display: none;
+
+				}
+
+			}
+
+		}
+
+		&-content {
+
+			margin-left: 30px;
+			padding-top: 40px;
+			.transition(all 0.3s ease-in-out);
+			color: #514d46;
+			position: relative;
+			z-index: 5;
+
+			img {
+					
+				.transition(all @transition);
+
+			}
+
+			a:hover {
+
+				img {
+					
+					.opacity(70);
+
+				}
+			}
+
+			h2, h3 {
+
+				color: #514d46;
+
+			}
+
+			h2 {
+
+				.font(regular);
+				font-size: 1.8em;
+				max-width: 80%;
+				margin-bottom: 20px;
+
+			}
+
+
+			h3 {
+
+				.font(regular);
+				font-size: 1.4em;				
+
+			}
+
+			&.withsidebar {
+
+				margin-left: 30px + 298;
+
+			}			
+
+		}
+
+	}
+
+	&-georeference {
+
+		position: fixed;
+		top: 0;left: 0;
+		min-width: 640px;
+		.size(100%);
+
+		#scan-plus,
+		#scan-minus,
+		#geo-plus,
+		#geo-minus {
+
+			font-size: 20px;
+			top: 30%;
+			line-height: 39px;
+			background: @color-primary;
+
+			&:hover {
+
+				background: lighten(@color-primary,10%);
+			}
+
+		}
+
+		#geocoderForm,
+		#scanRotationControl,
+		#adjustModeBtn {
+
+			top: 140px;
+
+		}
+
+		#infobox {
+
+			top: 50%;
+			.translate(0,-50%);
+		}
+		
+
+		#adjustModeBtn {
+
+			width: auto !important;
+			border: 0;
+			background: none;
+			height: auto;
+			right: 30px;
+
+		}
+
+		#geocoderForm {
+
+			width: 300px;
+		}
+		
+		#hsvSliders {
+
+			padding: 5px;
+			bottom: 30px;
+			left: 30px;
+
+			.custom-checkbox {
+
+				margin: 0 10px 10px;
+			}
+
+			input[type="range"] {
+
+				margin: 0 10px;
+				position: relative;
+				top: 1px;
+
+			}
+
+		}
+
+
+	}
+
+	&-transcribe {
+
+		position: fixed;
+		top: 0;left: 0;
+		min-width: 640px;
+		.size(100%);
+
+		#map-plus,
+		#map-minus {
+
+			font-size: 20px;
+			top: 30%;
+			line-height: 39px;
+			background: @color-primary;
+
+			&:hover {
+
+				background: lighten(@color-primary,10%);
+			}
+
+		}	
+
+		#edit-save {
+			
+			&:extend(.btn);
+			width: auto;
+			height: auto;
+			right: 0;
+			float: right;
+			margin-top: 5px;
+
+		}
+
+		#edit-cancel {
+			
+			&:extend(.btn);
+			width: auto;
+			height: auto;
+			right: 0;
+			float: left;
+			margin-top: 5px;
+			.box-shadow(@btn-inactive-shadow);		
+	    	.gradient-vertical(@btn-inactive-background, @btn-inactive-background-darken);	    	    	
+	    	background-color: @btn-inactive-background;
+			border-color: @btn-inactive-border;        
+	        color: @btn-inactive-color;
+
+		}
+
+		#edit-btn {
+
+			top: 129px;
+			right: 320px;
+			background: none;
+			
+			span {
+
+				&:extend(.btn);
+				.btn-size-small();
+
+			}
+
+		}
+
+		#trans-edit-tools {
+
+			top: 180px;
+
+		}
+		
+		.record-marker.number.linked {
+			
+			.icon("c");
+
+		}	
+
+
+	}
+
+	&-sidebar {
+
+		width: 495px;
+		position: absolute;
+		z-index: 50;
+		top: @height-header;
+		bottom: 0;
+		left: 30px;right: 0;
+		overflow: hidden;
+
+		.columns-2 {
+
+		    .make-wider-column(256px);        
+
+		    .make-thiner-column(249px);
+
+		}
+
+		&-right {
+
+			width: 270px;
+			position: absolute;
+			z-index: 50;
+			top: @height-header;
+			bottom: 0;
+			right: 30px;
+			overflow: hidden;
+
+		}
+
+	}
+
+	&-counties {
+		
+		width: 650px;
+		position: absolute;
+		z-index: 50;
+		top: @height-header;
+		bottom: 0;
+		left: 30px;right: 0;
+		overflow: hidden;		
+
+
+		.columns-2 {
+
+		    .make-wide-column(476px);        
+
+		    .make-thin-column(175px);
+
+		}
+
+	}
+
+}

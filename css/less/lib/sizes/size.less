@@ -1,0 +1,42 @@
+// INPUTS
+.inputSizeX (@index) when (@index > 0) {
+	
+  	.size-@{index} {
+		
+		width: ~'@{index}%';	   
+
+  	}
+
+  	.form-size-@{index} {
+		
+		.control-input {
+
+			width: ~'@{index}%';	   
+
+		}
+
+  	}
+
+  	.form-horizontal-offset-@{index},
+  	.form .control-offset-@{index} {
+		
+		.control-label {
+
+			width: ~'@{index}%';	   
+
+		}
+
+		.control-field {
+
+			margin-left: ~'@{index}%';	   
+
+		}
+
+  	}
+
+  	.inputSizeX(@index - 1);
+
+}
+
+.inputSizeX(0) {}
+.inputSizeX(100);

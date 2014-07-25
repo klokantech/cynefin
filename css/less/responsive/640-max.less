@@ -1,0 +1,118 @@
+// ******************************************************************************************************************
+// max-width: 640px
+// ******************************************************************************************************************/
+
+.sm-hidden {
+
+    display: none;
+
+}
+
+.sm-visible {
+
+    display: block;
+
+}
+
+table.table-responsive {
+    padding: 0 20px;
+    display: block;
+    width: 100%;
+    .border-box();
+
+    tbody {
+		
+		display: block;
+    	width: 100%;
+
+    	tr {
+			
+			display: block;		    
+		    padding: 10px;
+
+		    & + tr {
+
+				border-top: 1px solid @border;
+
+		    }
+
+		    th, td {
+				
+				display: block;
+			    border: 0;
+			    padding: 5px 0;
+			    line-height: 1.4em;  
+			    text-align: left;
+
+			    &:before {
+
+			    	content: attr(data-title) ': ';
+				    font-weight: bold;				    
+
+			    }
+
+		    }
+
+    	}
+
+    }
+
+    thead,
+    tfoot {
+
+    	display: none;
+
+    }
+
+}  
+
+
+// ******************************************************************************************************************
+// COLUMNS                                                                                                            
+// *****************************************************************************************************************/
+
+// 2 sloupce
+.columns-2.break-sm,
+.invert-columns-2.break-sm {
+
+    .make-column(100%); 
+
+} // .columns-2
+
+// 3 sloupce
+.columns-3.break-sm,
+.invert-columns-3.break-sm {
+
+    .make-column(100%);        
+
+    &.no-break {
+		
+		.make-column(100%) !important;        
+
+    }
+
+} // .columns-3
+
+// 4 sloupce
+.columns-4.break-sm,
+.invert-columns-4.break-sm {
+
+    .make-column(100%);        
+
+} // .columns-4
+
+// 5 sloupce
+.columns-5.break-sm,
+.invert-columns-5.break-sm {
+
+    .make-column(100%);        
+
+} // .columns-5
+
+// 6 sloupce
+.columns-6.break-sm,
+.invert-columns-6.break-sm {
+
+    .make-column(100%);        
+
+} // .columns-6

@@ -1,0 +1,68 @@
+// ******************************************************************************************************************
+// min-width: 480px
+// ******************************************************************************************************************/
+
+
+.xs-visible {
+
+    display: none;
+
+}
+
+// ******************************************************************************************************************
+// COLUMNS                                                                                                            
+// *****************************************************************************************************************/
+
+// 2 sloupce
+.columns-2 {
+
+    .make-column(@width-column-s2);
+
+    .make-wide-column(62.5%);        
+
+    .make-thin-column(37.5%);
+
+    .make-wider-column(50.7%);        
+
+    .make-thiner-column(49.3%);
+
+} // .columns-2
+
+// 3 sloupce
+.columns-3 {    
+
+    .make-column(@width-column-s3);
+
+    .make-wide-column(@width-column-s3 * 2);
+
+    .make-wider-column(40%);    
+
+    .make-thiner-column(30%);
+
+} // .columns-3
+
+[class*="columns-"] {
+
+    .cfx(); 
+
+    > div, 
+    > li {
+        
+        float: left;
+
+        &.pull-right {
+
+            float: right;
+
+        }   
+
+        &.pull-left {
+
+            float: left;
+            
+        }            
+
+        
+    } // > div, > li
+
+} // .*-cols

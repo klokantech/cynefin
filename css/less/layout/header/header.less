@@ -1,0 +1,35 @@
+// ***************************************************************************
+// HEADER
+// ***************************************************************************
+
+/*
+* Defaults
+*/
+	
+	
+	position: fixed;
+	min-width: 640px;
+	text-align: center;
+	top: 0;left: 0;
+	.size(100%,@height-header);
+	z-index: 200;
+	.background("background-header-paper.png", repeat-x, 0 100%);
+	.cfx();		
+
+	.inner {
+
+		position: relative;
+		.size(100%,95px);
+		z-index: 200;
+
+	}
+
+	.with-panel & {
+
+		background: none;
+		text-align: left;
+		
+	}
+
+
+

@@ -1,0 +1,72 @@
+// ***************************************************************************
+// TABLES
+// ***************************************************************************
+
+table {
+
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+
+    th, td {
+
+		padding: 7px 20px;
+		font-size: @font-size-small + 1;
+
+		&.col-order {
+
+			width: 30px;
+			padding-right: 0;
+			padding-left: 0;
+			text-align: right;
+
+		}		
+
+    } // th, td
+
+    thead {
+
+    	tr {
+			
+			th {
+				
+				text-align: left;				
+
+			} // th
+
+    	} // tr
+
+    } // thead
+
+    tbody {
+
+		tr {
+
+			th, td {
+
+				border-top: 1px solid @border;
+
+			} // th, td
+
+			th {
+
+
+			} // th
+
+			td {				
+				
+
+			} // td
+
+		} // tr
+
+    } // tbody
+
+} // table
+
+caption { 
+
+	text-align: left; 
+	caption-side: top; 
+
+} // caption   
