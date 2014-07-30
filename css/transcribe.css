@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'transcribe';
+  src:url('/fonts/transcribe.eot?-vu3e39');
+  src:url('/fonts/transcribe.eot?#iefix-vu3e39') format('embedded-opentype'),
+      url('/fonts/transcribe.woff?-vu3e39') format('woff'),
+      url('/fonts/transcribe.ttf?-vu3e39') format('truetype'),
+      url('/fonts/transcribe.svg?-vu3e39#cynefin') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 #top {width:100%;height:25px;background:#d4c5a9;color:#ddd;}
 
 #transcribe {position:absolute;top:25px;left:0;bottom:35%;right:0;background:#d4c5a9;overflow:hidden;}
@@ -20,9 +30,9 @@
 #edit-label-tips {display:block;padding-top:7px;font-size:0.9em;color:#aaa;text-decoration:none;}
 #edit-save {position:absolute;right:30px;width:50px;background:#aadc00;right:65px;}
 #edit-cancel {position:absolute;right:0;width:50px;background:#b1b1b1;}
-#edit-text {width:238px;height:50px;margin:5px 0 2px 0;text-align:left;cursor:auto;}
+#edit-text {width:238px;height:50px;margin:5px 0 2px 0;text-align:left;cursor:auto;display:block;}
 #edit-tool-box {background:#000;padding:8px;height:30px;line-height:30px;}
-#edit-tool-add, #edit-tool-remove {font-family:'cynefin';width:15px;font-size:15px;margin-top:2px;margin-right:3px;}
+#edit-tool-add, #edit-tool-remove {font-family:'transcribe';width:15px;font-size:15px;margin-top:2px;margin-right:3px;}
 #edit-tool-add.active, #edit-tool-remove.active {outline:2px solid #c71201;}
 #edit-tool-size {position:absolute;right:8px;display:inline-block;}
 #edit-size-label {}
@@ -44,7 +54,7 @@
   transition: max-height 0.4s;
 }
 .translist-item .item-header {height:28px;line-height:28px;padding:0 12px;background:#ebe9dc;cursor:pointer;}
-.translist-item .item-linked {display:none;font-family:'cynefin';font-size:15px;vertical-align:top;}
+.translist-item .item-linked {display:none;font-family:'transcribe';font-size:15px;vertical-align:top;}
 .translist-item .item-header .item-morebtn {float:right;}
 .translist-item .item-header .item-morebtn:hover {text-decoration:underline;}
 .translist-item .item-header .hide{display:none;}
@@ -87,6 +97,7 @@
   cursor:pointer;
   outline:1px solid black;
   border:1px solid white;
+  background:rgba(0,0,0,0);
 }
 .trans-marker:hover, .trans-marker.hovered  {outline:4px solid rgba(0,0,0,0.5);}
 .trans-marker.opened {outline:4px solid #d00;z-index:0 !important;}
@@ -96,7 +107,9 @@
 #ownerlist {position:absolute;left:0;bottom:0;right:0;height:35%;}
 #ownerlist-resizer {position:absolute;left:0;bottom:35%;right:0;height:5px;margin-bottom:-5px;cursor:ns-resize;background:#31302b;z-index:2;}
 #ownerlist-resizer-dragger {position:absolute;left:50%;bottom:0;width:60px;margin-left:-30px;height:30px;background:#31302b;border-top-left-radius:10px;border-top-right-radius:10px;}
-#ownerimage {position:absolute;top:0;left:0;right:0;bottom:0;}
+#ownerimage, #ownerimage-scan {position:absolute;top:0;left:0;right:0;bottom:0;}
+#ownerlist .goog-slider-vertical {position:absolute;top:0;right:0;bottom:0;width:12px;background:#ccc;}
+#ownerlist .goog-slider-thumb {position:relative;min-height:20px;background:#999;}
 #record-underline {
   height:30px;
   border:1px solid red;
@@ -111,9 +124,10 @@
   background:rgba(0,0,0,0.6);
   width:100%;
   height:2000px; /* TODO: something better */
+  pointer-events:auto;
   display:none;
 }
-#record-veil-top {bottom:100%;}
+#record-veil-top {margin-bottom:1px;bottom:100%;}
 #record-veil-bottom {margin-top:1px;top:100%;}
 .showVeil #record-veil-top, .showVeil #record-veil-bottom {display:block;}
 
@@ -127,13 +141,19 @@
   border:1px solid white;
 }
 
-.record-marker.number {height:20px;margin-left:0;font-size:15px;line-height:20px;outline:none;border:none;color:white;background:#767676;padding-right:10px;width:50px;border-radius:0 5px 5px 0;text-align:right;}
-.record-marker.number.linked:before {padding-right:5px;font-size:12px;}
-.record-marker.number.opened {background:#c71201;}
+.record-marker.number {height:20px !important;margin:-10px 0 !important;font-size:15px;line-height:20px;outline:none;border:none;color:white;background:#767676;padding-right:10px;width:50px !important;border-radius:0 5px 5px 0;text-align:right;}
+.record-marker.number.linked:before {font-family:'transcribe';content:"\e601";padding-right:5px;font-size:12px;}
+.record-marker.number.opened {background:#c71201;z-index:1;}
+.record-marker.unknown {outline-style:dashed;}
 
 #ownerlist-edit {position:absolute;bottom:20px;width:200px;margin-left:-100px;color:#fff;z-index:1;}
-#ownerlist-edit-type {float:left;line-height:20px;color:#fff;}
+#ownerlist-edit-type {float:left;line-height:20px;color:#fff;cursor:pointer;}
 #ownerlist-edit-change {float:right;line-height:20px;color:#fff;text-decoration:none;}
 #ownerlist-edit-box {clear:both;width:198px;height:25px;border:1px solid #000;border-radius:12px;background:#fff;}
-#ownerlist-edit-text {display:inline-block;width:154px;height:19px;margin: 2px 0 2px 8px;border:none;}
-#ownerlist-edit-ok {display:inline-block;width:25px;line-height:25px;border-radius:0 11px 11px 0;padding-left:5px;background:#aadc00;color:#000;text-decoration:none;cursor:pointer;}
+#ownerlist-edit-text {display:inline-block;width:157px;height:19px;margin: 2px 0 2px 8px;border:none;float:left;}
+#ownerlist-edit-ok {display:inline-block;width:25px;line-height:25px;border-radius:0 11px 11px 0;padding-left:5px;background:#aadc00;color:#000;text-decoration:none;cursor:pointer;float:right;}
+.goog-menu {position:absolute;z-index:3;border:1px solid #999;}
+.goog-menuitem {background:#eee;height:18px;color:#999;border-bottom:1px solid #999;padding:3px;cursor:default;}
+.goog-menuitem:last-child {border:none;}
+.goog-option {background:#fff;color:#000;cursor:pointer;}
+.goog-option:hover {background:#ddd;}
