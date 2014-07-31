@@ -27,10 +27,39 @@
 		<script src="/js/html5shiv.min"></script>	
 		<![endif]-->
 		
-	</head>	
-	<body>
+     
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+    <![endif]-->
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script>
+    var map;
+function init() {
+   var mapMinZoom = 6;
+   var mapMaxZoom = 15;
+ map = L.map('map').setView( [52.641396837743095,-5.594787597656256], 8);
+ L.tileLayer('http://cynefin-{s}.tileserver.com/cynefin/{z}/{x}/{y}.png', {
+     minZoom: mapMinZoom, maxZoom: mapMaxZoom,
+     opacity: 0.85, subdomains: '0123'
+ }).addTo(map);
+}
+    </script>
+    <!-- TODO MOVE TO CSS FILES -->
+    <style>
+    body { background-image: none; }
+    .page { background-image: none; }
+    #map { position: absolute; top:0; left:0; bottom:0; right:0;}
+    .leaflet-container { background: transparent; }
+    </style>
+       
+		
+	</head>			
+	<body onLoad="init()">
 		
 		<div class="page">
+      
+      <div id="map"></div>
 			
 			<header>
 				<div class="inner">
