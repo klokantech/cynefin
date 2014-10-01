@@ -1,0 +1,27 @@
+{
+  "id": "base",
+
+  "closure-library": "closure-library/closure/goog/",
+  "define": {
+    "goog.DEBUG": false
+  },
+
+  "mode": "ADVANCED",
+  "level": "VERBOSE",
+
+  "checks": {
+    // Unfortunately, the Closure Library violates these in many places.
+    // "accessControls": "ERROR",
+    // "visibility": "ERROR"
+
+    "checkTypes": "ERROR",
+    "checkRegExp": "ERROR",
+    "checkVars": "ERROR",
+    "deprecated": "ERROR",
+    "fileoverviewTags": "ERROR",
+    "invalidCasts": "ERROR",
+    "missingProperties": "ERROR",
+    "nonStandardJsDocs": "OFF",
+    "undefinedVars": "ERROR"
+  }
+}

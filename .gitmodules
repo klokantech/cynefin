@@ -1,0 +1,7 @@
+[submodule "js/ol3"]
+	path = js/ol3
+	url = https://github.com/klokantech/ol3.git
+	branch = utfgrid
+[submodule "js/closure-library"]
+	path = js/closure-library
+	url = https://github.com/google/closure-library.git

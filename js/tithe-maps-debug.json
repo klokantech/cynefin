@@ -1,0 +1,12 @@
+{
+  "id": "tithe-maps-debug",
+  "inherits": "tithe-maps.json",
+  "mode": "ADVANCED",
+
+  "define": {
+    "goog.DEBUG": true
+  },
+
+  "pretty-print": true,
+  "debug": true
+}
