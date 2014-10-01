@@ -3,5 +3,5 @@
   "inherits": "base-ol3.json",
 
   "inputs": ["src/tithe-maps.js"],
-  "paths": ['src', 'ol3/src']
+  "paths": ["src", "ol3/src", "closure-library/third_party"]
 }
