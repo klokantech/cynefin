@@ -3,25 +3,20 @@
 <!--[if lt IE 9 ]><html lang="cs" class="ie8 no-js"> <![endif]-->
 <!--[if lt IE 10 ]><html lang="cs" class="ie9 no-js"> <![endif]-->
 <!--[if (gt IE 10)|!(IE)]><!-->
-<html lang="cs" class="responsive no-js"> 
+<html lang="cs" class="responsive no-js">
 <!--<![endif]-->
-	<head>
-		
-		<meta charset="utf-8">
-		<!--[if IE]>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<![endif]-->
-		<meta name="author" content="">
-		<meta name="keywords" content="">
-		<meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-
-		<title>Cynefin</title>				
-		
-		<link rel="stylesheet" href="/css/main.css" type="text/css" media="screen">
-				
+  <head>
+    <meta charset="utf-8">
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <title>Cynefin</title>
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen">
     <script src="/js/tithe-maps.js"></script>
-
     <!-- TODO MOVE TO CSS FILES -->
     <style>
     body { background-image: none; }
@@ -29,627 +24,501 @@
     #map { position: absolute; top:0; left:0; bottom:0; right:0;}
     .leaflet-container { background: transparent; }
     </style>
-       
-		
-	</head>			
-	<body onLoad="new TitheMaps()">
-		
-		<div class="page">
-      
+  </head>
+  <body onLoad="new TitheMaps()">
+    <div class="page">
       <div id="map">
       </div>
-			
-			<header>
-				<div class="inner">
-
-					<nav>
-						<ul class="navigation navigation-header">
-							<li>
-								<a href="/" title="Home">Home</a>
-							</li>
-							<li class="active">
-								<a href="/tithe-maps" title="Tithe maps">Tithe maps</a>
-							</li>
-							<li>
-								<a href="/find-records" title="Find Records">Find Records</a>
-							</li>	
-							<li>
-								<a href="/news" title="News">News</a>
-							</li>
-							<li>
-								<a href="/blog" title="Blog">Blog</a>
-							</li>
-							<li>
-								<a href="/contact" title="Contact">Contact</a>
-							</li>									
-						</ul>
-						<!-- .navigation -->
-					</nav>	
-					
-					<hr>
-
-					<div class="languages">
-						<a href="#" title="Welsh">Welsh</a>
-						<span class="sep">|</span>
-						<a href="#" title="English" class="active">English</a>
-					</div>
-					<!-- .languages -->	
-				
-				</div>
-				<!-- .inner -->
-				
-			</header>
-
-			<hr>	
-			
-			<section class="application">
-				<div class="application-counties">		
-
-					<div class="columns-2">
-						
-						<div class="column column-thin">
-							
-							<div class="box box-counties">
-									
-								<div class="box-title box-inner">
-									Counties
-								</div>
-								<!-- .box-title -->
-
-								<div class="box-content box-content-scroll box-inner">											
-
-									<ul class="counties-list">
-										<li><a href="/" title="">Monmouth</a></li>
-										<li><a href="/" title="">Glamorgan</a></li>
-										<li><a href="/" title="">Carmarthen</a></li>
-										<li><a href="/" title="">Pembroke</a></li>
-										<li><a href="/" title="">Cardigan</a></li>
-										<li><a href="/" title="">Brecknock</a></li>
-										<li><a href="/" title="">Radnor</a></li>
-										<li class="active"><a href="/" title="">Montgomery</a></li>
-										<li><a href="/" title="">Denbigh</a></li>
-										<li><a href="/" title="">Flint</a></li>
-										<li><a href="/" title="">Merioneth</a></li>
-										<li><a href="/" title="">Caernarfon</a></li>
-										<li><a href="/" title="">Anglesey</a></li>
-									</ul>						
-
-									<div class="partners partners-vertical">
-										
-										<a href="/" title="">
-											<img src="/img/partner-1.png" alt="">
-										</a>	
-
-										<a href="/" title="">
-											<img src="/img/partner-2.png" alt="">
-										</a>	
-
-										<a href="/" title="">
-											<img src="/img/partner-3.png" alt="">
-										</a>	
-
-										<a href="/" title="">
-											<img src="/img/partner-4.png" alt="">
-										</a>	
-
-									</div>
-									<!-- .partners -->	
-								
-								</div>
-								<!-- .box-content -->
-
-							</div>
-							<!-- .box-inner -->
-
-						</div>
-						<!-- .column -->
-
-						<div class="column column-wide">
-
-							<div class="box box-county">
-
-								<div class="box-title box-inner">
-									<a href="#"><span class="icon-chevron-left"></span></a> Montgomery 
-									<form action="./" method="post" class="form form-filter">
-										<fieldset>
-
-											<div class="control-group">
-												<div class="control-field">
-													
-													<span class="control-addon control-addon-small">
-														<input type="text" class="control-input" placeholder="Filter">
-														<span class="control-addon-item">
-															<span class="icon-remove"></span>
-														</span>
-													</span>
-
-												</div>
-												<!-- .control-field -->
-											</div>
-											<!-- .control-group -->
-
-										</fieldset>
-									</form>
-								</div>
-								<!-- .box-title -->
-
-								<div class="box-content box-content-scroll box-inner">
-									
-									<p class="filter">
-										<a href="#" title="" class="active">All 167</a>
-										<span class="sep">|</span>
-										<a href="#" title="">Not transcribed 37</a>
-										<span class="sep">|</span>
-										<a href="#" title="">Not georeferenced 17</a>
-										<span class="sep">|</span>
-										<a href="#" title="">Not reviewed 47</a>
-									</p>	
-
-									<div class="gadget progressbar">
-									    <div class="metrics-container">
-									        <div class="metrics">
-									            <div class="metrics-pipeline">
-									                <h2 class="total">
-									                    <span class="count">3221</span>
-									                    <span class="label">maps</span>
-									                </h2>
-
-									                <ul class="pipeline">
-									                    
-									                        <li class="group" style="width: 45.3896305495%;" title="1462 Georeferenced (45%)">
-
-									                            <div class="state">
-									                                <span class="percent">45%</span>
-									                                <span class="label">Georeferenced</span>
-									                            </div>
-
-
-									                            <ul>
-									                                <li class="tooltip" style="width: 100%;" title="">
-									                                    <div class="color" style="background-color: #e95925"></div>
-									                                    <div class="status">
-									                                        <span class="count">1462</span>
-									                                        <span class="label">maps</span>
-									                                    </div>
-									                                </li>
-									                            </ul>
-
-									                        </li>
-									                    
-									                        <li class="group" style="width: 54.6103694505%;" title="1759 Awaiting (55%)">
-
-									                            <div class="state">
-									                                <span class="percent">55%</span>
-									                                <span class="label">Awaiting</span>
-									                            </div>
-
-
-									                            <ul>
-									                                <li class="tooltip" style="width: 100%;" title="">
-									                                    <div class="color" style="background-color: #d7caad"></div>
-									                                    <div class="status">
-									                                        <span class="count">1759</span>
-									                                        <span class="label">maps</span>
-									                                    </div>
-									                                </li>
-									                            </ul>
-
-									                        </li>
-									                    
-									                </ul>
-									            </div>
-									        </div>
-
-									        <div class="clearfix"></div>
-									    </div>
-
-									    
-									        <div class="note">The progress bar is updated live.</div>
-									    
-									</div>	
-									
-									<div class="item">
-										<div class="item-media">
-											<a href="/tithe-maps/transcribe" title="" class="btn">Transcribe</a>
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											<p>
-												Records Total 289 465<br>
-												Records Transcribed 76 458 (Paired 45 897) 
-											</p>
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->	
-
-									<div class="item">
-										<div class="item-media">
-											<a href="/tithe-maps/georeference" title="" class="btn">Georeference</a>
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											<p>
-												Records Total 289 465<br>
-												Records Transcribed 76 458 (Paired 45 897) 
-											</p>
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->	
-
-									<br>
-
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-
-									<div class="item item-county item-county-active">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->	
-
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-									<div class="item item-county">
-										<div class="item-media">
-											<img src="http://www.placehold.it/105x75" alt="">
-										</div>
-										<!-- .item-media -->
-										<div class="item-content">
-											
-											<h2>Alberbury P., Bausley T.</h2>
-
-											<p>
-												Records Transcribed - 247<br>
-												Records Paired - 30
-											</p>
-
-											<div class="item-content-actions">
-												<a href="#" title="">Transcribe</a>
-												<a href="#" title="">Georeference</a>
-												<a href="#" title="">Visualize</a>
-											</div>
-											<!-- .item-content-actions -->
-
-										</div>
-										<!-- .item-content -->
-									</div>
-									<!-- .item -->		
-
-								</div>
-								<!-- .box-content -->
-
-							</div>
-							<!-- .box -->
-							
-						</div>
-						<!-- .column -->
-
-					</div>
-					<!-- .columns-2 -->
-
-				</div>
-				<!-- .application-sidebar -->
-
-				<form action="./" method="post" class="form form-search-map form-search-map-collapsed form-small">
-					<fieldset>
-
-						<div class="control-group">
-							<div class="control-field">
-								
-								<span class="control-appended">
-									<input type="text" placeholder="Find a place on map" class="control-input control-appended-input">
-									<span class="control-appended-btn">
-										<button type="submit"><span class="icon-search"></span></button>
-									</span>	
-								</span>
-
-							</div>
-							<!-- .control-field -->	
-						</div>
-						<!-- .control-group -->
-
-					</fieldset>
-				</form>
-
-					
-			</section>
-
-		</div>
-		<!-- .page -->
-
-	</body>
+      <header>
+        <div class="inner">
+          <nav>
+            <ul class="navigation navigation-header">
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+              <li class="active">
+                <a href="/tithe-maps" title="Tithe maps">Tithe maps</a>
+              </li>
+              <li>
+                <a href="/find-records" title="Find Records">Find Records</a>
+              </li>
+              <li>
+                <a href="/news" title="News">News</a>
+              </li>
+              <li>
+                <a href="/blog" title="Blog">Blog</a>
+              </li>
+              <li>
+                <a href="/contact" title="Contact">Contact</a>
+              </li>
+            </ul>
+            <!-- .navigation -->
+          </nav>
+          <hr>
+          <div class="languages">
+            <a href="#" title="Welsh">Welsh</a>
+            <span class="sep">|</span>
+            <a href="#" title="English" class="active">English</a>
+          </div>
+          <!-- .languages -->
+        </div>
+        <!-- .inner -->
+      </header>
+      <hr>
+      <section class="application">
+        <div class="application-counties">
+          <div class="columns-2">
+            <div class="column column-thin">
+              <div class="box box-counties">
+                <div class="box-title box-inner">
+                  Counties
+                </div>
+                <!-- .box-title -->
+                <div class="box-content box-content-scroll box-inner">
+                  <ul class="counties-list">
+                    <li><a href="/" title="">Monmouth</a></li>
+                    <li><a href="/" title="">Glamorgan</a></li>
+                    <li><a href="/" title="">Carmarthen</a></li>
+                    <li><a href="/" title="">Pembroke</a></li>
+                    <li><a href="/" title="">Cardigan</a></li>
+                    <li><a href="/" title="">Brecknock</a></li>
+                    <li><a href="/" title="">Radnor</a></li>
+                    <li class="active"><a href="/" title="">Montgomery</a></li>
+                    <li><a href="/" title="">Denbigh</a></li>
+                    <li><a href="/" title="">Flint</a></li>
+                    <li><a href="/" title="">Merioneth</a></li>
+                    <li><a href="/" title="">Caernarfon</a></li>
+                    <li><a href="/" title="">Anglesey</a></li>
+                  </ul>
+                  <div class="partners partners-vertical">
+                    <a href="/" title="">
+                      <img src="/img/partner-1.png" alt="">
+                    </a>
+                    <a href="/" title="">
+                      <img src="/img/partner-2.png" alt="">
+                    </a>
+                    <a href="/" title="">
+                      <img src="/img/partner-3.png" alt="">
+                    </a>
+                    <a href="/" title="">
+                      <img src="/img/partner-4.png" alt="">
+                    </a>
+                  </div>
+                  <!-- .partners -->
+                </div>
+                <!-- .box-content -->
+              </div>
+              <!-- .box-inner -->
+            </div>
+            <!-- .column -->
+            <div class="column column-wide">
+              <div class="box box-county">
+                <div class="box-title box-inner">
+                  <a href="#"><span class="icon-chevron-left"></span></a> Montgomery
+                  <form action="./" method="post" class="form form-filter">
+                    <fieldset>
+                      <div class="control-group">
+                        <div class="control-field">
+                          <span class="control-addon control-addon-small">
+                            <input type="text" class="control-input" placeholder="Filter">
+                            <span class="control-addon-item">
+                              <span class="icon-remove"></span>
+                            </span>
+                          </span>
+                        </div>
+                        <!-- .control-field -->
+                      </div>
+                      <!-- .control-group -->
+                    </fieldset>
+                  </form>
+                </div>
+                <!-- .box-title -->
+                <div class="box-content box-content-scroll box-inner">
+                  <p class="filter">
+                    <a href="#" title="" class="active">All 167</a>
+                    <span class="sep">|</span>
+                    <a href="#" title="">Not transcribed 37</a>
+                    <span class="sep">|</span>
+                    <a href="#" title="">Not georeferenced 17</a>
+                    <span class="sep">|</span>
+                    <a href="#" title="">Not reviewed 47</a>
+                  </p>
+                  <div class="gadget progressbar">
+                      <div class="metrics-container">
+                          <div class="metrics">
+                              <div class="metrics-pipeline">
+                                  <h2 class="total">
+                                      <span class="count">3221</span>
+                                      <span class="label">maps</span>
+                                  </h2>
+                                  <ul class="pipeline">
+                                          <li class="group" style="width: 45.3896305495%;" title="1462 Georeferenced (45%)">
+                                              <div class="state">
+                                                  <span class="percent">45%</span>
+                                                  <span class="label">Georeferenced</span>
+                                              </div>
+                                              <ul>
+                                                  <li class="tooltip" style="width: 100%;" title="">
+                                                      <div class="color" style="background-color: #e95925"></div>
+                                                      <div class="status">
+                                                          <span class="count">1462</span>
+                                                          <span class="label">maps</span>
+                                                      </div>
+                                                  </li>
+                                              </ul>
+                                          </li>
+                                          <li class="group" style="width: 54.6103694505%;" title="1759 Awaiting (55%)">
+                                              <div class="state">
+                                                  <span class="percent">55%</span>
+                                                  <span class="label">Awaiting</span>
+                                              </div>
+                                              <ul>
+                                                  <li class="tooltip" style="width: 100%;" title="">
+                                                      <div class="color" style="background-color: #d7caad"></div>
+                                                      <div class="status">
+                                                          <span class="count">1759</span>
+                                                          <span class="label">maps</span>
+                                                      </div>
+                                                  </li>
+                                              </ul>
+                                          </li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="clearfix"></div>
+                      </div>
+                          <div class="note">The progress bar is updated live.</div>
+                  </div>
+                  <div class="item">
+                    <div class="item-media">
+                      <a href="/tithe-maps/transcribe" title="" class="btn">Transcribe</a>
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <p>
+                        Records Total 289 465<br>
+                        Records Transcribed 76 458 (Paired 45 897)
+                      </p>
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item">
+                    <div class="item-media">
+                      <a href="/tithe-maps/georeference" title="" class="btn">Georeference</a>
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <p>
+                        Records Total 289 465<br>
+                        Records Transcribed 76 458 (Paired 45 897)
+                      </p>
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <br>
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county item-county-active">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                  <div class="item item-county">
+                    <div class="item-media">
+                      <img src="http://www.placehold.it/105x75" alt="">
+                    </div>
+                    <!-- .item-media -->
+                    <div class="item-content">
+                      <h2>Alberbury P., Bausley T.</h2>
+                      <p>
+                        Records Transcribed - 247<br>
+                        Records Paired - 30
+                      </p>
+                      <div class="item-content-actions">
+                        <a href="#" title="">Transcribe</a>
+                        <a href="#" title="">Georeference</a>
+                        <a href="#" title="">Visualize</a>
+                      </div>
+                      <!-- .item-content-actions -->
+                    </div>
+                    <!-- .item-content -->
+                  </div>
+                  <!-- .item -->
+                </div>
+                <!-- .box-content -->
+              </div>
+              <!-- .box -->
+            </div>
+            <!-- .column -->
+          </div>
+          <!-- .columns-2 -->
+        </div>
+        <!-- .application-sidebar -->
+        <form action="./" method="post" class="form form-search-map form-search-map-collapsed form-small">
+          <fieldset>
+            <div class="control-group">
+              <div class="control-field">
+                <span class="control-appended">
+                  <input type="text" placeholder="Find a place on map" class="control-input control-appended-input">
+                  <span class="control-appended-btn">
+                    <button type="submit"><span class="icon-search"></span></button>
+                  </span>
+                </span>
+              </div>
+              <!-- .control-field -->
+            </div>
+            <!-- .control-group -->
+          </fieldset>
+        </form>
+      </section>
+    </div>
+    <!-- .page -->
+  </body>
 </html>
