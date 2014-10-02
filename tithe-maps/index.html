@@ -75,7 +75,7 @@
                 </div>
                 <!-- .box-title -->
                 <div class="box-content box-content-scroll box-inner">
-                  <ul class="counties-list">
+                  <ul id="counties-list" class="counties-list">
                     <li data-collection-id="86808972"><a href="/" title="">Monmouth</a></li>
                     <li data-collection-id="22340810"><a href="/" title="">Glamorgan</a></li>
                     <li data-collection-id="25638567"><a href="/" title="">Carmarthen</a></li>
@@ -111,10 +111,11 @@
               <!-- .box-inner -->
             </div>
             <!-- .column -->
-            <div class="column column-wide">
+            <div id="county-detail" class="column column-wide">
               <div class="box box-county">
                 <div class="box-title box-inner">
-                  <a href="#"><span class="icon-chevron-left"></span></a> Montgomery
+                  <a href="#" id="county-detail-hide"><span class="icon-chevron-left"></span></a>
+                  <span id="county-detail-name">Montgomery</span>
                   <form action="./" method="post" class="form form-filter">
                     <fieldset>
                       <div class="control-group">
