@@ -25,6 +25,12 @@
     .item-media {height:75px; line-height:73px; text-align:center; border:1px solid #706b65; background:#ddd; padding:2px;}
     .item-media img {border:none;}
     .item.hidden {padding:0;}
+
+    .item-btn .item-media {height:auto;border:none;background:none;padding:none;}
+
+    .no-county-detail {width:174px;}
+    .no-county-detail .box-counties .box-content {right:9px;}
+    .no-county-detail #county-detail {display:none;}
     </style>
   </head>
   <body onLoad="new TitheMaps()">
@@ -68,7 +74,7 @@
       </header>
       <hr>
       <section class="application">
-        <div id="application-panel" class="application-counties">
+        <div id="application-panel" class="application-counties no-county-detail">
           <div class="columns-2">
             <div class="column column-thin">
               <div class="box box-counties">
@@ -113,7 +119,7 @@
               <!-- .box-inner -->
             </div>
             <!-- .column -->
-            <div id="county-detail" style="display:none;" class="column column-wide">
+            <div id="county-detail" class="column column-wide">
               <div class="box box-county">
                 <div class="box-title box-inner">
                   <a href="#" id="county-detail-hide"><span class="icon-chevron-left"></span></a>
@@ -193,30 +199,20 @@
                       </div>
                           <div class="note">The progress bar is updated live.</div>
                   </div>
-                  <div class="item">
+                  -->
+                  <div class="item item-btn">
                     <div class="item-media">
-                      <a href="/tithe-maps/transcribe" title="" class="btn">Transcribe</a>
+                      <a href="/tithe-maps/transcribe" title="" id="transcribe-random" class="btn">Transcribe</a>
                     </div>
-                    <div class="item-content">
-                      <p>
-                        Records Total 289 465<br>
-                        Records Transcribed 76 458 (Paired 45 897)
-                      </p>
-                    </div>
+                    <div class="item-content"></div>
                   </div>
-                  <div class="item">
+                  <div class="item item-btn">
                     <div class="item-media">
-                      <a href="/tithe-maps/georeference" title="" class="btn">Georeference</a>
+                      <a href="/tithe-maps/georeference" title="" id="georeference-random" class="btn">Georeference</a>
                     </div>
-                    <div class="item-content">
-                      <p>
-                        Records Total 289 465<br>
-                        Records Transcribed 76 458 (Paired 45 897)
-                      </p>
-                    </div>
+                    <div class="item-content"></div>
                   </div>
                   <br>
-                  -->
                   <div id="item-template">
                     <div class="item item-county">
                       <div class="item-media">
