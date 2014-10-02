@@ -18,7 +18,11 @@ goog.require('goog.net.XhrIo');
 
 
 /**
- * @typedef {{name: string, id: string, anchor: Element, li: Element}}
+ * @typedef {{name: string,
+ *            id: string,
+ *            center: Array.<number>,
+ *            anchor: Element,
+ *            li: Element}}
  */
 cynefin.County;
 
@@ -99,9 +103,16 @@ cynefin.Counties.prototype.initCountyList_ = function() {
                                                            undefined, li)[0];
         var name = goog.dom.getTextContent(anchor);
         if (collId && anchor && name && name.length > 0) {
+          var centerString = li.getAttribute('data-center');
+          var center = null;
+          if (goog.isString(centerString)) {
+            var broken = centerString.split(',');
+            center = [parseFloat(broken[1]), parseFloat(broken[0])];
+          }
           this.counties_.push({
             name: name,
             id: collId,
+            center: center,
             anchor: anchor,
             li: li
           });
@@ -159,7 +170,8 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
     this.activeCounty_ = county;
     this.dispatchEvent({
       type: 'opened',
-      countyName: name
+      countyName: name,
+      center: county.center
     });
   }
 };
