@@ -21,9 +21,10 @@
     <style>
     body { background-image: none; }
     .page { background-image: none; }
-    #map { position: absolute; top:0; left:0; bottom:0; right:0;}
+    #map {position:absolute; top:50px; left:0; bottom:0; right:0;}
     .item-media {height:75px; line-height:73px; text-align:center; border:1px solid #706b65; background:#ddd; padding:2px;}
     .item-media img {border:none;}
+    .item.hidden {padding:0;}
     </style>
   </head>
   <body onLoad="new TitheMaps()">
@@ -122,9 +123,9 @@
                       <div class="control-group">
                         <div class="control-field">
                           <span class="control-addon control-addon-small">
-                            <input type="text" class="control-input" placeholder="Filter">
+                            <input id="map-filter" type="text" class="control-input" placeholder="Filter">
                             <span class="control-addon-item">
-                              <span class="icon-remove"></span>
+                              <span id="map-filter-clear" class="icon-remove"></span>
                             </span>
                           </span>
                         </div>
