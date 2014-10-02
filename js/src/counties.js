@@ -84,6 +84,30 @@ cynefin.Counties = function() {
   }
 
   /**
+   * @type {!HTMLInputElement}
+   * @private
+   */
+  this.mapFilterElement_ = /** @type {!HTMLInputElement} */
+                           (goog.dom.getElement('map-filter'));
+
+  /**
+   * @type {!Element}
+   * @private
+   */
+  this.mapFilterClearElement_ = /** @type {!Element} */
+                                (goog.dom.getElement('map-filter-clear'));
+
+  goog.events.listen(this.mapFilterElement_, goog.events.EventType.INPUT,
+      function(e) {
+        this.setFilter(this.mapFilterElement_.value);
+      }, false, this);
+
+  goog.events.listen(this.mapFilterClearElement_, goog.events.EventType.CLICK,
+      function(e) {
+        this.setFilter('');
+      }, false, this);
+
+  /**
    * @type {!Array.<!cynefin.County>}
    * @private
    */
@@ -96,7 +120,7 @@ cynefin.Counties = function() {
   this.activeCounty_ = null;
 
   /**
-   * @type {!Array.<!{node: !Element, listenKeys: !Array.<goog.events.Key>}>}
+   * @type {!Array.<!{title: string, node: !Element, listenKeys: !Array.<goog.events.Key>}>}
    * @private
    */
   this.maps_ = [];
@@ -189,8 +213,6 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
     }
     goog.dom.classlist.add(county.li, 'active');
 
-    this.setFilter('');
-
     this.activeCounty_ = county;
     this.dispatchEvent({
       type: 'opened',
@@ -257,6 +279,7 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
     goog.dom.removeNode(el.node);
   });
   this.maps_ = [];
+  this.setFilter('');
 
   goog.array.forEach(data, function(el, i, arr) {
     var keys = [];
@@ -268,6 +291,7 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
     goog.dom.appendChild(this.mapListElement_, item);
 
     this.maps_.push({
+      title: this.normalizeString_(el['title']),
       node: item,
       keys: keys
     });
@@ -290,5 +314,36 @@ cynefin.Counties.prototype.closeCounty = function() {
  * @param {string} value
  */
 cynefin.Counties.prototype.setFilter = function(value) {
-  //TODO:
+  this.mapFilterElement_.value = value;
+  value = this.normalizeString_(value);
+  goog.array.forEach(this.maps_, function(el, i, arr) {
+    goog.dom.classlist.enable(el.node, 'hidden',
+                              !goog.string.contains(el.title, value));
+  }, this);
+};
+
+
+/**
+ * @param {?string} s .
+ * @return {string} Converted to lower case and removed accents.
+ * @private
+ */
+cynefin.Counties.prototype.normalizeString_ = function(s) {
+  var r = (s || '').toLowerCase();
+  r = r.replace(new RegExp('[àáâãäå]', 'g'), 'a');
+  r = r.replace(new RegExp('æ', 'g'), 'ae');
+  r = r.replace(new RegExp('[çč]', 'g'), 'c');
+  r = r.replace(new RegExp('ď', 'g'), 'c');
+  r = r.replace(new RegExp('[èéêëě]', 'g'), 'e');
+  r = r.replace(new RegExp('[ìíîï]', 'g'), 'i');
+  r = r.replace(new RegExp('[ñň]', 'g'), 'n');
+  r = r.replace(new RegExp('[òóôõöø]', 'g'), 'o');
+  r = r.replace(new RegExp('œ', 'g'), 'oe');
+  r = r.replace(new RegExp('ř', 'g'), 'r');
+  r = r.replace(new RegExp('š', 'g'), 's');
+  r = r.replace(new RegExp('ť', 'g'), 't');
+  r = r.replace(new RegExp('[ùúûüů]', 'g'), 'u');
+  r = r.replace(new RegExp('[ýÿ]', 'g'), 'y');
+  r = r.replace(new RegExp('ž', 'g'), 'z');
+  return r;
 };
