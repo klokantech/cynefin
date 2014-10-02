@@ -7,7 +7,9 @@
 
 goog.provide('cynefin.TitheMaps');
 
+goog.require('cynefin.Counties');
 goog.require('goog.dom');
+goog.require('goog.events');
 goog.require('ol.Map');
 goog.require('ol.View');
 goog.require('ol.layer.Tile');
@@ -77,6 +79,16 @@ cynefin.TitheMaps = function() {
     this.utfGridSource_.forDataAtCoordinateAndResolution(e.coordinate, res,
         this.handleMapSingleClick_, this);
   }, this);
+
+  /**
+   * @type {!cynefin.Counties}
+   * @private
+   */
+  this.counties_ = new cynefin.Counties();
+
+  this.counties_.listen('opened', function(e) {
+    //TODO: center map
+  }, false, this);
 };
 
 
@@ -109,6 +121,14 @@ cynefin.TitheMaps.prototype.handleMapPointerMove_ = function(data) {
  */
 cynefin.TitheMaps.prototype.handleMapSingleClick_ = function(data) {
   window['console']['log'](data);
+  if (data) {
+    var name = data['County'];
+    if (goog.isString(name)) {
+      if (name != this.counties_.getActiveCountyName()) {
+        this.counties_.openCounty(name);
+      }
+    }
+  }
 };
 
 
