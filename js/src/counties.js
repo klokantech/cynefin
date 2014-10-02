@@ -108,6 +108,32 @@ cynefin.Counties = function() {
       }, false, this);
 
   /**
+   * @type {Element}
+   * @private
+   */
+  this.georeferenceRandElement_ = goog.dom.getElement('georeference-random');
+
+  goog.events.listen(this.georeferenceRandElement_,
+      goog.events.EventType.CLICK, function(e) {
+        this.sendToRandomMap_(this.georeferenceRandElement_.href,
+                              '/random/public/georeference/json');
+        e.preventDefault();
+      }, false, this);
+
+  /**
+   * @type {Element}
+   * @private
+   */
+  this.transcribeRandElement_ = goog.dom.getElement('transcribe-random');
+
+  goog.events.listen(this.transcribeRandElement_,
+      goog.events.EventType.CLICK, function(e) {
+        this.sendToRandomMap_(this.transcribeRandElement_.href,
+                              '/random/public/transcription/json');
+        e.preventDefault();
+      }, false, this);
+
+  /**
    * @type {!Array.<!cynefin.County>}
    * @private
    */
@@ -226,6 +252,22 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
 
 
 /**
+ * @param {Object.<string, string>} e .
+ * @return {string} .
+ * @private
+ */
+cynefin.Counties.prototype.createLinkHash_ = function(e) {
+  var linkHash = e['title'] +
+                 '|' + new goog.Uri(e['transcription_url'] || '').getPath() +
+                 '|' + new goog.Uri(e['georeference_url'] || '').getPath() +
+                 '|' + new goog.Uri(e['visualize_url'] || '').getPath() +
+                 '|' + //TODO: accuracy
+                 '|' + new goog.Uri(e['object_url'] || '').getPath();
+  return linkHash;
+};
+
+
+/**
  * @param {string} html .
  * @param {Object.<string, string>} e .
  * @return {string} .
@@ -245,26 +287,13 @@ cynefin.Counties.prototype.replacePlaceholders_ = function(html, e) {
     }
   };
 
-  var title = e['title'];
-  replaceGroup('title', title);
+  replaceGroup('title', e['title']);
   replaceGroup('thumbnail_url', e['thumbnail_url']);
-
-  var transcription_url = e['transcription_url'];
-  var georeference_url = e['georeference_url'];
-  var visualize_url = e['visualize_url'];
-  var object_url = e['object_url'];
-  replaceGroup('transcription_url', transcription_url);
-  replaceGroup('georeference_url', georeference_url);
-  replaceGroup('visualize_url', visualize_url);
-  replaceGroup('object_url', object_url);
-
-  var linkHash = title +
-                 '|' + new goog.Uri(transcription_url || '').getPath() +
-                 '|' + new goog.Uri(georeference_url || '').getPath() +
-                 '|' + new goog.Uri(visualize_url || '').getPath() +
-                 '|' + //TODO: accuracy
-                 '|' + new goog.Uri(object_url || '').getPath();
-  replaceGroup('link_hash', linkHash);
+  replaceGroup('transcription_url', e['transcription_url']);
+  replaceGroup('georeference_url', e['georeference_url']);
+  replaceGroup('visualize_url', e['visualize_url']);
+  replaceGroup('object_url', e['object_url']);
+  replaceGroup('link_hash', this.createLinkHash_(e));
 
   return html;
 };
@@ -299,6 +328,28 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
       keys: keys
     });
   }, this);
+};
+
+
+/**
+ * @param {string} toolPath
+ * @param {string} randomPath
+ * @private
+ */
+cynefin.Counties.prototype.sendToRandomMap_ = function(toolPath, randomPath) {
+  if (!this.activeCounty_) return;
+
+  var requestUrl = cynefin.Counties.COLLECTION_BASE_URL +
+                       this.activeCounty_.id + randomPath;
+  var xhr_ = new goog.net.XhrIo(new goog.net.CorsXmlHttpFactory());
+  goog.events.listen(xhr_, goog.net.EventType.COMPLETE, function() {
+    if (xhr_.isSuccess()) {
+      var data = /** @type {Object.<string, string>} */(xhr_.getResponseJson());
+      var dst = toolPath + '#' + this.createLinkHash_(data);
+      window.location = dst;
+    }
+  }, false, this);
+  xhr_.send(requestUrl);
 };
 
 
