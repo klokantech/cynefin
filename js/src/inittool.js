@@ -18,8 +18,12 @@ cynefin.initTool = function(toolId) {
   var hashParts = hash.split('|');
 
   var frameUrlPath = hashParts[toolId];
-  goog.dom.getElement('app-frame').src =
-      cynefin.initTool.TOOL_BASE_URL + frameUrlPath;
+  if (frameUrlPath) {
+    goog.dom.getElement('app-frame').src =
+        cynefin.initTool.TOOL_BASE_URL + frameUrlPath;
+  } else {
+    // TODO
+  }
 
   if (hashParts.length > 0) {
     goog.dom.setTextContent(goog.dom.getElement('map-title'),
