@@ -20,7 +20,11 @@ goog.require('ol.source.TileUTFGrid');
  * @constructor
  */
 cynefin.TitheMaps = function() {
-  var mapElement = goog.dom.getElement('map');
+  /**
+   * @type {Element}
+   * @private
+   */
+  this.mapElement_ = goog.dom.getElement('map');
 
   this.utfGridSource_ = new ol.source.TileUTFGrid({
     url: cynefin.TitheMaps.PARISHES_TILEJSON,
@@ -44,7 +48,7 @@ cynefin.TitheMaps = function() {
    * @type {!ol.Map}
    */
   this.map_ = new ol.Map({
-    target: mapElement,
+    target: this.mapElement_,
     controls: [],
     layers: [
       new ol.layer.Tile({
@@ -62,10 +66,16 @@ cynefin.TitheMaps = function() {
     view: this.view_
   });
 
+  this.map_.on(ol.MapBrowserEvent.EventType.POINTERMOVE, function(e) {
+    var res = this.view_.getResolution() || 1;
+    this.utfGridSource_.forDataAtCoordinateAndResolution(e.coordinate, res,
+        this.handleMapPointerMove_, this);
+  }, this);
+
   this.map_.on(ol.MapBrowserEvent.EventType.SINGLECLICK, function(e) {
     var res = this.view_.getResolution() || 1;
     this.utfGridSource_.forDataAtCoordinateAndResolution(e.coordinate, res,
-        this.handleMapClick_, this);
+        this.handleMapSingleClick_, this);
   }, this);
 };
 
@@ -88,8 +98,17 @@ cynefin.TitheMaps.PARISHES_TILEJSON =
  * @param {Object} data Data from the UTFGrid.
  * @private
  */
-cynefin.TitheMaps.prototype.handleMapClick_ = function(data) {
-  //window['console']['log'](data);
+cynefin.TitheMaps.prototype.handleMapPointerMove_ = function(data) {
+  this.mapElement_.style.cursor = data ? 'pointer' : '';
+};
+
+
+/**
+ * @param {Object} data Data from the UTFGrid.
+ * @private
+ */
+cynefin.TitheMaps.prototype.handleMapSingleClick_ = function(data) {
+  window['console']['log'](data);
 };
 
 
