@@ -23,6 +23,8 @@ goog.require('ol.source.TileUTFGrid');
  * @constructor
  */
 cynefin.TitheMaps = function() {
+  var extent = ol.proj.transformExtent([-8.2178, 50.646, 0.1318, 54.3742],
+                                       'EPSG:4326', 'EPSG:3857');
   /**
    * @type {Element}
    * @private
@@ -39,8 +41,7 @@ cynefin.TitheMaps = function() {
    * @type {!ol.View}
    */
   this.view_ = new ol.View({
-    extent: ol.proj.transformExtent([-8.2178, 50.646, 0.1318, 54.3742],
-                                    'EPSG:4326', 'EPSG:3857'),
+    extent: extent,
     zoom: 7,
     minZoom: 6
   });
@@ -81,7 +82,12 @@ cynefin.TitheMaps = function() {
   }, this);
 
   this.map_.once(ol.MapEventType.POSTRENDER, function(e) {
-    this.centerOnLonLat_([-3.9001, 52.3118]);
+    var mapSize = this.map_.getSize();
+    if (mapSize) {
+      this.view_.fitExtent(extent, mapSize);
+    } else {
+      this.centerOnLonLat_([-3.9001, 52.3118]);
+    }
   }, this);
 
   /**
