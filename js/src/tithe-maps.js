@@ -178,7 +178,7 @@ cynefin.TitheMaps.prototype.handleMapPointerMove_ = function(data) {
  * @private
  */
 cynefin.TitheMaps.prototype.handleMapSingleClick_ = function(data) {
-  window['console']['log'](data);
+  if (goog.DEBUG) window['console']['log'](data);
   if (data) {
     var name = data['County'];
     if (goog.isString(name)) {
