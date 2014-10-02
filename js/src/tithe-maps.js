@@ -90,8 +90,13 @@ cynefin.TitheMaps = function() {
    */
   this.counties_ = new cynefin.Counties();
 
+  this.dontSetCenter_ = false;
   this.counties_.listen('opened', function(e) {
-    if (this.view_.getZoom() < 9) this.centerOnLonLat_(e.center);
+    if (!this.dontSetCenter_) {
+      var currentZoom = this.view_.getZoom();
+      if (currentZoom != 10) this.view_.setZoom(10);
+      this.centerOnLonLat_(e.center, currentZoom == 10);
+    }
   }, false, this);
 };
 
@@ -119,14 +124,15 @@ cynefin.TitheMaps.UTFGRID_TILEJSON =
 
 /**
  * @param {ol.Coordinate} coord
+ * @param {boolean=} opt_anim
  * @private
  */
-cynefin.TitheMaps.prototype.centerOnLonLat_ = function(coord) {
+cynefin.TitheMaps.prototype.centerOnLonLat_ = function(coord, opt_anim) {
   coord = ol.proj.transform(coord, 'EPSG:4326', 'EPSG:3857');
   if (!coord) return;
 
   var oldCenter = this.view_.getCenter();
-  if (oldCenter) {
+  if (opt_anim && oldCenter) {
     this.map_.beforeRender(ol.animation.pan({
       duration: 300,
       source: oldCenter
@@ -174,7 +180,9 @@ cynefin.TitheMaps.prototype.handleMapSingleClick_ = function(data) {
         }
       }, this);
       if (name != this.counties_.getActiveCountyName()) {
+        this.dontSetCenter_ = true;
         this.counties_.openCounty(name, filterByParish);
+        this.dontSetCenter_ = false;
       } else {
         filterByParish();
       }
