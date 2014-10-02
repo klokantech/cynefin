@@ -30,7 +30,7 @@ cynefin.TitheMaps = function() {
   this.mapElement_ = goog.dom.getElement('map');
 
   this.utfGridSource_ = new ol.source.TileUTFGrid({
-    url: cynefin.TitheMaps.PARISHES_TILEJSON,
+    url: cynefin.TitheMaps.UTFGRID_TILEJSON,
     preemptive: true
   });
 
@@ -107,13 +107,20 @@ cynefin.TitheMaps = function() {
  * @define {string} url for the counties TileJSON
  */
 cynefin.TitheMaps.COUNTIES_TILEJSON =
-    'http://cynefinproject.eu/tileserver/cynefin-counties.json';
+    'http://cynefin.tileserver.com/cynefin-counties.json';
 
 
 /**
  * @define {string} url for the parishes TileJSON
  */
 cynefin.TitheMaps.PARISHES_TILEJSON =
+    'http://cynefin.tileserver.com/cynefin-parishes.json';
+
+
+/**
+ * @define {string} url for the parishes TileJSON
+ */
+cynefin.TitheMaps.UTFGRID_TILEJSON =
     'http://cynefinproject.eu/tileserver/cynefin-parishes.json';
 
 
