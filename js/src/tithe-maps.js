@@ -46,12 +46,6 @@ cynefin.TitheMaps = function() {
   });
 
   /**
-   * @type {!Array.<number>}
-   * @private
-   */
-  this.shiftedCenter_ = [];
-
-  /**
    * @private
    * @type {!ol.Map}
    */
@@ -87,7 +81,6 @@ cynefin.TitheMaps = function() {
   }, this);
 
   this.map_.once(ol.MapEventType.POSTRENDER, function(e) {
-    this.calcShiftedCenter_();
     this.centerOnLonLat_([-3.9001, 52.3118]);
   }, this);
 
@@ -125,21 +118,6 @@ cynefin.TitheMaps.UTFGRID_TILEJSON =
 
 
 /**
- * @private
- */
-cynefin.TitheMaps.prototype.calcShiftedCenter_ = function() {
-  var mapSize = this.map_.getSize();
-  var panel = goog.dom.getElement('application-panel');
-  if (panel) {
-    this.shiftedCenter_ = [
-      (mapSize[0] + goog.style.getSize(panel).width) / 2,
-      (mapSize[1]) / 2
-    ];
-  }
-};
-
-
-/**
  * @param {ol.Coordinate} coord
  * @private
  */
@@ -155,9 +133,16 @@ cynefin.TitheMaps.prototype.centerOnLonLat_ = function(coord) {
     }));
   }
 
-  var mapSize = this.map_.getSize();
-  if (this.shiftedCenter_ && mapSize) {
-    this.view_.centerOn(coord, mapSize, this.shiftedCenter_);
+  var mapSize = this.map_.getSize(), shiftedCenter;
+  var panel = goog.dom.getElement('application-panel');
+  if (panel) {
+    shiftedCenter = [
+      (mapSize[0] + goog.style.getSize(panel).width) / 2,
+      (mapSize[1]) / 2
+    ];
+  }
+  if (shiftedCenter && mapSize) {
+    this.view_.centerOn(coord, mapSize, shiftedCenter);
   } else {
     this.view_.setCenter(coord);
   }
