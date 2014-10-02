@@ -146,6 +146,12 @@ cynefin.Counties = function() {
   this.activeCounty_ = null;
 
   /**
+   * @type {?cynefin.County}
+   * @private
+   */
+  this.highlightedCounty_ = null;
+
+  /**
    * @type {!Array.<!{title: string, parish: string, node: !Element, listenKeys: !Array.<goog.events.Key>}>}
    * @private
    */
@@ -206,6 +212,25 @@ cynefin.Counties.prototype.initCountyList_ = function() {
  */
 cynefin.Counties.prototype.getActiveCountyName = function() {
   return this.activeCounty_ ? this.activeCounty_.name : null;
+};
+
+
+/**
+ * @param {?string} name
+ */
+cynefin.Counties.prototype.highlightCounty = function(name) {
+  if (this.highlightedCounty_) {
+    goog.dom.classlist.remove(this.highlightedCounty_.li, 'highlighted');
+  }
+  if (!name) return;
+
+  var county = goog.array.find(this.counties_, function(el, i, arr) {
+    return el.name == name;
+  });
+  if (county) {
+    goog.dom.classlist.add(county.li, 'highlighted');
+    this.highlightedCounty_ = county;
+  }
 };
 
 

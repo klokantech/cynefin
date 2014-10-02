@@ -155,6 +155,7 @@ cynefin.TitheMaps.prototype.centerOnLonLat_ = function(coord) {
  */
 cynefin.TitheMaps.prototype.handleMapPointerMove_ = function(data) {
   this.mapElement_.style.cursor = data ? 'pointer' : '';
+  this.counties_.highlightCounty(data ? data['County'] : null);
 };
 
 
