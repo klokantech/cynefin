@@ -120,7 +120,7 @@ cynefin.Counties = function() {
   this.activeCounty_ = null;
 
   /**
-   * @type {!Array.<!{title: string, node: !Element, listenKeys: !Array.<goog.events.Key>}>}
+   * @type {!Array.<!{title: string, parish: string, node: !Element, listenKeys: !Array.<goog.events.Key>}>}
    * @private
    */
   this.maps_ = [];
@@ -199,6 +199,7 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
       if (xhr_.isSuccess()) {
         var data = /** @type {Array} */(xhr_.getResponseJson());
         this.processLoadedMaps_(data);
+        if (opt_callback) opt_callback();
       } else {
       }
     }, false, this);
@@ -292,6 +293,7 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
 
     this.maps_.push({
       title: this.normalizeString_(el['title']),
+      parish: el['identifier'],
       node: item,
       keys: keys
     });
@@ -316,10 +318,29 @@ cynefin.Counties.prototype.closeCounty = function() {
 cynefin.Counties.prototype.setFilter = function(value) {
   this.mapFilterElement_.value = value;
   value = this.normalizeString_(value);
+  var values = value.split(' or ');
   goog.array.forEach(this.maps_, function(el, i, arr) {
     goog.dom.classlist.enable(el.node, 'hidden',
-                              !goog.string.contains(el.title, value));
+        goog.array.every(values, function(value, i, arr) {
+          return !goog.string.contains(el.title, value);
+        })
+    );
+  });
+};
+
+
+/**
+ * @param {string} parishId
+ */
+cynefin.Counties.prototype.createFilterFromParishId = function(parishId) {
+  var filterText = '';
+  goog.array.forEach(this.maps_, function(el, i, arr) {
+    if (goog.array.contains(el.parish.split(','), parishId)) {
+      if (filterText.length > 0) filterText += ' OR ';
+      filterText += el.title;
+    }
   }, this);
+  this.setFilter(filterText);
 };
 
 

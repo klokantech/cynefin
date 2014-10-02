@@ -98,7 +98,7 @@ cynefin.TitheMaps = function() {
   this.counties_ = new cynefin.Counties();
 
   this.counties_.listen('opened', function(e) {
-    this.centerOnLonLat_(e.center);
+    if (this.view_.getZoom() < 9) this.centerOnLonLat_(e.center);
   }, false, this);
 };
 
@@ -182,8 +182,15 @@ cynefin.TitheMaps.prototype.handleMapSingleClick_ = function(data) {
   if (data) {
     var name = data['County'];
     if (goog.isString(name)) {
+      var filterByParish = goog.bind(function() {
+        if (this.view_.getZoom() > 9) {
+          this.counties_.createFilterFromParishId(data['SHAPE_ID'].toString());
+        }
+      }, this);
       if (name != this.counties_.getActiveCountyName()) {
-        this.counties_.openCounty(name);
+        this.counties_.openCounty(name, filterByParish);
+      } else {
+        filterByParish();
       }
     }
   }
