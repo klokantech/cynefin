@@ -3,284 +3,121 @@
 <!--[if lt IE 9 ]><html lang="cs" class="ie8 no-js"> <![endif]-->
 <!--[if lt IE 10 ]><html lang="cs" class="ie9 no-js"> <![endif]-->
 <!--[if (gt IE 10)|!(IE)]><!-->
-<html lang="cs" class="responsive no-js"> 
+<html lang="cs" class="responsive no-js">
 <!--<![endif]-->
-	<head>
-		
-		<meta charset="utf-8">
-		<!--[if IE]>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<![endif]-->
-		<meta name="author" content="">
-		<meta name="keywords" content="">
-		<meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+  <head>
 
-		<title>Cynefin</title>				
-		
-		<link rel="stylesheet" href="/css/main.css" type="text/css" media="screen">
-				
-		<script src="/js/app.js"></script>				
-		
-		<!--[if (lt IE 9) & (!IEMobile)]>
-		<link rel="stylesheet" href="/css/main-ie.css" media="screen">
-		<script src="/js/html5shiv.min"></script>	
-		<![endif]-->
-		
-	</head>		
-	<body class="clean-background with-panel">
-		
-		<div class="page">
-			
-			<header>
-				<div class="inner">
+    <meta charset="utf-8">
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
 
-					<a href="./" class="logo">
-						Cynefin
-					</a>
+    <title>Cynefin</title>
 
-					<hr>
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen">
 
-					<nav>
-						<ul class="navigation navigation-header">
-							<li>
-								<a href="/" title="Home">Home</a>
-							</li>
-							<li class="active">
-								<a href="/tithe-maps" title="Tithe maps">Tithe maps</a>
-							</li>
-							<li>
-								<a href="/find-records" title="Find Records">Find Records</a>
-							</li>	
-							<li>
-								<a href="/news" title="News">News</a>
-							</li>
-							<li>
-								<a href="/blog" title="Blog">Blog</a>
-							</li>
-							<li>
-								<a href="/contact" title="Contact">Contact</a>
-							</li>									
-						</ul>
-						<!-- .navigation -->
-					</nav>	
-					
-					<hr>
+    <script src="/js/inittool.js"></script>
 
-					<div class="languages">
-						<a href="#" title="Welsh">Welsh</a>
-						<span class="sep">|</span>
-						<a href="#" title="English" class="active">English</a>
-					</div>
-					<!-- .languages -->	
-				
-				</div>
-				<!-- .inner -->
-				
-				<div class="panel">		
-					<nav>
-						<ul class="navigation navigation-panel">
-							<li class="active">
-								<a href="/tithe-maps/transcribe" title="Transcribe">Transcribe</a>
-							</li>
-							<li>
-								<a href="/tithe-maps/georeference" title="Georeference">Georeference</a>
-							</li>
-							<li>
-								<a href="/tithe-maps/visualize" title="Visualize">Visualize</a>
-							</li>	
-							<li>
-								<a href="/tithe-maps/accuracy" title="Accuracy">Accuracy</a>
-							</li>
-							<li>
-								<a href="/tithe-maps/this-map" title="This map">This map</a>
-							</li>									
-						</ul>
-						<!-- .navigation -->
-					</nav>	
-					<p>Pool P., Lower Division (Llannerchudol, Trefnant Fechan, Town & Gungrog Fawr T.</p>
-				</div>
-				<!-- .panel -->
-			</header>
+    <!-- TODO MOVE TO CSS FILES -->
+    <style>
+      body, .page, .application {position:absolute;top:0;bottom:0;left:0;right:0;}
+      .application {top:120px;padding:0;}
+      #app-frame {width:100%;height:100%;border:none;}
+    </style>
 
-			<hr>	
-			
-			<section class="application">
-				
-				<script src="/js/transcribe.js"></script>
-				<link rel="stylesheet" href="/css/transcribe.css" type="text/css" media="screen">
+    <!--[if (lt IE 9) & (!IEMobile)]>
+    <link rel="stylesheet" href="/css/main-ie.css" media="screen">
+    <script src="/js/html5shiv.min"></script>
+    <![endif]-->
 
-				<div class="application-transcribe">
-					
-					<div id="transcribe">
-						<div id="map"></div>
-						<a href="#" id="map-plus"><span class="icon-plus"></span></a>
-						<a href="#" id="map-minus"><span class="icon-minus"></span></a>
-						<a href="#" id="edit-btn" class="mapcontrol">
-							<span id="edit-btn-edit">Edit</span>
-							<span id="edit-btn-add">Add transcription</span>
-						</a>
-						<div id="trans-edit-tools">
-							<span id="edit-label">
-								Transcription
-								<a href="#" id="edit-label-tips">Tips and examples</a>
-							</span>
-							<div id="edit-tool-box">
-								<a href="#" id="edit-tool-add" class="mapcontrol active">&#xe600;</a>
-								<a href="#" id="edit-tool-remove" class="mapcontrol">&#xe602;</a>
-								<div id="edit-tool-size">
-									<span id="edit-size-label">Tool size</span>
-									<a href="#" id="edit-size-1" class="mapcontrol edit-size-x">&nbsp;</a>
-									<a href="#" id="edit-size-2" class="mapcontrol edit-size-x active">&nbsp;</a>
-									<a href="#" id="edit-size-3" class="mapcontrol edit-size-x">&nbsp;</a>
-								</div>
-							</div>
-							<textarea id="edit-text" class="mapcontrol" placeholder="Transcribe here"></textarea>
-							<a href="#" id="edit-save" class="mapcontrol">Save</a>
-							<a href="#" id="edit-cancel" class="mapcontrol">Cancel</a>
-							<a href="#" id="edit-remove">Delete</a>
-						</div>		
-							
-						<div class="application-sidebar-right">		
-							
-							<form action="./" method="post" class="form form-search form-small" id="translist-filter-wrap">
-								<fieldset>
+  </head>
+  <body onLoad="initTool(1)" class="clean-background with-panel">
 
-									<div class="control-group">
-										<div class="control-field">
-											
-											<span class="control-appended">
-												<input type="text" class="control-input control-appended-input" id="translist-filter">
-												<span class="control-appended-btn">
-													<button type="submit" class="btn btn-primary">Send</button>
-												</span>	
-											</span>
+    <div class="page">
 
-										</div>
-										<!-- .control-field -->	
-									</div>
-									<!-- .control-group -->
+      <header>
+        <div class="inner">
 
-								</fieldset>
-							</form>
+          <a href="./" class="logo">
+            Cynefin
+          </a>
 
-							<div class="box-details-list-on-right box-content-scroll">					
+          <hr>
 
-								<div id="translist-wrap">
-									<div id="translist">
-										<div id="translist-item-template">
+          <nav>
+            <ul class="navigation navigation-header">
+              <li>
+                <a href="/" title="Home">Home</a>
+              </li>
+              <li class="active">
+                <a href="/tithe-maps" title="Tithe maps">Tithe maps</a>
+              </li>
+              <li>
+                <a href="/find-records" title="Find Records">Find Records</a>
+              </li>
+              <li>
+                <a href="/news" title="News">News</a>
+              </li>
+              <li>
+                <a href="/blog" title="Blog">Blog</a>
+              </li>
+              <li>
+                <a href="/contact" title="Contact">Contact</a>
+              </li>
+            </ul>
+            <!-- .navigation -->
+          </nav>
 
-											<div class="box box-details box-inner translist-item">
+          <hr>
 
-												<div class="box-title">
-													<span class="item-name">45</span> 
-													<span class="item-linked" title="linked">
-														<span class="icon-link"></span>
-													</span>
-													<span class="box-toggle-details item-morebtn">
-														<span class="show">Show details</span>
-														<span class="hide">Hide details</span>
-													</span>
-												</div>
-												<!-- .box-title -->
+          <div class="languages">
+            <a href="#" title="Welsh">Welsh</a>
+            <span class="sep">|</span>
+            <a href="#" title="English" class="active">English</a>
+          </div>
+          <!-- .languages -->
 
-												<div class="box-content">												
+        </div>
+        <!-- .inner -->
 
-													<p class="item-data">
-														<span class="weak item-data-label">Landowner</span>
-														<span class="item-data-value item-data-landowner"></span>
-													</p>
+        <div class="panel">
+          <nav>
+            <ul class="navigation navigation-panel">
+              <li id="link-transcribe" class="active">
+                <a href="/tithe-maps/transcribe" title="Transcribe">Transcribe</a>
+              </li>
+              <li id="link-georeference">
+                <a href="/tithe-maps/georeference" title="Georeference">Georeference</a>
+              </li>
+              <li id="link-visualize">
+                <a href="/tithe-maps/visualize" title="Visualize">Visualize</a>
+              </li>
+              <li id="link-accuracy">
+                <a href="/tithe-maps/accuracy" title="Accuracy">Accuracy</a>
+              </li>
+              <li id="link-this-map">
+                <a href="/tithe-maps/this-map" title="This map">This map</a>
+              </li>
+            </ul>
+            <!-- .navigation -->
+          </nav>
+          <p id="map-title"></p>
+        </div>
+        <!-- .panel -->
+      </header>
 
-													<div class="box-content-collapse">							
-														
-														<div class="item-more">
-															
-															<p>
-																<span class="item-data-label">Occupier</span>
-																<span class="item-data-value item-data-occupier"></span>
-															</p>
+      <hr>
 
-															<p>
-																<span class="item-data-label">Name, desc., Lands, premises</span>
-																<span class="item-data-value item-data-desc"></span>
-															</p>
+      <section class="application">
+        <iframe id="app-frame" />
+      </section>
 
-															<p>
-																<span class="item-data-label">State of cultivation</span>
-																<span class="item-data-value item-data-state"></span>
-															</p>
+    </div>
+    <!-- .page -->
 
-															<p>
-																<span class="item-data-label">Quantities in statute measure</span>
-																<span class="item-data-value item-data-quants"></span>
-															</p>
-															
-															<p>
-																<span class="item-data-label">Payable to</span>
-																<span class="item-data-value item-data-payableto"></span>
-															</p>
-														</div>											
-
-													</div>
-													<!-- .box-content-collapse -->
-
-												</div>
-												<!-- .box-content -->
-												
-											</div>
-											<!-- .box -->
-											
-										</div>
-									</div>
-								</div>
-
-							</div>
-							<!-- .box-details-list -->
-									
-					</div>
-					<!-- .application-sidebar-right -->
-
-					</div>
-					<div id="ownerlist-resizer">
-						<div id="ownerlist-resizer-dragger"></div>
-					</div>
-					<div id="ownerlist">
-						<div id="ownerimage">
-							<div id="ownerimage-scan"></div>
-							<div id="record-underline">
-								<div id="record-veil-top"></div>
-								<div id="record-veil-bottom"></div>
-							</div>
-							<div id="ownerlist-edit" style="display:none;">
-								<span id="ownerlist-edit-type"></span>
-								<a href="#" id="ownerlist-edit-change">(Change)</a>
-								<div id="ownerlist-edit-box">
-									<input type="text" id="ownerlist-edit-text" placeholder="Transcription">
-									<a href="#" id="ownerlist-edit-ok">OK</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<script type="text/javascript">
-				var main = new Main();
-				main.init( {
-					pyramid: {
-						format: "Iiif",
-						url: "http://dams.llgc.org.uk/iiif/image/4527513/",
-						width: 10580,
-						height: 19599
-					}
-				} );
-				</script>
-
-					
-			</section>
-
-		</div>
-		<!-- .page -->
-
-	</body>
+  </body>
 </html>
