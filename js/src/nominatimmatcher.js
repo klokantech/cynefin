@@ -138,8 +138,8 @@ klokantech.NominatimMatcher.prototype.requestMatchingRows =
           'formatted_address': el['display_name'],
           'type': el['type'],
           'bounds': bounds,
-          'lat': el['lat'],
-          'lon': el['lon'],
+          'lat': parseFloat(el['lat']),
+          'lon': parseFloat(el['lon']),
           'viewport': null});
       }, this);
       return newResults;

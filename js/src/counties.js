@@ -239,6 +239,10 @@ cynefin.Counties.prototype.highlightCounty = function(name) {
  * @param {Function=} opt_callback
  */
 cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
+  if (this.activeCounty_ && this.activeCounty_.name == name) {
+    opt_callback();
+    return;
+  }
   var county = goog.array.find(this.counties_, function(el, i, arr) {
     return el.name == name;
   });

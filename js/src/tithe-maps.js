@@ -12,6 +12,7 @@ goog.require('goog.dom');
 goog.require('goog.events');
 goog.require('klokantech.Nominatim');
 goog.require('ol.Map');
+goog.require('ol.Overlay');
 goog.require('ol.View');
 goog.require('ol.animation');
 goog.require('ol.layer.Tile');
@@ -113,47 +114,87 @@ cynefin.TitheMaps = function() {
   goog.events.listen(goog.dom.getElement('map-zoom-out'),
       goog.events.EventType.CLICK, function(e) {zoomBtn(-1, e);});
 
+  /* GEOCODER */
   var geocoderElement = goog.dom.getElement('nominatim-input');
   if (geocoderElement) {
     var ac = new klokantech.Nominatim(geocoderElement, undefined,
                                       undefined, extentLL);
 
-    var fitExtent = goog.bind(function(ext) {
-      var mapSize = this.getMapSize_();
-      if (!mapSize) return;
-      var proj = this.view_.getProjection();
-      var trans = ol.proj.getTransform('EPSG:4326', proj);
-      var transExt = ol.extent.applyTransform(ext, trans);
-      ol.extent.scaleFromCenter(transExt, 1.33); //extend by 33%
-      this.view_.fitExtent(transExt, mapSize);
-      this.centerOn_(this.view_.getCenter());
-      this.view_.setResolution(
-          this.view_.constrainResolution(this.view_.getResolution()));
+    var handleResult = goog.bind(function(result) {
+      this.searchResultOverlay_.setPosition(undefined);
+      if (result) {
+        var proj = this.view_.getProjection();
+        var trans = ol.proj.getTransform('EPSG:4326', proj);
+
+        var ext = result['bounds'] || result['viewport'];
+        var mapSize = this.getMapSize_();
+        if (ext && mapSize) {
+          var transExt = ol.extent.applyTransform(ext, trans);
+          ol.extent.scaleFromCenter(transExt, 1.33); //extend by 33%
+          this.view_.fitExtent(transExt, mapSize);
+          this.centerOn_(this.view_.getCenter());
+          this.view_.setResolution(
+              this.view_.constrainResolution(this.view_.getResolution()));
+        }
+
+        var ll = [result['lon'], result['lat']];
+        if (ll && this.view_.getZoom() > 9) { // don't do when zoomed out
+          var coord = trans(ll);
+          var res = this.view_.getResolution() || 1;
+          this.utfGridSource_.forDataAtCoordinateAndResolution(coord, res,
+              function(data) {
+                if (data) {
+                  var name = data['County'], parishId = data['SHAPE_ID'];
+                  if (name && parishId) {
+                    this.dontSetCenter_ = true;
+                    this.counties_.openCounty(name, goog.bind(function() {
+                      this.counties_.createFilterFromParishId(
+                          parishId.toString());
+                    }, this));
+                    this.centerOn_(coord);
+                    this.dontSetCenter_ = false;
+                    this.searchResultOverlay_.setPosition(coord);
+                  }
+                }
+              }, this);
+        }
+      }
     }, this);
 
     goog.events.listen(ac, goog.ui.ac.AutoComplete.EventType.UPDATE,
         function(e) {
-          if (e.row) {
-            var bnds = e.row['bounds'] || e.row['viewport'];
-            fitExtent(bnds);
-            e.preventDefault();
-          }
+          handleResult(e.row);
+          e.preventDefault();
         });
 
     var geocoder_search = function(e) {
       e.preventDefault();
       ac.search(geocoderElement.value, 1, function(tok, results) {
-        var result = results[0];
-        if (result) {
-          var bnds = result['bounds'] || result['viewport'];
-          fitExtent(bnds);
-        }
+        handleResult(results[0]);
       });
     };
     var form = goog.dom.getAncestorByTagNameAndClass(geocoderElement,
                                                      goog.dom.TagName.FORM);
     goog.events.listen(form, goog.events.EventType.SUBMIT, geocoder_search);
   }
+
+  /**
+   * @type {!ol.Overlay}
+   * @private
+   */
+  this.searchResultOverlay_ = new ol.Overlay({
+    element: goog.dom.createDom(
+        goog.dom.TagName.DIV,
+        {'class': 'search-marker'})
+  });
+  this.map_.addOverlay(this.searchResultOverlay_);
+
+  this.view_.on(ol.ObjectEventType.PROPERTYCHANGE, function() {
+    if (goog.isDefAndNotNull(this.searchResultOverlay_.getPosition())) {
+      this.searchResultOverlay_.setPosition(undefined);
+      geocoderElement.value = '';
+    }
+  }, this);
 
   /**
    * @type {!cynefin.Counties}
@@ -194,14 +235,23 @@ cynefin.TitheMaps.UTFGRID_TILEJSON =
 
 
 /**
+ * @return {number}
+ * @private
+ */
+cynefin.TitheMaps.prototype.getMapLeftOffset_ = function() {
+  var panel = goog.dom.getElement('application-panel');
+  return panel ? goog.style.getSize(panel).width + 30 : 0;
+};
+
+
+/**
  * @return {ol.Size|undefined}
  * @private
  */
 cynefin.TitheMaps.prototype.getMapSize_ = function() {
   var mapSize = this.map_.getSize();
-  var panel = goog.dom.getElement('application-panel');
-  if (mapSize && panel) {
-    mapSize = [mapSize[0] - goog.style.getSize(panel).width, mapSize[1]];
+  if (mapSize) {
+    mapSize = [mapSize[0] - this.getMapLeftOffset_(), mapSize[1]];
   }
   return mapSize;
 };
@@ -225,14 +275,12 @@ cynefin.TitheMaps.prototype.centerOn_ = function(coord, opt_ll, opt_anim) {
     }));
   }
 
-  var mapSize = this.map_.getSize(), shiftedCenter;
-  var panel = goog.dom.getElement('application-panel');
-  if (panel) {
-    shiftedCenter = [
-      (mapSize[0] + goog.style.getSize(panel).width) / 2,
-      (mapSize[1]) / 2
-    ];
-  }
+  var mapSize = this.map_.getSize();
+  var shiftedCenter = [
+    (mapSize[0] + this.getMapLeftOffset_()) / 2,
+    (mapSize[1]) / 2
+  ];
+
   if (shiftedCenter && mapSize) {
     this.view_.centerOn(coord, mapSize, shiftedCenter);
   } else {
@@ -265,13 +313,9 @@ cynefin.TitheMaps.prototype.handleMapSingleClick_ = function(data) {
           this.counties_.createFilterFromParishId(data['SHAPE_ID'].toString());
         }
       }, this);
-      if (name != this.counties_.getActiveCountyName()) {
-        this.dontSetCenter_ = true;
-        this.counties_.openCounty(name, filterByParish);
-        this.dontSetCenter_ = false;
-      } else {
-        filterByParish();
-      }
+      this.dontSetCenter_ = true;
+      this.counties_.openCounty(name, filterByParish);
+      this.dontSetCenter_ = false;
     }
   }
 };
