@@ -397,7 +397,7 @@ cynefin.Counties.prototype.setFilter = function(value) {
   value = this.normalizeString_(value);
   var values = value.split(' or ');
   goog.array.forEach(this.maps_, function(el, i, arr) {
-    goog.dom.classlist.enable(el.node, 'hidden',
+    goog.dom.classlist.enable(el.node, 'filtered',
         goog.array.every(values, function(value, i, arr) {
           return !goog.string.contains(el.title, value);
         })
