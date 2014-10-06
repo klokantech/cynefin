@@ -38,9 +38,10 @@ goog.require('goog.net.Jsonp');
  * @param {string=} opt_url The Uri of the web service.
  * @param {Object.<string, string>=} opt_payload The list of extra parameters
      for the Jsonp request.
+ * @param {Array.<number>=} opt_viewbox Limit the search [minx,miny,maxx,maxy].
  * @constructor
  */
-klokantech.NominatimMatcher = function(opt_url, opt_payload) {
+klokantech.NominatimMatcher = function(opt_url, opt_payload, opt_viewbox) {
 
   /**
    * The url of the Nominatim instance
@@ -55,6 +56,17 @@ klokantech.NominatimMatcher = function(opt_url, opt_payload) {
    * @private
    */
   this.payload_ = opt_payload || {};
+
+  /**
+   * @type {Array.<number>|null}
+   * @private
+   */
+  this.viewbox_ = opt_viewbox || null;
+
+  if (this.viewbox_) {
+    this.payload_['viewboxlbrt'] = this.viewbox_.join(',');
+    this.payload_['bounded'] = 1;
+  }
 
   /**
    * The Jsonp object used for making remote requests.  When a new request
@@ -98,7 +110,7 @@ klokantech.NominatimMatcher.prototype.requestMatchingRows =
   // Cancel old request when we have a new one
   if (this.request_ !== null) this.jsonp_.cancel(this.request_);
 
-  this.request_ = this.jsonp_.send(this.payload_, function(e) {
+  this.request_ = this.jsonp_.send(this.payload_, goog.bind(function(e) {
     // If there is one or more "place" then return only these
     var places = goog.array.filter(e, function(r) {
       return ((r['class'] == 'place' ||
@@ -112,20 +124,31 @@ klokantech.NominatimMatcher.prototype.requestMatchingRows =
     });
 
     // extract the information relevant for our needs
-    var extractRelevant = function(results) {
+    var extractRelevant = goog.bind(function(results) {
       var newResults = [];
       goog.array.forEach(results, function(el, i, arr) {
         var bb = el['boundingbox'];
+        var bounds = bb ? [parseFloat(bb[2]), parseFloat(bb[0]),
+                           parseFloat(bb[3]), parseFloat(bb[1])] : null;
+        window['console']['log'](this.viewbox_, bounds);
+        if (this.viewbox_ && bounds) {
+          if (this.viewbox_[0] > bounds[2] ||
+              this.viewbox_[1] > bounds[3] ||
+              this.viewbox_[2] < bounds[0] ||
+              this.viewbox_[3] < bounds[1]) {
+            return;
+          }
+        }
         newResults.push({
           'formatted_address': el['display_name'],
           'type': el['type'],
-          'bounds': bb ? [parseFloat(bb[2]), parseFloat(bb[0]),
-                            parseFloat(bb[3]), parseFloat(bb[1])] : null,
-          //'boundingbox': el['boundingbox'],
+          'bounds': bounds,
+          'lat': el['lat'],
+          'lon': el['lon'],
           'viewport': null});
       }, this);
       return newResults;
-    };
+    }, this);
 
     if (places.length > 0) {
       // Fix the "display_name"
@@ -169,5 +192,5 @@ klokantech.NominatimMatcher.prototype.requestMatchingRows =
     } else {
       matchHandler(token, extractRelevant(e));
     }
-  });
+  }, this));
 };

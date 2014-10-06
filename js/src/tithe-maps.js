@@ -115,10 +115,8 @@ cynefin.TitheMaps = function() {
 
   var geocoderElement = goog.dom.getElement('nominatim-input');
   if (geocoderElement) {
-    var ac = new klokantech.Nominatim(geocoderElement, undefined, {
-      'bounded': 1,
-      'viewboxlbrt': extentLL.join(',')
-    });
+    var ac = new klokantech.Nominatim(geocoderElement, undefined,
+                                      undefined, extentLL);
 
     var fitExtent = goog.bind(function(ext) {
       var mapSize = this.getMapSize_();

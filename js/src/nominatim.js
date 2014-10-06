@@ -51,10 +51,11 @@ goog.require('klokantech.NominatimMatcher');
  * @param {!Element} input Input element or text area.
  * @param {string=} opt_url The Uri of the Nominatim service.
  * @param {Object=} opt_payload Extra parameters for the Jsonp request.
+ * @param {Array.<number>=} opt_viewbox Limit the search [minx,miny,maxx,maxy].
  * @constructor
  * @extends {goog.ui.ac.AutoComplete}
  */
-klokantech.Nominatim = function(input, opt_url, opt_payload) {
+klokantech.Nominatim = function(input, opt_url, opt_payload, opt_viewbox) {
   // Create a custom renderer that renders rich rows returned from server.
   var customRenderer = {};
   customRenderer.renderRow = function(row, token, node) {
@@ -81,7 +82,8 @@ klokantech.Nominatim = function(input, opt_url, opt_payload) {
    * @protected
    * @suppress {underscore}
    */
-  this.matcher_ = new klokantech.NominatimMatcher(opt_url, opt_payload);
+  this.matcher_ = new klokantech.NominatimMatcher(
+      opt_url, opt_payload, opt_viewbox);
 
   /**
    * An input handler that calls select on a row when it is selected.
