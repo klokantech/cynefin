@@ -90,6 +90,22 @@ cynefin.TitheMaps = function() {
     }
   }, this);
 
+  /* ZOOM CONTROLS */
+  var zoomBtn = goog.bind(function(delta, e) {
+    var curRes = this.view_.getResolution() || 1;
+    this.map_.beforeRender(ol.animation.zoom({
+      resolution: curRes,
+      duration: 250,
+      easing: ol.easing.easeOut
+    }));
+    this.view_.setResolution(this.view_.constrainResolution(curRes, delta));
+    e.preventDefault();
+  }, this);
+  goog.events.listen(goog.dom.getElement('map-zoom-in'),
+      goog.events.EventType.CLICK, function(e) {zoomBtn(1, e);});
+  goog.events.listen(goog.dom.getElement('map-zoom-out'),
+      goog.events.EventType.CLICK, function(e) {zoomBtn(-1, e);});
+
   /**
    * @type {!cynefin.Counties}
    * @private
