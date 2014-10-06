@@ -24,7 +24,14 @@
     #map {position:absolute; top:50px; left:0; bottom:0; right:0;}
     .item-media {height:75px; line-height:73px; text-align:center; border:1px solid #706b65; background:#ddd; padding:2px;}
     .item-media img {border:none;}
-    .item.hidden {padding:0;}
+    .item-county {
+      height:75px;overflow:hidden;
+      -webkit-transition:all .4s;
+      -moz-transition:all .4s;
+      -o-transition:all .4s;
+      transition:all .4s;
+    }
+    .item-county.filtered {height:0;padding-top:0;padding-bottom:0;opacity:0;}
 
     .item-btn .item-media {height:auto;border:none;background:none;padding:none;}
 
@@ -41,6 +48,8 @@
     .ac-row {position:relative;padding:3px;padding-left:8px;cursor:pointer;border-bottom:1px solid #ddd;}
     .ac-highlighted {font-weight:bold;}
     .ac-active {background:#eee;}
+
+    .search-marker {width:10px;height:10px;background:#6b8c95;outline:2px solid #fff;margin:-5px -5px;}
     </style>
   </head>
   <body onLoad="new TitheMaps()">
@@ -261,7 +270,7 @@
                 <span class="control-appended">
                   <input id="nominatim-input" type="text" placeholder="Find a place on map" class="control-input control-appended-input">
                   <span class="control-appended-btn">
-                    <button id="nominatim-button" type="submit"><span class="icon-search"></span></button>
+                    <button type="submit"><span class="icon-search"></span></button>
                   </span>
                 </span>
               </div>
