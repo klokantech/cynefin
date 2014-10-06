@@ -32,10 +32,15 @@
     .no-county-detail .box-counties .box-content {right:9px;}
     .no-county-detail #county-detail {display:none;}
 
-    .counties-list li.highlighted {background-color:#c0ced3;}
+    .counties-list li:hover, .counties-list li.highlighted {background-color:#c0ced3;}
 
     .form-map-zoom-in {top:185px;}
     .form-map-zoom-out {top:230px;}
+
+    .ac-renderer {position:absolute;width:240px;background:#fff;border:1px solid #cdcdcd;font-size:12px;}
+    .ac-row {position:relative;padding:3px;padding-left:8px;cursor:pointer;border-bottom:1px solid #ddd;}
+    .ac-highlighted {font-weight:bold;}
+    .ac-active {background:#eee;}
     </style>
   </head>
   <body onLoad="new TitheMaps()">
@@ -249,22 +254,21 @@
           <!-- .columns-2 -->
         </div>
         <!-- .application-sidebar -->
-        <!--
-        <form class="form form-search-map form-search-map-collapsed form-small">
+        <form class="form form-search-map form-small"><!-- form-search-map-collapsed -->
           <fieldset>
             <div class="control-group">
               <div class="control-field">
                 <span class="control-appended">
-                  <input type="text" placeholder="Find a place on map" class="control-input control-appended-input">
+                  <input id="nominatim-input" type="text" placeholder="Find a place on map" class="control-input control-appended-input">
                   <span class="control-appended-btn">
-                    <button type="submit"><span class="icon-search"></span></button>
+                    <button id="nominatim-button" type="submit"><span class="icon-search"></span></button>
                   </span>
                 </span>
               </div>
             </div>
           </fieldset>
         </form>
-        -->
+
         <!-- TODO class names -->
 
         <form class="form form-search-map form-search-map-collapsed form-small form-map-zoom-in">
