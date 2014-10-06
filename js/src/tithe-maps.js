@@ -10,6 +10,7 @@ goog.provide('cynefin.TitheMaps');
 goog.require('cynefin.Counties');
 goog.require('goog.dom');
 goog.require('goog.events');
+goog.require('klokantech.Nominatim');
 goog.require('ol.Map');
 goog.require('ol.View');
 goog.require('ol.animation');
@@ -23,8 +24,13 @@ goog.require('ol.source.TileUTFGrid');
  * @constructor
  */
 cynefin.TitheMaps = function() {
-  var extent = ol.proj.transformExtent([-8.2178, 50.646, 0.1318, 54.3742],
-                                       'EPSG:4326', 'EPSG:3857');
+  var extentLL = [-5.3642, 51.3776, -2.6334, 53.4369]; // close fit for geocoder
+  var extent = ol.proj.transformExtent(extentLL, 'EPSG:4326', 'EPSG:3857');
+  var viewConstraintExtent = ol.extent.clone(extent);
+  ol.extent.scaleFromCenter(viewConstraintExtent, 2); // view constraint
+  var initFitExtent = ol.extent.clone(extent);
+  ol.extent.scaleFromCenter(initFitExtent, 1.2); // initial fitExtent
+
   /**
    * @type {Element}
    * @private
@@ -41,9 +47,10 @@ cynefin.TitheMaps = function() {
    * @type {!ol.View}
    */
   this.view_ = new ol.View({
-    extent: extent,
+    extent: viewConstraintExtent,
     zoom: 7,
-    minZoom: 6
+    minZoom: 6,
+    maxZoom: 14
   });
 
   /**
@@ -84,9 +91,9 @@ cynefin.TitheMaps = function() {
   this.map_.once(ol.MapEventType.POSTRENDER, function(e) {
     var mapSize = this.map_.getSize();
     if (mapSize) {
-      this.view_.fitExtent(extent, mapSize);
+      this.view_.fitExtent(initFitExtent, mapSize);
     } else {
-      this.centerOnLonLat_([-3.9001, 52.3118]);
+      this.centerOn_([-3.9001, 52.3118], true);
     }
   }, this);
 
@@ -106,6 +113,46 @@ cynefin.TitheMaps = function() {
   goog.events.listen(goog.dom.getElement('map-zoom-out'),
       goog.events.EventType.CLICK, function(e) {zoomBtn(-1, e);});
 
+  var geocoderElement = goog.dom.getElement('nominatim-input');
+  if (geocoderElement) {
+    var ac = new klokantech.Nominatim(geocoderElement, undefined, {
+      'bounded': 1,
+      'viewboxlbrt': extentLL.join(',')
+    });
+
+    var fitExtent = goog.bind(function(ext) {
+      var mapSize = this.getMapSize_();
+      if (!mapSize) return;
+      var proj = this.view_.getProjection();
+      var trans = ol.proj.getTransform('EPSG:4326', proj);
+      var transExt = ol.extent.applyTransform(ext, trans);
+      ol.extent.scaleFromCenter(transExt, 1.33); //extend by 33%
+      this.view_.fitExtent(transExt, mapSize);
+      this.centerOn_(this.view_.getCenter());
+      this.view_.setResolution(
+          this.view_.constrainResolution(this.view_.getResolution()));
+    }, this);
+
+    goog.events.listen(ac, goog.ui.ac.AutoComplete.EventType.UPDATE,
+        function(e) {
+          var bnds = e.row['bounds'] || e.row['viewport'];
+          fitExtent(bnds);
+        });
+
+    var geocoder_search = function(e) {
+      ac.search(geocoderElement.value, 1, function(tok, results) {
+        var bnds = results[0]['bounds'] || results[0]['viewport'];
+        fitExtent(bnds);
+      });
+      e.preventDefault();
+    };
+    var form = goog.dom.getAncestorByTagNameAndClass(geocoderElement,
+                                                     goog.dom.TagName.FORM);
+    goog.events.listen(form, goog.events.EventType.SUBMIT, geocoder_search);
+    goog.events.listen(geocoderElement,
+                       ['webkitspeechchange', 'speechchange'], geocoder_search);
+  }
+
   /**
    * @type {!cynefin.Counties}
    * @private
@@ -117,7 +164,7 @@ cynefin.TitheMaps = function() {
     if (!this.dontSetCenter_) {
       var currentZoom = this.view_.getZoom();
       if (currentZoom != 10) this.view_.setZoom(10);
-      this.centerOnLonLat_(e.center, currentZoom == 10);
+      this.centerOn_(e.center, true, currentZoom == 10);
     }
   }, false, this);
 };
@@ -145,13 +192,28 @@ cynefin.TitheMaps.UTFGRID_TILEJSON =
 
 
 /**
- * @param {ol.Coordinate} coord
+ * @return {ol.Size|undefined}
+ * @private
+ */
+cynefin.TitheMaps.prototype.getMapSize_ = function() {
+  var mapSize = this.map_.getSize();
+  var panel = goog.dom.getElement('application-panel');
+  if (mapSize && panel) {
+    mapSize = [mapSize[0] - goog.style.getSize(panel).width, mapSize[1]];
+  }
+  return mapSize;
+};
+
+
+/**
+ * @param {ol.Coordinate|undefined} coord
+ * @param {boolean=} opt_ll
  * @param {boolean=} opt_anim
  * @private
  */
-cynefin.TitheMaps.prototype.centerOnLonLat_ = function(coord, opt_anim) {
-  coord = ol.proj.transform(coord, 'EPSG:4326', 'EPSG:3857');
+cynefin.TitheMaps.prototype.centerOn_ = function(coord, opt_ll, opt_anim) {
   if (!coord) return;
+  if (opt_ll) coord = ol.proj.transform(coord, 'EPSG:4326', 'EPSG:3857');
 
   var oldCenter = this.view_.getCenter();
   if (opt_anim && oldCenter) {
