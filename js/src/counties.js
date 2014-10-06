@@ -152,12 +152,30 @@ cynefin.Counties = function() {
   this.highlightedCounty_ = null;
 
   /**
-   * @type {!Array.<!{title: string, parish: string, node: !Element, listenKeys: !Array.<goog.events.Key>}>}
+   * @type {!Array.<!{title: string, parish: string, node: !Element,
+   *                  listenKeys: !Array.<goog.events.Key>,
+   *                  scanned: boolean, georefed: boolean}>}
    * @private
    */
   this.maps_ = [];
 
   this.initCountyList_();
+
+  /**
+   * @type {string}
+   * @private
+   */
+  this.stateFilter_ = 'all';
+
+  var listenStateFilter = goog.bind(function(type) {
+    goog.events.listen(goog.dom.getElement('map-filter-' + type),
+        goog.events.EventType.CLICK, function(e) {
+          this.setStateFilter(type);
+        }, false, this);
+  }, this);
+  listenStateFilter('all');
+  listenStateFilter('scanned');
+  listenStateFilter('notgeorefed');
 };
 goog.inherits(cynefin.Counties, goog.events.EventTarget);
 
@@ -240,7 +258,7 @@ cynefin.Counties.prototype.highlightCounty = function(name) {
  */
 cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
   if (this.activeCounty_ && this.activeCounty_.name == name) {
-    opt_callback();
+    if (opt_callback) opt_callback();
     return;
   }
   var county = goog.array.find(this.counties_, function(el, i, arr) {
@@ -340,6 +358,9 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
   });
   this.maps_ = [];
   this.setFilter('');
+  this.setStateFilter('all');
+
+  var allTotal = 0, scannedTotal = 0, georefedTotal = 0;
 
   goog.array.forEach(data, function(el, i, arr) {
     var keys = [];
@@ -350,13 +371,28 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
     var item = goog.dom.htmlToDocumentFragment(itemHTML).firstElementChild;
     goog.dom.appendChild(this.mapListElement_, item);
 
+    var scanned = goog.isDefAndNotNull(el['thumbnail_url']),
+        georefed = goog.isDefAndNotNull(el['visualize_url']);
+    allTotal++;
+    if (scanned) scannedTotal++;
+    if (georefed) georefedTotal++;
+
     this.maps_.push({
       title: this.normalizeString_(el['title']),
       parish: el['identifier'],
       node: item,
-      keys: keys
+      keys: keys,
+      scanned: scanned,
+      georefed: georefed
     });
   }, this);
+
+  goog.dom.setTextContent(
+      goog.dom.getElement('map-count-all'), allTotal);
+  goog.dom.setTextContent(
+      goog.dom.getElement('map-count-scanned'), scannedTotal);
+  goog.dom.setTextContent(
+      goog.dom.getElement('map-count-notgeorefed'), allTotal - georefedTotal);
 };
 
 
@@ -398,15 +434,39 @@ cynefin.Counties.prototype.closeCounty = function() {
  */
 cynefin.Counties.prototype.setFilter = function(value) {
   this.mapFilterElement_.value = value;
-  value = this.normalizeString_(value);
+  this.refilterMaps_();
+};
+
+
+/**
+ * @param {string} type
+ */
+cynefin.Counties.prototype.setStateFilter = function(type) {
+  goog.dom.classlist.remove(
+      goog.dom.getElement('map-filter-' + this.stateFilter_), 'active');
+  goog.dom.classlist.add(
+      goog.dom.getElement('map-filter-' + type), 'active');
+  this.stateFilter_ = type;
+  this.refilterMaps_();
+};
+
+
+/**
+ * @private
+ */
+cynefin.Counties.prototype.refilterMaps_ = function() {
+  var value = this.normalizeString_(this.mapFilterElement_.value);
   var values = value.split(' or ');
   goog.array.forEach(this.maps_, function(el, i, arr) {
-    goog.dom.classlist.enable(el.node, 'filtered',
-        goog.array.every(values, function(value, i, arr) {
-          return !goog.string.contains(el.title, value);
-        })
-    );
-  });
+    var statePassing = (this.stateFilter_ == 'all') ||
+                       (this.stateFilter_ == 'scanned' && el.scanned) ||
+                       (this.stateFilter_ == 'notgeorefed' && !el.georefed);
+    var filtered = !statePassing ||
+                   goog.array.every(values, function(value, i, arr) {
+                     return !goog.string.contains(el.title, value);
+                   });
+    goog.dom.classlist.enable(el.node, 'filtered', filtered);
+  }, this);
 };
 
 
