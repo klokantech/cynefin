@@ -33,6 +33,9 @@
     .no-county-detail #county-detail {display:none;}
 
     .counties-list li.highlighted {background-color:#c0ced3;}
+
+    .form-map-zoom-in {top:185px;}
+    .form-map-zoom-out {top:230px;}
     </style>
   </head>
   <body onLoad="new TitheMaps()">
@@ -247,7 +250,7 @@
         </div>
         <!-- .application-sidebar -->
         <!--
-        <form action="./" method="post" class="form form-search-map form-search-map-collapsed form-small">
+        <form class="form form-search-map form-search-map-collapsed form-small">
           <fieldset>
             <div class="control-group">
               <div class="control-field">
@@ -262,6 +265,35 @@
           </fieldset>
         </form>
         -->
+        <!-- TODO class names -->
+
+        <form class="form form-search-map form-search-map-collapsed form-small form-map-zoom-in">
+          <fieldset>
+            <div class="control-group">
+              <div class="control-field">
+                <span class="control-appended">
+                  <span class="control-appended-btn">
+                    <button id="map-zoom-in" type="submit"><span class="icon-plus"></span></button>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+
+        <form class="form form-search-map form-search-map-collapsed form-small form-map-zoom-out">
+          <fieldset>
+            <div class="control-group">
+              <div class="control-field">
+                <span class="control-appended">
+                  <span class="control-appended-btn">
+                    <button id="map-zoom-out" type="submit"><span class="icon-minus"></span></button>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </fieldset>
+        </form>
       </section>
     </div>
     <!-- .page -->
