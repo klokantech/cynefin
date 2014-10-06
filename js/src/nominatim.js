@@ -99,7 +99,7 @@ klokantech.Nominatim = function(input, opt_url, opt_payload, opt_viewbox) {
   goog.base(this, this.matcher_, renderer, inputhandler);
 
   this.listen(goog.ui.ac.AutoComplete.EventType.UPDATE, function(e) {
-    input.value = e.row['formatted_address'];
+    if (e.row) input.value = e.row['formatted_address'];
   });
 
 };
@@ -119,4 +119,11 @@ goog.inherits(klokantech.Nominatim, goog.ui.ac.AutoComplete);
 klokantech.Nominatim.prototype.search = function(token, maxMatches,
                                                  matchHandler) {
   this.matcher_.requestMatchingRows(token, maxMatches, matchHandler);
+};
+
+
+/** @inheritDoc */
+klokantech.Nominatim.prototype.setToken = function(token, opt_fullString) {
+  this.dismiss();
+  goog.base(this, 'setToken', token, opt_fullString);
 };

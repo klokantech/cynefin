@@ -103,10 +103,6 @@ klokantech.NominatimMatcher.prototype.requestMatchingRows =
     return;
   }
 
-  // After direct request cancel autocomplete
-  if (maxMatches == 1) this.oldtoken_ = token;
-  if (maxMatches > 1 && token === this.oldtoken_) return;
-
   // Cancel old request when we have a new one
   if (this.request_ !== null) this.jsonp_.cancel(this.request_);
 
@@ -130,7 +126,6 @@ klokantech.NominatimMatcher.prototype.requestMatchingRows =
         var bb = el['boundingbox'];
         var bounds = bb ? [parseFloat(bb[2]), parseFloat(bb[0]),
                            parseFloat(bb[3]), parseFloat(bb[1])] : null;
-        window['console']['log'](this.viewbox_, bounds);
         if (this.viewbox_ && bounds) {
           if (this.viewbox_[0] > bounds[2] ||
               this.viewbox_[1] > bounds[3] ||

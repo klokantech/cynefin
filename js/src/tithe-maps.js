@@ -133,22 +133,26 @@ cynefin.TitheMaps = function() {
 
     goog.events.listen(ac, goog.ui.ac.AutoComplete.EventType.UPDATE,
         function(e) {
-          var bnds = e.row['bounds'] || e.row['viewport'];
-          fitExtent(bnds);
+          if (e.row) {
+            var bnds = e.row['bounds'] || e.row['viewport'];
+            fitExtent(bnds);
+            e.preventDefault();
+          }
         });
 
     var geocoder_search = function(e) {
-      ac.search(geocoderElement.value, 1, function(tok, results) {
-        var bnds = results[0]['bounds'] || results[0]['viewport'];
-        fitExtent(bnds);
-      });
       e.preventDefault();
+      ac.search(geocoderElement.value, 1, function(tok, results) {
+        var result = results[0];
+        if (result) {
+          var bnds = result['bounds'] || result['viewport'];
+          fitExtent(bnds);
+        }
+      });
     };
     var form = goog.dom.getAncestorByTagNameAndClass(geocoderElement,
                                                      goog.dom.TagName.FORM);
     goog.events.listen(form, goog.events.EventType.SUBMIT, geocoder_search);
-    goog.events.listen(geocoderElement,
-                       ['webkitspeechchange', 'speechchange'], geocoder_search);
   }
 
   /**
