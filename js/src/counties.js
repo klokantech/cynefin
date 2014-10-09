@@ -176,6 +176,23 @@ cynefin.Counties = function() {
   listenStateFilter('all');
   listenStateFilter('scanned');
   listenStateFilter('notgeorefed');
+
+  // Progress bar elements
+  /** @type {Element} @private */
+  this.progressTotalCountEl_ = goog.dom.getElement('progress-total-count');
+  /** @type {Element} @private */
+  this.progressVisualEl_ = goog.dom.getElement('progress-visual');
+  /** @type {Element} @private */
+  this.progressPercentEl_ = goog.dom.getElement('progress-percent');
+  /** @type {Element} @private */
+  this.progressCountEl_ = goog.dom.getElement('progress-count');
+  /** @type {Element} @private */
+  this.progressNotVisualEl_ = goog.dom.getElement('progress-not-visual');
+  /** @type {Element} @private */
+  this.progressNotPercentEl_ = goog.dom.getElement('progress-not-percent');
+  /** @type {Element} @private */
+  this.progressNotCountEl_ = goog.dom.getElement('progress-not-count');
+
 };
 goog.inherits(cynefin.Counties, goog.events.EventTarget);
 
@@ -282,6 +299,7 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
     goog.dom.setTextContent(this.countyNameElement_, name);
     goog.dom.classlist.remove(this.applicationPanelElement_,
                               'no-county-detail');
+    this.setProgress_(null, null);
 
     if (this.activeCounty_) {
       goog.dom.classlist.remove(this.activeCounty_.li, 'active');
@@ -393,6 +411,37 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
       goog.dom.getElement('map-count-scanned'), scannedTotal);
   goog.dom.setTextContent(
       goog.dom.getElement('map-count-notgeorefed'), allTotal - georefedTotal);
+
+  this.setProgress_(georefedTotal, allTotal);
+};
+
+
+/**
+ * @param {?number} done
+ * @param {?number} total
+ * @private
+ */
+cynefin.Counties.prototype.setProgress_ = function(done, total) {
+  var empty = goog.isNull(done) || goog.isNull(total);
+
+  var percent = empty ? 0 : (100 * done / total);
+  var notPercent = 100 - percent;
+
+
+  goog.dom.setTextContent(this.progressTotalCountEl_, total || 0);
+
+  goog.dom.setTextContent(this.progressCountEl_,
+                          done || 0);
+  goog.dom.setTextContent(this.progressPercentEl_,
+                          Math.floor(percent) + '%');
+  this.progressVisualEl_.style.width = percent + '%';
+
+  goog.dom.setTextContent(this.progressNotCountEl_,
+                          (total || 0) - (done || 0));
+  goog.dom.setTextContent(this.progressNotPercentEl_,
+                          (100 - Math.floor(percent)) + '%');
+  this.progressNotVisualEl_.style.width = (100 - percent) + '%';
+
 };
 
 
