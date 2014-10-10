@@ -1,0 +1,7 @@
+{
+  "id": "home",
+  "inherits": "base.json",
+
+  "inputs": ["src/home.js"],
+  "paths": ["src", "closure-library/third_party"]
+}
