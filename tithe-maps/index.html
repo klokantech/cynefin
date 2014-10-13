@@ -163,11 +163,17 @@
                 <!-- .box-title -->
                 <div id="map-list" class="box-content box-content-scroll box-inner">
                   <p class="filter">
-                    <a id="map-filter-all" href="#" title="" class="active">All (<span id="map-count-all"></span>)</a>
+                    <a id="map-filter-all" href="#" title="" class="active">All&nbsp;(<span id="map-count-all"></span>)</a>
                     <span class="sep">|</span>
-                    <a id="map-filter-scanned" href="#" title="">Scanned (<span id="map-count-scanned"></span>)</a>
+                    <span id="map-filter-scanned-block"> <!-- wrap for hiding -->
+                      <a id="map-filter-scanned" href="#" title="">Scanned&nbsp;(<span id="map-count-scanned"></span>)</a>
+                      <span class="sep">|</span>
+                    </span>
+                    <a id="map-filter-notgeorefed" href="#" title="">Not&nbsp;georeferenced&nbsp;(<span id="map-count-notgeorefed"></span>)</a>
                     <span class="sep">|</span>
-                    <a id="map-filter-notgeorefed" href="#" title="">Not georeferenced (<span id="map-count-notgeorefed"></span>)</a>
+                    <a id="map-filter-nottransed" href="#" title="">Not&nbsp;transcribed&nbsp;(<span id="map-count-nottransed"></span>)</a>
+                    <span class="sep">|</span>
+                    <a id="map-filter-notfin" href="#" title="">Not&nbsp;finished&nbsp;(<span id="map-count-notfin"></span>)</a>
                   </p>
                   <div class="gadget progressbar">
                     <div class="metrics-container">
@@ -219,13 +225,23 @@
                     <div class="item-media">
                       <a href="/tithe-maps/transcribe" title="" id="transcribe-random" class="btn">Transcribe</a>
                     </div>
-                    <div class="item-content"></div>
+                    <div class="item-content">
+                      <p>
+                        Documents Total <span id="stats-docs-total"></span><br />
+                        Documents Transcribed <span id="stats-docs-transed"><span>
+                      </p>
+                    </div>
                   </div>
                   <div class="item item-btn">
                     <div class="item-media">
                       <a href="/tithe-maps/georeference" title="" id="georeference-random" class="btn">Georeference</a>
                     </div>
-                    <div class="item-content"></div>
+                    <div class="item-content">
+                      <p>
+                        Maps Total <span id="stats-maps-total"></span><br />
+                        Maps Georeferenced <span id="stats-maps-georefed"><span>
+                      </p>
+                    </div>
                   </div>
                   <br>
                   <div id="item-template">
