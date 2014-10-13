@@ -196,6 +196,15 @@ cynefin.Counties = function() {
   /** @type {Element} @private */
   this.progressNotCountEl_ = goog.dom.getElement('progress-not-count');
 
+  // Stats elements
+  /** @type {Element} @private */
+  this.statsDocsTotalEl_ = goog.dom.getElement('stats-docs-total');
+  /** @type {Element} @private */
+  this.statsDocsTransedEl_ = goog.dom.getElement('stats-docs-transed');
+  /** @type {Element} @private */
+  this.statsMapsTotalEl_ = goog.dom.getElement('stats-maps-total');
+  /** @type {Element} @private */
+  this.statsMapsGeorefedEl_ = goog.dom.getElement('stats-maps-georefed');
 };
 goog.inherits(cynefin.Counties, goog.events.EventTarget);
 
@@ -285,6 +294,7 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
     return el.name == name;
   });
   if (county) {
+    // map request
     var requestUrl = cynefin.Counties.COLLECTION_BASE_URL +
                          county.id + '/objects/json';
     var xhr_ = new goog.net.XhrIo(new goog.net.CorsXmlHttpFactory());
@@ -297,6 +307,31 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
       }
     }, false, this);
     xhr_.send(requestUrl);
+
+    // stats request
+    goog.dom.setTextContent(this.statsDocsTotalEl_, '...');
+    goog.dom.setTextContent(this.statsMapsTotalEl_, '...');
+    goog.dom.setTextContent(this.statsDocsTransedEl_, '...');
+    goog.dom.setTextContent(this.statsMapsGeorefedEl_, '...');
+    var requestStatsUrl = cynefin.Counties.COLLECTION_BASE_URL +
+                              county.id + '/stats.json';
+    var xhrStats_ = new goog.net.XhrIo(new goog.net.CorsXmlHttpFactory());
+    goog.events.listen(xhrStats_, goog.net.EventType.COMPLETE, function() {
+      if (xhrStats_.isSuccess()) {
+        var data = /** @type {Array} */(xhrStats_.getResponseJson());
+        window['console']['log'](data);
+        var map = data['map'], supps = map['supplement'];
+        goog.dom.setTextContent(this.statsDocsTotalEl_, supps['objects']);
+        goog.dom.setTextContent(this.statsMapsTotalEl_, map['objects']);
+        var trans = supps['products']['transcription'];
+        var georef = map['products']['georeference'];
+        goog.dom.setTextContent(this.statsDocsTransedEl_,
+            trans['processed'] + trans['reviewed']);
+        goog.dom.setTextContent(this.statsMapsGeorefedEl_,
+            georef['processed'] + georef['reviewed']);
+      }
+    }, false, this);
+    xhrStats_.send(requestStatsUrl);
 
     // UI changes
     goog.dom.setTextContent(this.countyNameElement_, name);
