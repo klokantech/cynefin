@@ -583,7 +583,7 @@ cynefin.Counties.prototype.refilterMaps_ = function() {
 cynefin.Counties.prototype.createFilterFromParishId = function(parishId) {
   var filterText = '';
   goog.array.forEach(this.maps_, function(el, i, arr) {
-    if (goog.array.contains(el.parish.split(','), parishId)) {
+    if (goog.array.contains(el.parish.split('|'), parishId)) {
       if (filterText.length > 0) filterText += ' OR ';
       filterText += el.title;
     }
