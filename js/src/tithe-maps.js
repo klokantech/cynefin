@@ -65,12 +65,14 @@ cynefin.TitheMaps = function() {
       new ol.layer.Tile({
         source: new ol.source.TileJSON({
           url: cynefin.TitheMaps.COUNTIES_TILEJSON
-        })
+        }),
+        minResolution: cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD
       }),
       new ol.layer.Tile({
         source: new ol.source.TileJSON({
           url: cynefin.TitheMaps.PARISHES_TILEJSON
-        })
+        }),
+        maxResolution: cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD
       }),
       new ol.layer.Tile({source: this.utfGridSource_})
     ],
@@ -225,6 +227,12 @@ cynefin.TitheMaps.COUNTIES_TILEJSON =
  */
 cynefin.TitheMaps.PARISHES_TILEJSON =
     'http://cynefin.tileserver.com/cynefin-parishes.json';
+
+
+/**
+ * @define {number} Resolution when counties and parishes layers change.
+ */
+cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD = 500;
 
 
 /**
