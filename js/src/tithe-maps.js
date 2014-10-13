@@ -308,12 +308,17 @@ cynefin.TitheMaps.prototype.handleMapSingleClick_ = function(data) {
   if (data) {
     var name = data['County'];
     if (goog.isString(name)) {
+      var zoom = this.view_.getZoom();
+      var parishesVisible = zoom > 9;
+
       var filterByParish = goog.bind(function() {
-        if (this.view_.getZoom() > 9) {
+        if (parishesVisible) {
           this.counties_.createFilterFromParishId(data['SHAPE_ID'].toString());
+        } else {
+          this.counties_.setFilter('');
         }
       }, this);
-      this.dontSetCenter_ = true;
+      this.dontSetCenter_ = parishesVisible;
       this.counties_.openCounty(name, filterByParish);
       this.dontSetCenter_ = false;
     }
