@@ -321,14 +321,18 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
         var data = /** @type {Array} */(xhrStats_.getResponseJson());
         window['console']['log'](data);
         var map = data['map'], supps = map['supplement'];
-        goog.dom.setTextContent(this.statsDocsTotalEl_, supps['objects']);
-        goog.dom.setTextContent(this.statsMapsTotalEl_, map['objects']);
         var trans = supps['products']['transcription'];
         var georef = map['products']['georeference'];
-        goog.dom.setTextContent(this.statsDocsTransedEl_,
-            trans['processed'] + trans['reviewed']);
-        goog.dom.setTextContent(this.statsMapsGeorefedEl_,
-            georef['processed'] + georef['reviewed']);
+        var mapCount = map['objects'],
+            mapsDone = georef['processed'] + georef['reviewed'];
+        var suppCount = supps['objects'],
+            suppsDone = trans['processed'] + trans['reviewed'];
+        goog.dom.setTextContent(this.statsDocsTotalEl_, suppCount);
+        goog.dom.setTextContent(this.statsMapsTotalEl_, mapCount);
+        goog.dom.setTextContent(this.statsDocsTransedEl_, suppsDone);
+        goog.dom.setTextContent(this.statsMapsGeorefedEl_, mapsDone);
+
+        this.setProgress_(mapsDone, mapCount);
       }
     }, false, this);
     xhrStats_.send(requestStatsUrl);
@@ -465,8 +469,6 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
 
   goog.style.setElementShown(goog.dom.getElement('map-filter-scanned-block'),
                              allSum != scannedSum);
-
-  this.setProgress_(georefedSum, allSum);
 };
 
 
