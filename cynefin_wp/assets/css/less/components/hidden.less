@@ -1,0 +1,47 @@
+// ***************************************************************************
+// HIDDEN
+// ***************************************************************************
+
+[data-target] {
+
+	cursor: pointer;
+	position: relative;	
+
+	.inline-block();
+
+	&:after {
+
+		float: right;
+		margin-left: 5px;
+		vertical-align: middle;
+		line-height: inherit;
+		position: relative;
+		top: 2px;
+		font-size: @font-size-xxlarge;
+		color: @color-extra;
+
+	} // :after
+
+}
+
+.hidden {
+
+	.transition(all @transition);
+	visibility: hidden;
+	.opacity(0);
+	.translate(0,-20px);
+	position: relative;
+	overflow: hidden;
+	max-height: 0;
+
+	&-active {
+
+		.opacity(100);
+		visibility: visible;
+		position: relative;
+		.translate(0,0);
+		max-height: 9999px !important;
+
+	}
+
+}

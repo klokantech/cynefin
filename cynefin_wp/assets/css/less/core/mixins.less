@@ -1,0 +1,692 @@
+// *************************************************************************************
+// MIXINS
+// ************************************************************************************/
+
+.cfx() {
+	
+	*zoom: 1;
+	
+	&:before,
+	&:after {
+
+		content: "";
+		display: table;
+
+	} // :before, :after
+
+	&:after {
+
+		clear: both;
+
+	} // :after
+
+} // .cfx
+
+.border-radius(@radius) {
+
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+
+} // .border-radiu
+
+.box-shadow(@shadow) {
+
+	-webkit-box-shadow: @shadow;
+	-moz-box-shadow: @shadow;
+	box-shadow: @shadow;
+
+} // .box-shadow
+
+.container-wider(fixed, @width){
+	
+	width: @width;
+	.container-wider-base();
+
+} // .container
+
+.container(fixed){
+	
+	width: @width-layout;
+	.container-base();
+
+} // .container
+
+.container(fluid){
+	
+	max-width: @width-layout;
+	width: auto;
+	.container-base();
+
+} // .container
+
+.container-wider(fluid, @width){
+	
+	max-width: @width;
+	width: auto;
+	.container-wider-base();
+
+} // .container
+
+.container-base(){
+	
+	
+	margin-left: auto;
+	margin-right: auto;	
+	/*padding-left: @width-gap;*/
+    /*padding-right: @width-gap;*/
+    .cfx();
+
+} // .container
+
+.container-wider-base(){
+	
+	
+	margin-left: auto;
+	margin-right: auto;	
+	padding-left: 0;
+	padding-right: 0;	
+    .cfx();
+
+} // .container
+
+.user-select(@type) {
+
+	-webkit-touch-callout: @type;
+	-webkit-user-select: @type;
+	-khtml-user-select: @type;
+	-moz-user-select: -moz-@type;
+	ms-user-select: @type;
+	-o-user-select: @type;
+	user-select: @type;
+	
+}
+
+// Prevent browsers from flickering when using CSS 3D transforms.
+// Default value is `visible`, but can be changed to `hidden
+// See git pull https://github.com/dannykeane/bootstrap.git backface-visibility for examples
+.backface-visibility(@visibility){
+
+	-webkit-backface-visibility: @visibility;
+	-moz-backface-visibility: @visibility;
+	backface-visibility: @visibility;
+
+} // .backface-visibility
+
+.opacity(@opacity) {
+	
+	opacity: @opacity / 100;
+	filter: ~"alpha(opacity=@{opacity})";	
+
+} // .opacity
+
+.size(@square) {
+	
+	width: @square;
+	height: @square;
+
+} // .size
+
+.size(@width, @height) {
+	
+	width: @width;
+	height: @height;
+
+} // .size
+
+// CSS image replacement
+// -------------------------
+// Source: https://github.com/h5bp/html5-boilerplate/commit/aa0396eae757
+.hide-text() {
+	
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+	background-color: transparent;
+	border: 0;
+
+} // .hide-text
+
+.background(@background-image-url: none, @background-image-repeat: no-repeat, @background-image-position: 0 0) {
+		
+	background-image: ~"url('@{path-images}/@{background-image-url}')"; 
+	background-repeat: @background-image-repeat;
+	background-position: @background-image-position;
+
+} // .background
+
+.placeholder(@color) {
+
+	&::-webkit-input-placeholder { color: @color; }
+	&::-moz-placeholder { color: @color; }
+	&:-ms-input-placeholder { color: @color; }
+	&input:-moz-placeholder { color: @color; }
+
+} // .placeholder
+
+.border-box() {
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+} // .box-sizing
+
+.box-sizing(@sizing) {
+
+    -webkit-box-sizing: @sizing;
+    -moz-box-sizing: @sizing;
+    box-sizing: @sizing;
+
+} // .box-sizing
+
+.sprite(){
+	
+	background-image: ~"url('@{path-images}/sprite.png')";
+	background-repeat: no-repeat;
+
+} // .sprite
+
+.underline-invert() {
+	
+	text-decoration: none;
+	
+	.desktop & {
+
+		&:hover {
+			
+			text-decoration: underline;
+
+		} // :hover
+
+	}
+
+} // .underline-invert
+
+.ul-inline() {
+
+	.ul-reset();
+	font-size: 0;
+
+	li {
+
+		.inline-block();
+		font-size: @font-size;
+
+		a {
+
+			.inline-block();
+	
+		} // a
+	
+	} // li
+
+} // .ul-inline
+
+.ul-floated() {
+
+	.ul-reset();
+	.cfx();
+
+	li {
+
+		float: left;
+		display: block;
+
+		a {
+
+			float: left;
+			display: block;
+	
+		} // a
+	
+	} // li
+
+} // .ul-floated
+
+.ul-reset() {
+
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+
+} // .ul-reset
+
+// ie7 fallback
+.inline-block() {
+	
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	vertical-align: middle;
+
+} // .inline-block
+
+
+// ***********************************************************************************
+// Gradients
+// **********************************************************************************/
+
+.linear-gradient( @dir: top, @start-color: #eee, @end-color: #aaa ) {
+	background: -webkit-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+	background: -moz-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+	background: -ms-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+	background: -o-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+	background: linear-gradient(@dir, @start-color 0%, @end-color 100%);
+	.linear-gradient-ie( @dir, @start-color, @end-color);
+}
+ 
+.linear-gradient-ie( @dir, @start-color, @end-color) when (@dir = top), 
+	not ( isstring(@dir) ) and ( @dir >= 225 ) and ( @dir < 315 ), 
+	not ( isstring(@dir) ) and ( @dir >= -135 ) and ( @dir < -45 ) {
+		.linear-gradient-ie-filter(@start-color, @end-color, 0);
+}
+.linear-gradient-ie( @dir, @start-color, @end-color) when (@dir = right), 
+	not ( isstring(@dir) ) and ( @dir >= 135 ) and ( @dir < 225 ), 
+	not ( isstring(@dir) ) and ( @dir >= -225 ) and ( @dir < -135 ) {
+		.linear-gradient-ie-filter(@end-color, @start-color, 1);
+}
+.linear-gradient-ie( @dir, @start-color, @end-color) when (@dir = bottom), 
+	not ( isstring(@dir) ) and ( @dir >= 45 ) and ( @dir < 135 ), 
+	not ( isstring(@dir) ) and ( @dir >= -315 ) and ( @dir < -225 ) {
+		.linear-gradient-ie-filter(@end-color, @start-color, 0);
+}
+.linear-gradient-ie( @dir, @start-color, @end-color) when (@dir = left), 
+	not ( isstring(@dir) ) and ( @dir >= 315 ) and ( @dir < 360 ), 
+	not ( isstring(@dir) ) and ( @dir >= -45 ) and ( @dir < 45 ), 
+	not ( isstring(@dir) ) and ( @dir < -315 ) and ( @dir >= -360 ) {
+		.linear-gradient-ie-filter(@start-color, @end-color, 1);
+}
+ 
+.linear-gradient-ie-filter(@start: #eee, @end: #aaa, @type: 1) {
+	@c-start: argb(@start);
+	@c-end:   argb(@end);
+	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{c-start}', endColorstr='@{c-end}', GradientType=@{type})";
+	-ms-filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{c-start}',endColorstr='@{c-end}',GradientType=@{type})";
+}
+
+
+.gradient-horizontal(@startColor: #555, @endColor: #333) {
+
+    background: -webkit-linear-gradient(0deg, @startColor 0, @endColor 100%);
+    background: -moz-linear-gradient(90deg, @startColor 0, @endColor 100%);
+    background: linear-gradient(90deg, @startColor 0, @endColor 100%);
+	background-position: 50% 50%;
+	-webkit-background-origin: padding-box;
+	background-origin: padding-box;
+	-webkit-background-clip: border-box;
+	background-clip: border-box;
+	-webkit-background-size: auto auto;
+	background-size: auto auto;
+
+} // .horizontal
+
+.gradient-vertical(@startColor: #555, @endColor: #333) {
+
+    /*background-color: mix(@startColor, @endColor, 60%);*/
+    background-image: -moz-linear-gradient(top, @startColor, @endColor); // FF 3.6+
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(top, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(top, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(to bottom, @startColor, @endColor); // Standard, IE10
+    background-repeat: repeat-x;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@startColor),argb(@endColor))); // IE9 and down
+
+} // vertical
+
+.gradient-directional(@startColor: #555, @endColor: #333, @deg: 45deg) {
+
+    background-color: @endColor;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(@deg, @startColor, @endColor); // FF 3.6+
+    background-image: -webkit-linear-gradient(@deg, @startColor, @endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(@deg, @startColor, @endColor); // Opera 11.10
+    background-image: linear-gradient(@deg, @startColor, @endColor); // Standard, IE10
+
+} // .directional
+
+.gradient-horizontal-three-colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) {
+
+    background-color: mix(@midColor, @endColor, 80%);
+    background-image: -webkit-gradient(left, linear, 0 0, 0 100%, from(@startColor), color-stop(@colorStop, @midColor), to(@endColor));
+    background-image: -webkit-linear-gradient(left, @startColor, @midColor @colorStop, @endColor);
+    background-image: -moz-linear-gradient(left, @startColor, @midColor @colorStop, @endColor);
+    background-image: -o-linear-gradient(left, @startColor, @midColor @colorStop, @endColor);
+    background-image: linear-gradient(to right, @startColor, @midColor @colorStop, @endColor);
+    background-repeat: no-repeat;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@startColor),argb(@endColor))); // IE9 and down, gets no color-stop at all for proper fallback
+
+} // .horizontal-three-colors
+
+.gradient-vertical-three-colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) {
+
+    background-color: mix(@midColor, @endColor, 80%);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), color-stop(@colorStop, @midColor), to(@endColor));
+    background-image: -webkit-linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    background-image: -moz-linear-gradient(top, @startColor, @midColor @colorStop, @endColor);
+    background-image: -o-linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    background-image: linear-gradient(@startColor, @midColor @colorStop, @endColor);
+    background-repeat: no-repeat;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@startColor),argb(@endColor))); // IE9 and down, gets no color-stop at all for proper fallback
+
+} // .vertical-three-colors
+
+.gradient-radial(@innerColor: #555, @outerColor: #333) {
+
+    background-color: @outerColor;
+    background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(@innerColor), to(@outerColor));
+    background-image: -webkit-radial-gradient(circle, @innerColor, @outerColor);
+    background-image: -moz-radial-gradient(circle, @innerColor, @outerColor);
+    background-image: -o-radial-gradient(circle, @innerColor, @outerColor);
+    background-repeat: no-repeat;
+
+} // .radial
+
+.gradient-striped(@color: #555, @angle: 45deg) {
+
+    background-color: @color;
+    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255,255,255,.15)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255,255,255,.15)), color-stop(.75, rgba(255,255,255,.15)), color-stop(.75, transparent), to(transparent));
+    background-image: -webkit-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+
+} // .striped
+
+.horizontal-gradient-pie(@startColor, @endColor) {
+
+	background: @startColor;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(@startColor, @endColor);
+	background: -moz-linear-gradient(@startColor, @endColor);
+	background: -ms-linear-gradient(@startColor, @endColor);
+	background: -o-linear-gradient(@startColor, @endColor);
+	background: linear-gradient(@startColor, @endColor);
+	-pie-background: linear-gradient(@startColor, @endColor);
+
+} // .horizontal-gradient-pie
+
+// ***********************************************************************************
+// Transitions & animations
+// **********************************************************************************/
+
+.transition(@transition: @transition-all) {
+	
+	-webkit-transition: @transition;
+	-moz-transition: @transition;
+	-o-transition: @transition;
+	transition: @transition;
+
+} // .transition
+
+.animation(@args) {
+    -webkit-animation: @args;
+    -moz-animation: @args;
+    -ms-animation: @args;
+    -o-animation: @args;
+    /*animation: @args;*/
+}
+.animation-delay(@delay) {
+    -webkit-animation-delay: @delay;
+    -moz-animation-delay: @delay;
+    -ms-animation-delay: @delay;
+    -o-animation-delay: @delay;
+    animation-delay: @delay;
+}
+.animation-direction(@direction) {
+    -webkit-animation-direction: @direction;
+    -moz-animation-direction: @direction;
+    -ms-animation-direction: @direction;
+    -o-animation-direction: @direction;
+}
+.animation-duration(@duration) {
+    -webkit-animation-duration: @duration;
+    -moz-animation-duration: @duration;
+    -ms-animation-duration: @duration;
+    -o-animation-duration: @duration;
+}
+.animation-fill-mode(@mode) {
+    -webkit-animation-fill-mode: @mode;
+    -moz-animation-fill-mode: @mode;
+    -ms-animation-fill-mode: @mode;
+    -o-animation-fill-mode: @mode;
+    animation-fill-mode: @mode;
+}
+.animation-iteration-count(@count) {
+    -webkit-animation-iteration-count: @count;
+    -moz-animation-iteration-count: @count;
+    -ms-animation-iteration-count: @count;
+    -o-animation-iteration-count: @count;
+    animation-iteration-count: @count;
+}
+.animation-name(@name) {
+    -webkit-animation-name: @name;
+    -moz-animation-name: @name;
+    -ms-animation-name: @name;
+    -o-animation-name: @name;
+    animation-name: @name;
+}
+.animation-play-state(@state) {
+    -webkit-animation-play-state: @state;
+    -moz-animation-play-state: @state;
+    -ms-animation-play-state: @state;
+    -o-animation-play-state: @state;
+    animation-play-state: @state;
+}
+.animation-timing-function(@function) {
+    -webkit-animation-timing-function: @function;
+    -moz-animation-timing-function: @function;
+    -ms-animation-timing-function: @function;
+    -o-animation-timing-function: @function;
+    animation-timing-function: @function;
+}
+
+// ***********************************************************************************
+// Transformation
+// **********************************************************************************/
+
+.rotate(@degrees) {
+	
+	-webkit-transform: rotate(@degrees);
+	-moz-transform: rotate(@degrees);
+	-ms-transform: rotate(@degrees);
+	-o-transform: rotate(@degrees);
+	transform: rotate(@degrees);
+
+} // .rotate
+
+.scale(@ratio) {
+	
+	-webkit-transform: scale(@ratio);
+	-moz-transform: scale(@ratio);
+	-ms-transform: scale(@ratio);
+	-o-transform: scale(@ratio);
+	transform: scale(@ratio);
+
+} // .scale
+
+.translate(@x, @y) {
+	
+	-webkit-transform: translate(@x, @y);
+	-moz-transform: translate(@x, @y);
+	-ms-transform: translate(@x, @y);
+	-o-transform: translate(@x, @y);
+	transform: translate(@x, @y);
+
+} // .translate
+
+.skew(@x, @y) {
+	
+	-webkit-transform: skew(@x, @y);
+	-moz-transform: skew(@x, @y);
+	-ms-transform: skew(@x, @y);
+	-o-transform: skew(@x, @y);
+	transform: skew(@x, @y);
+
+} // .skew
+
+.translate3d(@x, @y, @z) {
+	
+	-webkit-transform: translate3d(@x, @y, @z);
+	-moz-transform: translate3d(@x, @y, @z);
+	-o-transform: translate3d(@x, @y, @z);
+	transform: translate3d(@x, @y, @z);
+
+} // .translate3d
+
+.transform(@value) {
+  
+	-webkit-transform: @value;
+	-moz-transform: @value;
+	-ms-transform: @value;
+	-o-transform: @value;
+	transform: @value;
+
+} // .transform
+
+
+// ***********************************************************************************
+// Text color
+// ***********************************************************************************/
+
+.color (@a) when (lightness(@a) >= 50%) {
+	
+	color: @color-base;
+
+}
+
+.color (@a) when (lightness(@a) < 50%) {
+
+	color: @color-invert;
+
+}
+
+.color-hover (@a) when (lightness(@a) >= 50%) {
+	
+	color: @color-link-hover;
+
+}
+
+.color-hover (@a) when (lightness(@a) < 50%) {
+
+	color: @color-link-invert-hover;
+	
+}
+
+
+// ***********************************************************************************
+// Font face
+// ***********************************************************************************/
+
+.font-face(@font-name) {
+
+	@font-face {
+	
+		font-family: '@{font-name}';
+		src: url('@{path-font}/@{font-name}.eot');
+		src: url('@{path-font}/@{font-name}.eot?#iefix') format('embedded-opentype'),
+			 url('@{path-font}/@{font-name}.woff') format('woff'),
+			 url('@{path-font}/@{font-name}.ttf') format('truetype'),
+			 url('@{path-font}/@{font-name}.svg#@{font-name}') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	
+	}
+
+  	@media screen and (-webkit-min-device-pixel-ratio:0) {
+	  
+  		@font-face {
+	  
+	  		font-family: '@{font-name}';
+		  	src: url('@{path-font}/@{font-name}.svg') format('svg');
+
+	  	}
+
+  	}
+
+} // .font-face
+
+// ***********************************************************************************
+// CSS Arrows
+// ***********************************************************************************/
+
+.arrow(up, @width, @color) {
+
+    .size(0);
+    border-style: solid;
+    border-width: 0 @width @width @width;
+    border-color: rgba(255,255,255,0) rgba(255,255,255,0) @color rgba(255,255,255,0);
+
+} // .arrow(up)
+
+.arrow(down, @width, @color) {
+
+    .size(0);
+    border-style: solid;
+    border-width: @width @width 0 @width;    
+	border-color: @color rgba(255,255,255,0) rgba(255,255,255,0) rgba(255,255,255,0);
+
+} // .arrow(down)
+
+.arrow(down-left, @width, @skew, @color) {
+
+    .size(0);
+    border-style: solid;
+    border-width: @width 0 0 @width + @skew;    
+	border-color: @color rgba(255,255,255,0) rgba(255,255,255,0) rgba(255,255,255,0);
+
+} // .arrow(down)
+
+.arrow(right, @width, @color) {
+
+    .size(0);
+    border-style: solid;    
+	border-width: @width 0 @width @width;
+	border-color: rgba(255,255,255,0) rgba(255,255,255,0) rgba(255,255,255,0) @color;
+
+} // .arrow(right)
+
+.arrow(left, @width, @color) {
+
+    .size(0);
+    border-style: solid;    
+	border-width: @width @width @width 0;
+	border-color: rgba(255,255,255,0) @color rgba(255,255,255,0) rgba(255,255,255,0);
+
+} // .arrow(left)
+
+.arrow(top-left, @width, @color) {
+
+    .size(0);
+    border-style: solid;    	
+	border-width: @width @width 0 0;
+	border-color: @color rgba(255,255,255,0) rgba(255,255,255,0) rgba(255,255,255,0);
+
+} // .arrow(top-left)
+
+.arrow(top-right, @width, @color) {
+
+    .size(0);
+    border-style: solid;    		
+	border-width: 0 @width @width 0;
+	border-color: rgba(255,255,255,0) @color rgba(255,255,255,0) rgba(255,255,255,0);
+
+} // .arrow(top-right)
+
+.arrow(bottom-left, @width, @color) {
+
+    .size(0);
+    border-style: solid;    			
+	border-width: @width 0 0 @width;
+	border-color: rgba(255,255,255,0) rgba(255,255,255,0) rgba(255,255,255,0) @color;
+
+} // .arrow(bottom-left)
+
+.arrow(bottom-right, @width, @color) {
+
+    .size(0);
+    border-style: solid;    				
+	border-width: 0 0 @width @width;
+	border-color: rgba(255,255,255,0) rgba(255,255,255,0) @color rgba(255,255,255,0);
+
+} // .arrow(bottom-right)

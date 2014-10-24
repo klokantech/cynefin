@@ -1,0 +1,40 @@
+// ***************************************************************************
+// FORMS
+// ***************************************************************************
+
+.form {
+
+	margin-bottom: 30px;
+
+	@import "form-vertical.less";
+
+	@import "form-horizontal.less";
+
+	@import "form-search.less";	
+
+	@import "form-filter.less";	
+
+	&-size-100 {
+
+		.control-input {
+
+			&:extend(.size-100);
+
+		}
+
+		.selectboxit-container,
+		.selectboxit {
+
+			width: 100% !important;
+
+		}
+		
+	}
+
+}
+
+.required {
+
+	color: @color-primary;
+	
+}

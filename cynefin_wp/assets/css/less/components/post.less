@@ -1,0 +1,71 @@
+// ***************************************************************************
+// POST
+// ***************************************************************************
+
+.post {
+
+	& + .post {
+
+		border-top: 1px solid @border;
+		padding-top: 30px;
+		margin-top: 30px;
+		
+	}
+	
+	h2 {
+
+		font-size: 1.2em;
+		color: @color-dark;
+		margin-bottom: 5px;
+
+	}
+
+	.meta,
+	.meta2 {
+
+		font-size: @font-size-small;
+		margin-bottom: 30px;
+		color: #b7ada1;
+
+		a {
+
+			color: #b7ada1;
+
+			&:hover {
+
+				color: @color-weak;
+
+			}
+
+		}
+
+	}
+
+	a {
+
+		img {
+
+			padding: 4px;
+			border: 1px solid @border;
+
+		}
+
+		&:hover {
+
+			img {
+
+				border-color: @color-weak;
+
+			}
+
+		}		
+
+	}	
+
+	.clear {
+
+		clear: both;
+
+	}
+	
+}

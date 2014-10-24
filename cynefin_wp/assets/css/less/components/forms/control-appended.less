@@ -1,0 +1,152 @@
+&-appended {
+
+	display: table;
+	border-collapse: separate;
+	width: 100%;
+
+	img {
+
+		max-width: none;
+		
+	}
+
+	.control-appended-input {
+
+		display: table-cell;
+		float: left;
+		width: 100%;
+		position: relative;
+
+		+ .control-appended-btn {
+
+			padding-left: 10px;
+			padding-right: 0;
+
+		}
+
+	}
+
+	.control-appended-btn {
+
+		width: 1%;
+		white-space: nowrap;
+		vertical-align: middle;
+		display: table-cell;	
+		padding-right: 10px;		
+
+		.btn {
+
+			overflow: visible;
+
+		}
+
+	}
+
+	&-nospace {
+
+		.control-appended-btn {
+
+			padding: 0 !important;
+
+		}
+		
+		.control-input:first-child {
+
+			.border-radius(@field-radius 0 0 @field-radius);
+
+			& + .control-appended-btn .btn,
+			& + .control-appended-btn .selectboxit {
+				
+				.border-radius(0 @btn-radius @btn-radius 0);
+				border-left: 0;					
+
+			}
+
+		} 
+
+		.control-appended-btn:first-child {
+
+			.btn,
+			.selectboxit {
+
+				.border-radius(@btn-radius 0 0 @btn-radius);
+				border-right: 0;
+
+			}
+
+			& + .control-appended-input {
+
+				.border-radius(0 @field-radius @field-radius 0);
+
+
+			}
+
+		}
+
+	}		
+
+	&-xsmall {
+
+		.control-input {
+
+			.field-xsmall();
+
+		}
+
+		.btn {
+
+			.btn-size-xsmall();
+
+		}
+
+	}
+
+	&-small {
+
+		.control-input {
+
+			.field-small();
+
+		}
+
+		.btn {
+
+			.btn-size-small();
+
+		}
+
+	}
+
+	&-large {
+
+		.control-input {
+
+			.field-large();
+
+		}
+
+		.btn {
+
+			.btn-size-large();
+
+		}
+
+	}
+
+	&-xlarge {
+
+		.control-input {
+
+			.field-xlarge();
+
+		}
+
+		.btn {
+
+			.btn-size-xlarge();
+
+		}
+
+	}
+
+} // .control-appended

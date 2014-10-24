@@ -1,0 +1,84 @@
+// ******************************************************************************************************************
+// DEFAULTS                                                                                                            
+// *****************************************************************************************************************/
+
+
+/*
+* Paths
+*/
+
+	@path-images:               		"../img";
+	@path-font:                 		"../fonts";
+
+
+/*
+* Generate fonts
+*/
+	
+	.font-face('icons');
+
+/*
+* Font settings
+*/
+
+	@font-default: 						"Lucida Grande", Arial, sans-serif;	
+	@font-size:                 		14px;
+	@line-height:               		20px;
+	@font-size-large: 					@font-size + 2;
+	@line-height-large: 				@line-height + 2;
+	@font-size-xlarge: 					@font-size + 4;
+	@line-height-xlarge: 				@line-height + 4;
+	@font-size-xxlarge: 				@font-size + 6;
+	@line-height-xxlarge: 				@line-height + 6;
+	@font-size-xxxlarge: 				@font-size + 9;
+	@line-height-xxxlarge: 				@line-height + 9;
+	@font-size-small: 					@font-size - 1;
+	@line-height-small: 				@line-height - 1;
+	@font-size-xsmall: 					@font-size - 2;
+	@line-height-xsmall: 				@line-height - 2;
+
+
+/*
+* Backgrounds
+*/
+
+	@background-body:           		#d4c5a9;
+	@background-header: 				#ffffff;
+	@background-footer:           		#323232;
+	@background-footer-copyright: 		#2c2c2c;
+
+
+/*
+* UL lists
+*/
+
+	@li-style-color: 					#d0d0d0;
+	@li-style-size: 					8px;
+	@li-style-radius: 					100px;
+
+
+/*
+* Margin & paddings
+*/
+
+	@margin-gap: 						20px;
+
+
+/*
+* Shadows & border & radius 
+*/
+
+	@shadow:                    		#dfdfdf;
+	@border:                    		#f3f0e6;
+	@radius:                    		6px;
+
+/*
+* Transitions
+*/
+	
+	@transition-property: 				all;
+	@transition-time:               	0.2s;
+	@transition-timing:               	ease-in-out;
+	@transition-delay:               	0.5s;
+	@transition-all:               		@transition-property @transition-time @transition-timing;
+	@transition:               			@transition-time @transition-timing;

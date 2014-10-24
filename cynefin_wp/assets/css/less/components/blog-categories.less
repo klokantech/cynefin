@@ -1,0 +1,43 @@
+// ***************************************************************************
+// BLOG CATEGORIES
+// ***************************************************************************
+
+.blog-categories {
+
+	background: #ffffff;
+	padding: 10px 0;
+	.border-radius(@radius);
+
+	li {
+
+		border-bottom: 1px solid #ffffff;
+
+		& + li {
+
+			border-top: 1px solid #e0daca;
+
+		}
+
+		a {
+
+			display: block;
+			padding: 10px 20px;
+			text-decoration: none;
+
+		}
+
+		&.active, &.current-menu-item {
+
+			.background("navigation-active.png", repeat-x);
+
+			a {
+
+				color: #fff;
+
+			}
+
+		}
+
+	}
+
+}

@@ -1,0 +1,438 @@
+// ******************************************************************************************************************
+// Cynefin
+//
+// Author: Tomáš Lach (ahoj@tomaslach.cz)
+// Date: 14/06/2014
+// *****************************************************************************************************************/
+
+// ******************************************************************************************************************
+// BOOTSTRAP
+// ******************************************************************************************************************/
+
+
+/*
+* CORE
+* - page defaults styles and variables
+*/
+
+	@import "core/mixins";
+	@import "core/normalize";
+	@import "core/columns";
+	@import "core/typhography";
+
+
+/*
+* VARIABLES
+* - colors, backgrounds, grid etc.
+*/
+
+	// Core
+	@import "variables/defaults";
+	@import "variables/grid";
+	@import "variables/colors";
+	@import "variables/forms";
+
+	// Plugins
+	@import "variables/boxes";
+
+
+/*
+* LIBRARIES
+* - plugins, helpers etc.
+*/
+
+	@import "lib/mixins";
+	@import "lib/sizes";
+	@import "lib/sprites";
+	@import "lib/gadgets";
+	@import "lib/icons";
+	@import "lib/owl-carousel";
+
+
+/*
+* COMPONENTS
+* - elements used across the website
+*/
+
+	// Core components
+	@import "components/tables";
+	@import "components/navigation/navigation";
+	@import "components/forms/init";
+
+	// Main components
+	@import "components/boxes";
+	@import "components/pagination";
+	@import "components/breadcrumb";
+	@import "components/tabs";
+	@import "components/logo";
+	@import "components/vertical-align";
+	@import "components/hidden";
+	@import "components/dl";
+	@import "components/separator";
+	@import "components/languages";
+	@import "components/paper";
+	@import "components/intro";
+	@import "components/statistics";
+	@import "components/partners";
+	@import "components/thumb";
+	@import "components/blog-categories";
+	@import "components/widget";
+	@import "components/post";
+	@import "components/letter";
+	@import "components/records";
+	@import "components/item";
+	@import "components/filter";
+	@import "components/panel";
+	@import "components/counties-list";
+	@import "components/application";
+
+
+// ******************************************************************************************************************
+// BASE
+// *****************************************************************************************************************/
+
+
+/*
+* Html
+*/
+
+	html {
+
+		position: relative;
+		min-height: 100%;
+		overflow-x: hidden;
+
+
+	} // html
+
+
+/*
+* Body
+*/
+
+	body {
+
+		color: @color-base;
+		font-size: @font-size;
+		line-height: @line-height;
+		-webkit-font-smoothing:antialiased;
+		.font(regular);
+		padding-top: @height-header;
+		background-color: @background-body;
+		.background("background.png", no-repeat, 50% 0);
+		background-attachment: fixed;
+		background-size: cover;
+		overflow-x: hidden;
+		min-width: 640px;
+
+		&.clean-background {
+
+			background-image: none;
+
+		}
+
+	} // body
+
+	.page {
+
+		.background("background-bottom.png", no-repeat, 50% 100%);
+		background-attachment: fixed;
+		overflow-x: hidden;
+		min-width: 640px;
+
+	}
+
+/*
+* Links
+*/
+
+	a {
+
+		color: @color-link;
+		.transition(all @transition);
+
+		&:hover {
+
+			color: @color-link-hover;
+
+		} // a:hover
+
+	} // a
+
+	/*a:visited {
+
+		color: @color-link-visited;
+
+	}*/ // a:visited
+
+
+// ******************************************************************************************************************
+// LAYOUT
+// *****************************************************************************************************************/
+
+/*
+* Header
+*/
+
+	header {
+
+		@import "layout/header/header.less";
+
+	} // #header
+
+	.admin-bar {
+		header {
+			top: 30px;
+		}
+	}
+
+
+/*
+* Content
+*/
+
+	section {
+
+		@import "layout/content/content.less";
+
+	} // .content
+
+
+/*
+* Aside
+*/
+
+	aside {
+
+		@import "layout/aside/aside.less";
+
+	} // aside
+
+
+/*
+* Footer
+*/
+
+	footer {
+
+		@import "layout/footer/footer.less";
+
+	} // #footer
+
+
+// ******************************************************************************************************************
+// RESPONSIVE
+// *****************************************************************************************************************/
+
+/*
+* Mobile first
+*/
+
+	@import "responsive/480.less";
+	@import "responsive/640.less";
+	@import "responsive/768.less" screen and (min-width: (@screen-md + 1));
+	@import "responsive/1024.less" screen and (min-width: (@screen-lg + 1));
+
+/*
+* Default fixed container
+*/
+
+	.container {
+
+	    .container(fixed);
+
+	    &-wider {
+
+	    	.container-wider(fixed, @width-layout-wider);
+
+	    }
+
+	} // .container
+
+
+/*
+* If responsive enable
+*/
+
+	.responsive {
+
+	/*
+	* Fluid responsive container
+	*/
+
+		.container {
+
+		    .container(fluid);
+		    min-width: 640px;
+
+		    &-wider {
+
+		    	.container-wider(fluid, @width-layout-wider);
+
+		    }
+
+		    img {
+
+		    	max-width: 100%;
+
+		    }
+
+		} // .inner
+
+	/*
+	* Media queries
+	*/
+
+		/*@import "responsive/480-max.less" screen and (max-width: @screen-xs);*/
+		/*@import "responsive/480-640.less" screen and (min-width: (@screen-xs + 1)) and (max-width: @screen-sm);*/
+		/*@import "responsive/640-max.less" screen and (max-width: @screen-sm);*/
+		@import "responsive/640-768.less" screen and (min-width: (@screen-sm + 1)) and (max-width: @screen-md);
+		@import "responsive/768-max.less" screen and (max-width: @screen-md);
+		@import "responsive/768-1024.less" screen and (min-width: (@screen-md + 1)) and (max-width: @screen-lg);
+		@import "responsive/1024-max.less" screen and (max-width: @screen-lg);
+
+	} // .responsive
+
+
+.main-links {
+
+	margin-bottom: 30px;
+}
+
+
+// ******************************************************************************************************************
+// TEMP - Styles for HTML template presentation
+// *****************************************************************************************************************/
+
+// Sitemap
+.sitemap {
+
+	list-style: decimal;
+	margin-left: 30px;
+	font-weight: bold;
+	color: @color-primary;
+	font-size: 1.3em;
+
+	li {
+
+		margin-bottom: 5px;
+
+		a {
+
+			font-weight: normal;
+			font-size: 16px;
+			display: block;
+
+		} // a
+
+	} // li
+
+} // .sitemap
+
+// Grid
+.grid {
+
+	.column {
+
+		background: #f7f7f7;
+		min-height: 50px;
+		font-weight: bold;
+		text-align: center;line-height: 50px;
+		.box-shadow(inset 0 0 1px #555);
+
+		.column {
+
+			background: darken(#f7f7f7,10%);
+
+			.column {
+
+				background: darken(#f7f7f7,20%);
+
+			} // .column
+
+		} // .column
+
+	} // .column
+
+} // .grid
+
+
+// Default WP classes (required)
+
+/* =WordPress Core
+-------------------------------------------------------------- */
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}

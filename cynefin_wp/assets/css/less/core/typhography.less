@@ -1,0 +1,418 @@
+// ***************************************************************************
+// TYPOGRAPHY
+// ***************************************************************************
+
+/*
+* Headlines
+*/
+
+    h1, h2, h3, h4, h5,     
+    .h1, .h2, .h3, .h4, .h5 {
+
+        color: @color-base;            
+        text-rendering: optimizelegibility; // Fix the character spacing for headings 
+        -webkit-text-stroke: none;
+        .font(semibold);
+
+        small {
+
+            color: @color-weak;
+            display: block;
+            line-height: 1.2em;
+
+        } // small
+
+        span {
+
+            font-size: 1.2em;
+
+        }       
+
+        a {
+
+            text-decoration: none;
+            
+        }
+
+        &.bordered {
+
+            padding-bottom: 15px;
+            border-bottom: 1px solid @border;
+
+        } // .bordered
+
+    } // h1, h2, h3, h4, h5
+
+
+    h1, .h1 {
+
+        font-size: 1.6em;
+        line-height: 1.3em;  
+        margin: 0 0 20px;   
+        color: #453e37;   
+
+    } // .h1, h1
+
+    .h1 {
+
+        margin: 0 0 10px; 
+        
+    }
+
+    h2, .h2 {
+        
+        margin: 0 0 5px 0;
+        font-size: 1.0em;
+        line-height: 1.3em;
+
+    } // h2
+
+    h3, .h3 {
+        
+        margin: 0 0 15px 0;
+        font-size: 1.45em;
+        line-height: 1.3em;  
+
+        &.small {
+
+            font-size: 1.2em;
+            text-transform: uppercase;
+
+        }
+
+    } // h3
+
+    h4, .h4 {
+
+        margin: 0 0 10px 0;
+        font-size: 1.0em;
+        line-height: 1.3em;
+        text-transform: uppercase;      
+
+    } // h4 
+
+    h5, .h5 {
+
+        margin: 0 0 10px 0;
+        font-size: 1.15em;
+        line-height: 1.1em;
+        color: @color-additional;
+
+    } // h5
+
+/*
+* Lists
+*/
+
+    dl,
+    ol,
+    ul {
+
+        margin: 1em 0;
+
+    } // dl, ol, ul
+
+    dd {
+
+        margin: 0 0 0 40px;
+
+    } // dd
+
+    ol,
+    ul {
+
+        .ul-reset();
+
+    } // ol, ul
+
+    // Todo: fix for IE browser
+    // UL list style for all lists without class or ID
+    ul:not([class]):not([id]) {
+
+        .ul-reset();
+
+        li {
+
+            .styled-li();
+
+        } // li
+
+    } // ul:not([class]):not([id])
+    
+    ol:not([class]):not([id]) {
+    
+        counter-reset:li;
+        .ul-reset();
+
+        li {
+
+            position: relative;
+            padding-left: 30px;
+
+            &:before {
+
+                content: counter(li) + '.';
+                counter-increment:li;
+                .font(bold);          
+                color: @color-extra;
+                display: table-cell;
+                vertical-align: middle;
+                position: absolute;
+                top: 0;left: 0;
+                width: 23px;
+                text-align: right;
+
+            } // li:before
+
+        } // li
+
+    } // ol:not([class]):not([id])
+
+
+/*
+* Paragraphs
+*/
+
+    p, 
+    address {
+
+        margin: 0 0 15px;  
+
+        &:last-child {
+
+            margin-bottom: 0;
+
+        } // :last-child 
+
+        &.bordered {
+
+            border-bottom: 1px solid @border;
+            padding-bottom: 15px;
+
+        }      
+
+    } // p, address    
+
+
+/*
+* Floated images
+*/
+
+    img.float-left {
+
+        margin: 0 @margin-gap 10px 0;
+        position: relative;
+        top: 5px;
+
+    } // img.float-left
+
+    img.float-right {
+
+        margin: 0 0 10px @margin-gap;
+        position: relative;
+        top: 5px;
+
+    } // img.float-right
+
+/*
+* Others
+*/
+    
+    b,
+    strong,
+    .bold {
+
+        .font(bold);
+
+    } // b, strong, .bold
+
+    .high,
+    .primary {
+        
+        color: @color-primary;
+
+    } // .high
+
+    .weak {
+
+        color: @color-weak;
+
+    } // .weak
+
+    .dark {
+
+        color: @color-dark;
+
+    } // .dark
+
+    .extra {
+
+        color: @color-extra;
+
+    } // .extra
+
+    .gray {
+
+        color: @color-gray;
+
+    } // .gray
+
+    .error {
+
+        color: @color-negative;
+
+    } // .error
+
+    .negative {
+
+        color: @color-negative;
+
+    } // .negative
+
+    .positive,
+    .success {
+
+        color: @color-positive;
+
+    } // .positive
+
+    .additional {
+
+        color: @color-additional;
+
+    } // .additional
+
+    .text-icon {
+
+        padding-left: 22px !important;
+        position: relative;
+
+        span {
+
+            position: absolute !important;
+            top: 50% !important;left: 0 !important;
+            .translate(0,-50%);
+            font-size: 14px;
+            line-height: 14px;
+            vertical-align: baseline;
+
+            &:before {
+
+                font-size: 14px;
+                line-height: 14px;
+                vertical-align: bottom;
+
+            }
+
+        }
+
+    }
+
+    .large {
+
+        font-size: @font-size-large;
+        line-height: @line-height-large;
+
+    } // .large
+
+    .xlarge {
+
+        font-size: @font-size-xlarge;
+        line-height: @line-height-xlarge;
+
+    } // .xlarge
+
+    .xxlarge {
+
+        font-size: @font-size-xxlarge;
+        line-height: @line-height-xxlarge;
+
+    } // .xxlarge
+
+    .xxxlarge {
+
+        font-size: @font-size-xxxlarge;
+        line-height: @line-height-xxxlarge;
+
+    } // .xxxlarge
+
+    small,
+    .small {
+
+        font-size: @font-size-small;
+        line-height: @line-height-small;
+
+    } // .small
+
+    .xsmall {
+
+        font-size: @font-size-xsmall;
+        line-height: @line-height-xsmall;
+
+    } // .small
+
+    .italic {
+        
+        .font(regular-italic);
+
+    } // .italic
+
+    .regular {
+        
+        .font(regular);
+
+        &.italic {
+        
+            .font(regular-italic);
+
+        } // .italic
+
+    } // .regular
+
+    .light {
+
+        .font(light);
+
+        &.italic {
+
+            .font(light-italic);
+
+        } // .light.italic
+
+    } // .light
+ 
+    .bold {
+
+        .font(bold);
+
+        &.italic {
+
+            .font(bold-italic);
+            
+        } // .bold.italic
+
+    } // .bold
+
+    .semibold {
+
+        .font(semibold);
+
+        &.italic {
+
+            .font(semibold-italic);
+            
+        } // .semibold.italic
+
+    } // .semibold
+
+    hr.sep {
+
+        display: block;
+        font-size: 0;
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid @border;
+        margin: 15px 0;
+        padding: 0;
+
+    } // hr.sep

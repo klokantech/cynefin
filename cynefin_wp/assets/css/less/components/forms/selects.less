@@ -1,0 +1,344 @@
+// ***************************************************************************
+// SELECTS
+// ***************************************************************************
+
+/*
+* Base select
+*/
+
+select {
+	
+	height: 24px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: @color-base;
+	vertical-align: middle;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid @border;
+
+
+}
+
+/*
+* Select sizes
+*/
+	
+	select.control-select-xsmall {
+
+		& + .selectboxit-container {
+		
+			.select-xsmall();
+
+		}
+
+	} // select.control-select-small
+
+	select.control-select-small {
+
+		& + .selectboxit-container {
+		
+			.select-small();
+
+		}
+
+	} // select.control-select-small
+
+	select {
+
+		& + .selectboxit-container {
+		
+			.select-default();
+
+		}
+
+	} // select
+
+	select.control-select-large {
+
+		& + .selectboxit-container {
+		
+			.select-large();
+
+		}
+
+	} // select.control-select-large
+
+	select.control-select-xlarge {
+
+		& + .selectboxit-container {
+		
+			.select-xlarge();
+
+		}
+
+	} // select.control-select-large
+
+	.form-small {
+
+		.selectboxit-container {
+		
+			.select-small();
+
+		}
+
+	} // select.field-small	
+
+	.form-xsmall {
+
+		.selectboxit-container {
+		
+			.select-xsmall();
+
+		}
+
+	} // select.field-xsmall
+
+	.form-large {
+
+		.selectboxit-container {
+		
+			.select-large();
+
+		}
+
+	} // select.field-large	
+
+	.form-xlarge {
+
+		.selectboxit-container {
+		
+			.select-xlarge();
+
+		}
+
+	} // select.field-xlarge
+
+
+
+.selectboxit-container {
+	
+	/*
+	* Select wrapper
+	*/
+
+	position: relative;
+	.inline-block();
+	vertical-align: top;    
+	.border-box();
+
+	.selectboxit-option-icon-container {
+
+		.inline-block();
+		padding: 5px 0 0 0;
+		display: none;
+
+		i[class*="sprite-"],
+		i[class*="icon-"] {
+
+			margin-right: 10px;
+			position: relative;
+			top: 1px;
+
+		}
+
+
+	}
+
+	.selectboxit-text,
+	.selectboxit-arrow-container, 
+	.selectboxit-options a {
+		
+		overflow: hidden;	
+		display: block;		
+		.border-box();
+
+	}
+
+	* {
+		 
+		.user-select(none); 
+		outline: none;	
+
+	}
+
+	/*
+	* Select theme
+	*/
+
+	.selectboxit {
+
+		cursor: pointer;
+		margin: 0;
+		padding-right: 30px;
+		display: block;
+		position: relative;
+		text-align: left;
+		width: auto !important;
+		
+		/*
+		* Select theme
+		*/
+
+		.select();
+		.select-hover();
+		.select-focus();
+
+		.selectboxit-text {
+				
+			max-width: 100% !important;	
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			.inline-block();
+
+			&[data-val="0"] {
+
+				color: @field-color-placeholder;
+
+			}
+
+		}
+
+		&.selectboxit-btn {
+
+			padding-left: 10px;
+		}
+
+		&.selectboxit-disabled {  
+			
+			.select-disabled();
+			cursor: default;
+
+		}
+
+		.selectboxit-arrow-container {
+
+			width: 30px;
+			position: absolute;
+			right: 0px;
+			top: 0px;
+
+			.selectboxit-default-arrow {
+				
+				margin: -2px auto 0;
+				position: absolute;
+				top: 50%;
+				right: 0;
+				left: 0;
+				.transition(none);
+				
+				.arrow(down, 5px, @color-weak);				
+
+			} // .selectboxit-default-arrow	
+
+		} // .selectboxit-arrow-container
+
+		&.selectboxit-focus {
+		
+			.selectboxit-arrow-container .selectboxit-default-arrow {		
+				
+				.arrow(down, 5px, @field-border-focus);				
+
+			} // .selectboxit-default-arrow
+
+		}
+
+	}
+	
+	/*
+	* Options list
+	*/
+
+	.selectboxit-options {
+			
+		min-width: 100% !important;
+		*width: 100%;
+		margin: 0 0;
+		padding: 0;
+		list-style: none;
+		position: absolute;
+		overflow-x: hidden;
+		overflow-y: auto;
+		cursor: pointer;
+		display: none;
+		z-index: 9999999999999;
+		text-align: left;
+		background: @field-background-focus;
+		border: @field-border;
+		.border-box();
+
+		li {
+
+			font-size: @font-size; 
+			line-height: @line-height !important;
+			min-height: 10px !important;
+			.transition(none); 
+
+			&.selectboxit-focus > a {
+
+				background-color: @color-primary;	
+				color: #fff;
+
+				.desktop & {
+
+					&:hover {
+
+						background-color: @color-primary;
+						color: #fff;
+
+					}
+
+				}
+
+			}
+
+			&.selectboxit-disabled > a {
+
+				color: #9fa1a6;
+
+			}
+
+
+			a,
+			a span {
+				
+				line-height: @line-height !important;
+				min-height: 10px !important;
+				.transition(none);
+				white-space: nowrap;
+
+			}  
+
+			a {
+				
+				padding: 0 10px;
+				text-decoration: none;
+				padding-top: 5px !important;
+				padding-bottom: 5px !important;
+				color: @color-base;
+
+			}
+
+		}  			
+
+		.selectboxit-optgroup-header {
+
+			font-weight: bold;
+
+			.desktop & {
+
+				&:hover {
+
+					cursor: default;
+
+				}
+
+			}
+
+		}
+
+	}
+
+}

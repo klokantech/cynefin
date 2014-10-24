@@ -1,0 +1,140 @@
+// ***************************************************************************
+// ITEM
+// ***************************************************************************
+
+.item {
+
+	.cfx();
+	padding: 15px 20px;
+
+	.box-inner & {
+
+		margin: 0 -20px;
+		padding-left: 20px;
+		padding-right: 20px;
+
+	}
+
+	&-media {
+
+		width: 105px;
+		float: left;
+
+		.btn {
+
+			font-size: @font-size-small;
+			padding: 5px 0;
+			display: block;
+			text-transform: none;
+
+		}
+
+		img {
+
+			border: 1px solid #706b65;
+
+			&:hover {
+
+				.opacity(70);
+				
+			}
+
+		}
+
+	}
+
+	&-content {
+
+		margin-left: 105px + 20;
+
+		h2 {
+
+			margin: 0 0 5px;
+		}
+
+		p {
+
+			font-size: @font-size-small;
+			line-height: @line-height-xsmall - 2;
+			margin: 0;
+
+		}
+
+		&-actions {
+
+			font-size: @font-size-small;
+			line-height: @line-height-xsmall - 2;
+			padding-top: 5px;
+
+			a {
+
+				text-decoration: underline;
+				color: @color-primary;
+
+				&:hover {
+
+					color: fade(@color-primary,70%);
+
+				}
+
+				& + a {
+
+					margin-left: 20px;
+
+				}
+			}
+
+		}
+
+	}
+
+	&-county {
+		
+		&:nth-child(odd) {
+
+			background: #f3f1ea;
+
+		}		
+
+	}
+
+	&-county:hover,
+	&-county-hover {
+
+		background: darken(#f3f1ea,5%) !important;
+		cursor: pointer;
+
+		/*h2, p, a {
+
+			color: #fff;
+
+		}*/
+		
+	}	
+
+	&-county-active,
+	&-county-active:hover {
+
+		background: #4e7b8e !important;
+
+		h2, p, a {
+
+			color: #fff;
+
+		}
+
+		a:hover {
+
+			color: fade(#fff,70%);
+
+		}
+		
+	}
+
+	& + .item {
+
+		padding-bottom: 10px;
+
+	}
+
+}

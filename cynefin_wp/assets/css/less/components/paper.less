@@ -1,0 +1,49 @@
+// ***************************************************************************
+// PAPER
+// ***************************************************************************
+
+.paper {
+
+	position: relative;
+	max-width: 800px;
+	margin: 0 auto;
+
+	&-base {
+		
+		position: absolute;
+		top: 0;left: 0;
+		overflow: hidden;
+		width: 100%;height: 100%;
+
+	}
+
+	&-top {
+
+		.background("paper-top.png", no-repeat, 50% 0);
+		position: absolute;
+		top: 0;left: 0;
+		.size(100%,150px);
+
+	}
+
+	&-middle {
+
+		.background("paper-middle.png", repeat-y, 50% 0);
+		position: absolute;
+		top: 0;left: 0;
+		.size(100%,100%);
+		margin-top: 150px;	
+		
+	}
+
+	&-btm {
+
+		.background("paper-btm.png", no-repeat, 50% 0);
+		position: absolute;
+		bottom: 0;left: 0;
+		.size(100%,160px);
+		margin-bottom: -160px;
+		
+	}
+
+} // .paper

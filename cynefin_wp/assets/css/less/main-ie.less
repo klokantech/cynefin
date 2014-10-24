@@ -1,0 +1,63 @@
+// ***************************************************************************
+// INTERNET EXPLORER
+// ***************************************************************************
+
+/*
+* CORE
+* - page defaults styles and variables
+*/
+
+	@import "core/mixins.less";	
+	@import "core/normalize.less";
+	@import "core/columns.less"; 
+	@import "core/typhography.less";
+
+
+/*
+* VARIABLES
+* - colors, backgrounds, grid etc.
+*/
+	
+	// Core
+	@import "variables/defaults.less";
+	@import "variables/grid.less";
+	@import "variables/colors.less";
+	@import "variables/forms.less";
+	
+	// Plugins
+	@import "variables/boxes.less";	
+
+
+/*
+* LIBRARIES
+* - plugins, helpers etc.
+*/
+
+	@import "lib/mixins.less";	
+	@import "lib/sprites.less";
+
+
+
+/*
+* RESPONSIVE
+*/
+
+	@import "responsive/480.less";
+	@import "responsive/640.less";
+	@import "responsive/768.less";
+	@import "responsive/1024.less";
+
+/*
+* EXCEPTIONS
+*/
+
+	.ie7, 
+	.ie8 {
+
+		body {
+
+			padding-bottom: 100px;
+			
+		}
+
+	}

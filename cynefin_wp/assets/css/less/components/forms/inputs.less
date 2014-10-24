@@ -1,0 +1,88 @@
+// ***************************************************************************
+// INPUTS
+// ***************************************************************************
+
+.control-input {	
+
+	.font(regular);
+
+	/*
+	* Field themes
+	*/
+
+		// Default input
+		.field();
+		.field-hover();
+		.field-focus();
+
+		// Error input 
+		&.field-error {
+
+			.field();
+			.field-hover();
+			.field-focus();
+
+		} // .input-error
+
+		// Success input 
+		&.field-error {
+
+			.field();
+			.field-hover();
+			.field-focus();
+
+		} // .input-error
+
+	/*
+	* Field sizes
+	*/
+
+		// Default size
+		.field-default();	
+		
+		// Small input
+		&-small,
+		.form-small & {
+
+			.field-small();
+
+		} // .control-input-large
+
+		// Extra small input
+		&-xsmall,
+		.form-xsmall & {
+
+			.field-xsmall();
+
+		} // .control-input-xsmall
+
+		// Large input
+		&-large,
+		.form-large & {
+
+			.field-large();
+
+		} // .control-input-large
+
+		// Extra large input
+		&-xlarge,
+		.form-xlarge & {
+
+			.field-xlarge();
+
+		} // .control-input-xlarge
+
+	/*
+	* Field placeholder
+	*/
+
+		.placeholder(@field-color-placeholder);		
+
+} // inputs, textarea
+
+textarea.control-input {
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+}

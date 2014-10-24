@@ -1,0 +1,167 @@
+// ***************************************************************************
+// TABS
+// ***************************************************************************
+
+.tabs {
+
+	position: relative;	
+
+	&-navigation {
+
+		font-size: @font-size-large;
+		.font(semibold);
+		position: relative;
+		z-index: 10;
+
+		li {		
+
+			a {
+
+				display: block;
+				border-top: 1px solid @border;
+				text-decoration: none;
+				padding: 10px 20px;				
+
+			} // a
+
+		} // li
+
+		&-link {			
+			
+			a {
+
+				color: @color-invert;				
+				.box-shadow(0 1px 2px #bbbbbb);
+				.gradient-vertical(#a5a5a5,#898989);
+				position: relative;
+
+				&:before {
+
+					content: '';
+					display: block;
+					background: #fff;
+					.size(100%,2px);
+					position: absolute;
+					bottom: -2px;left: 0;
+					.transition(none);
+
+					.tabs-dark & {
+
+						background: #efefef;
+
+					}
+
+				}
+
+				&:after {
+
+					content: '';
+					&:extend(.sprite-tab-corner);
+					position: absolute;
+					bottom: 0;left: 100%;
+
+				}				
+
+				&:hover {
+
+					color: darken(@color-invert,10%);
+
+				} // a:hover
+
+			} // a
+
+		} // li.active	
+
+		&-active {			
+			
+			a {
+
+				color: @color-base;		
+				background: #fff;
+				.box-shadow(0 1px 2px #bdbdbd);
+				position: relative;
+
+				.tabs-dark & {
+
+					background: #efefef;
+
+				}	
+
+				&:before {
+
+					content: '';
+					display: block;
+					background: #fff;
+					.size(100%,2px);
+					position: absolute;
+					bottom: -2px;left: 0;
+					.transition(none);
+
+					.tabs-dark & {
+
+						background: #efefef;
+
+					}
+
+				}			
+
+				&:after {
+
+					content: '';
+					&:extend(.sprite-tab-corner-active);
+					position: absolute !important;
+					bottom: 0;left: 100%;
+
+					.tabs-dark & {
+
+						&:extend(.sprite-tab-dark-corner-active);
+						
+					}
+
+				}
+
+				&:hover {
+
+					color: @color-base;
+
+				}
+
+			} // a
+
+		} // li.active	
+
+	} // .tabs-navigation
+
+	&-content {
+
+		position: relative;	
+		z-index: 5;	
+		.border-radius(0 @radius @radius @radius);
+		overflow: hidden;
+
+		&-tab {
+
+			position: absolute;
+			width: 100%;
+			top: 0;left: 0;
+			.opacity(0);
+			.translate(0,30px);
+			.transition(all 0.1s ease-in-out);
+			visibility: hidden;
+
+			&-active {
+				
+				.opacity(100);
+				position: relative;
+				top: 0;
+				.translate(0,0);
+				.transition(all 0.3s ease-in-out);
+				visibility: visible;
+
+			} // .tab-active
+
+		} // .tab
+
+	} // .tabs-content
+
+} // .tabs
