@@ -324,9 +324,9 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
         var trans = supps['products']['transcription'];
         var georef = map['products']['georeference'];
         var mapCount = map['objects'],
-            mapsDone = georef['processed'] + georef['reviewed'];
+            mapsDone = mapCount - georef['fresh'];
         var suppCount = supps['objects'],
-            suppsDone = trans['processed'] + trans['reviewed'];
+            suppsDone = suppCount - trans['fresh'];
         goog.dom.setTextContent(this.statsDocsTotalEl_, suppCount);
         goog.dom.setTextContent(this.statsMapsTotalEl_, mapCount);
         goog.dom.setTextContent(this.statsDocsTransedEl_, suppsDone);
@@ -420,7 +420,7 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
   this.setFilter('');
   this.setStateFilter('all');
 
-  var allSum = 0, scannedSum = 0, georefedSum = 0,
+  var allSum = 0, scannedSum = 0,
       notgeorefedSum = 0, nottransedSum = 0, notfinSum = 0;
 
   goog.array.forEach(data, function(el, i, arr) {
@@ -434,14 +434,11 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
 
     var georefstat = el['georeference_status'];
     var scanned = goog.isDefAndNotNull(el['thumbnail_url']),
-        georefed = goog.isDefAndNotNull(el['visualize_url']),
-        notgeorefed = georefstat == 'fresh',
+        notgeorefed = scanned && !goog.isDefAndNotNull(el['visualize_url']),
         nottransed = true, //TODO
-        notfin = (georefstat != 'processed' && georefstat != 'reviewed') ||
-                 false; //TODO
+        notfin = (goog.isNull(georefstat) || georefstat == 'fresh');
     allSum++;
     if (scanned) scannedSum++;
-    if (georefed) georefedSum++;
     if (notgeorefed) notgeorefedSum++;
     if (nottransed) nottransedSum++;
     if (notfin) notfinSum++;
