@@ -129,7 +129,7 @@ cynefin.Counties = function() {
   goog.events.listen(this.transcribeRandElement_,
       goog.events.EventType.CLICK, function(e) {
         this.sendToRandomMap_(this.transcribeRandElement_.href,
-                              '/random/public/transcription/json');
+                              '/random/public/transcription/json', true);
         e.preventDefault();
       }, false, this);
 
@@ -501,9 +501,11 @@ cynefin.Counties.prototype.setProgress_ = function(done, total) {
 /**
  * @param {string} toolPath
  * @param {string} randomPath
+ * @param {boolean=} opt_supp
  * @private
  */
-cynefin.Counties.prototype.sendToRandomMap_ = function(toolPath, randomPath) {
+cynefin.Counties.prototype.sendToRandomMap_ =
+    function(toolPath, randomPath, opt_supp) {
   if (!this.activeCounty_) return;
 
   var requestUrl = cynefin.Counties.COLLECTION_BASE_URL +
@@ -512,7 +514,15 @@ cynefin.Counties.prototype.sendToRandomMap_ = function(toolPath, randomPath) {
   goog.events.listen(xhr_, goog.net.EventType.COMPLETE, function() {
     if (xhr_.isSuccess()) {
       var data = /** @type {Object.<string, string>} */(xhr_.getResponseJson());
-      var dst = toolPath + '#' + this.createLinkHash_(data);
+      var hash;
+      if (opt_supp) {
+        hash = data['title'] + '|' +
+            new goog.Uri(data['transcription_url'] || '').getPath() + '#' +
+            (data['supplement_id'] || '') + '||||';
+      } else {
+        hash = this.createLinkHash_(data);
+      }
+      var dst = toolPath + '#' + hash;
       window.location = dst;
     }
   }, false, this);
