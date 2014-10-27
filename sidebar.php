@@ -3,7 +3,7 @@
 	<?php dynamic_sidebar('right_sidebar'); ?>
 
 	<div class="widget">
-		<h2><span>Posts</span></h2>
+		<h2><span><?php _e("Posts", "cynefin"); ?></span></h2>
 		<?php
 		$menu_args = array(
 			'theme_location'  => 'side_menu',
@@ -23,11 +23,9 @@
 
 				<div class="row">
 				  	<div class="col-lg-12">
-						<h2><span>Twitter feed</span></h2>
+						<h2><span><?php _e("Twitter feed", "cynefin"); ?></span></h2>
 					</div>
 				</div>
-
-				<script type="text/javascript" src="http://cynefinblog.archiveswales.org.uk/wp-content/plugins/easy-twitter-feed-widget/lib/js/widget-easy-twitter-feed-widget.js?ver=1.0"></script>
 
 	          	<div class="widget-easy-twitter-feed-widget-row">
 		          	<div class="widget-easy-twitter-feed-widget-col">

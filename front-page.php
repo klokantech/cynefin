@@ -8,11 +8,11 @@ if ( have_posts() ) {
 
 		<div class="intro">
 			<p>
-				<a href="<?php bloginfo("url"); ?>" class="sprite-logo-large">Cynefin</a>
+				<a href="<?php bloginfo("url"); ?>" class="sprite-logo-large"><?php bloginfo("name"); ?></a>
 			</p>
 
 			<p>
-				<a href="/tithe-maps/georeference" class="btn btn-large btn-noise">Get started</a>
+				<a href="/tithe-maps/georeference" class="btn btn-large btn-noise"><?php _e("Get started", "cynefin"); ?></a>
 			</p>
 
 
@@ -34,7 +34,7 @@ if ( have_posts() ) {
 
 							<p>
 								<strong>352</strong>
-								Total Volunteers
+								<?php _e("Total Volunteers", "cynefin"); ?>
 							</p>
 
 						</div>
@@ -44,7 +44,7 @@ if ( have_posts() ) {
 
 							<p>
 								<strong>289345</strong>
-								Records Transcribed
+								<?php _e("Records Transcribed", "cynefin"); ?>
 							</p>
 
 						</div>
@@ -54,7 +54,7 @@ if ( have_posts() ) {
 
 							<p>
 								<strong>167</strong>
-								Maps
+								<?php _e("Maps", "cynefin"); ?>
 							</p>
 
 						</div>
@@ -79,11 +79,11 @@ if ( have_posts() ) {
 
 						<p>
 							<a href="/" class="thumb">
-								<img src="<?php bloginfo("template_url"); ?>/assets/img/video-placeholder.png" alt="Watch video">
+								<img src="<?php bloginfo("template_url"); ?>/assets/img/video-placeholder.png" alt="<?php _e("Watch video", "cynefin"); ?>">
 							</a>
 						</p>
 
-						<p>Learn how use the project online tools to help us rediscover, enrich and preserve our shared heritage.</p>
+						<p><?php _e("Learn how use the project online tools to help us rediscover, enrich and preserve our shared heritage.", "cynefin"); ?></p>
 
 					</div>
 					<!-- .column -->

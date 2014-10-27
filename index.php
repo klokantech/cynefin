@@ -6,7 +6,7 @@
 
 		<div class="intro">
 		<p>
-			<a href="<?php bloginfo("url"); ?>" class="sprite-logo-large">Cynefin</a>
+			<a href="<?php bloginfo("url"); ?>" class="sprite-logo-large"><?php bloginfo("name"); ?></a>
 		</p>
 
 		</div>
