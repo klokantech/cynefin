@@ -45,9 +45,26 @@
 				<hr>
 
 				<div class="languages">
-					<a href="#" title="Welsh">Welsh</a>
-					<span class="sep">|</span>
-					<a href="#" title="English" class="active">English</a>
+				<?php
+					if (function_exists('icl_get_languages')) {
+					    $languages = icl_get_languages('skip_missing=0&orderby=code');
+					    if(!empty($languages)){
+					    	$iterator = 0;
+					        foreach($languages as $l){ ?>
+					        	<a href="<?php echo $l["url"] ?>" <?php if($l["active"]) { echo 'class="active"';} ?> title="<?php echo $l["native_name"] ?>"><?php echo $l["native_name"] ?></a>
+					        	<?php
+					        	if($iterator === 0) {
+					        		echo '<span class="sep">|</span>';
+					        		$iterator++;
+					        	}
+					        }
+					    }
+				    } else { ?>
+						<a href="#" title="Welsh">Welsh</a>
+						<span class="sep">|</span>
+						<a href="#" title="English" class="active">English</a>
+				    <?php }
+				?>
 				</div>
 				<!-- .languages -->
 
