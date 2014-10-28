@@ -29,9 +29,9 @@
 									<div class="post-head">
 										<h2 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 										<div class="meta">
-										<span class="sep">Posted on </span>
+										<span class="sep"><? _e("Posted on", "cynefin"); ?> </span>
 										<a href="<?php the_permalink(); ?>"><time class="entry-date" datetime="<?php echo get_the_date("U"); ?>" pubdate=""><?php echo get_the_date(); ?></time></a>
-										<span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><?php the_author_posts_link(); ?></span></span>		• <a href="<?php comments_link(); ?>" title="<?php the_title(); ?>"><span class="leave-reply"><?php comments_number( '0 comment', '1 comment', '% comments' ); ?></span></a>
+										<span class="by-author"> <span class="sep"> <?php _e("by", "cynefin"); ?> </span> <span class="author vcard"><?php the_author_posts_link(); ?></span></span>		• <a href="<?php comments_link(); ?>" title="<?php the_title(); ?>"><span class="leave-reply"><?php comments_number( '0 comment', '1 comment', '% comments' ); ?></span></a>
 										</div>
 
 									</div>
