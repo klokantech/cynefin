@@ -171,6 +171,7 @@ cynefin.Counties = function() {
   var listenStateFilter = goog.bind(function(type) {
     goog.events.listen(goog.dom.getElement('map-filter-' + type),
         goog.events.EventType.CLICK, function(e) {
+          this.setFilter('');
           this.setStateFilter(type);
         }, false, this);
   }, this);
