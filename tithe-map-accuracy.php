@@ -13,7 +13,9 @@ get_header();
 
 <script src="<?php bloginfo("template_url"); ?>/js/inittool.js"></script>
 <script>
+jQuery(document).ready(function() {
     initTool(4);
+});
 </script>
 <style>
     body, .page, .application {position:absolute;top:0;bottom:0;left:0;right:0;}

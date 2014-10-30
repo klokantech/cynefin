@@ -4,7 +4,7 @@
 		<?php
 		if (is_page_template("tithe-map.php")) { ?>
 			<script src="<?php bloginfo("template_url"); ?>/js/tithe-maps.js"></script>
-			<script>new TitheMaps();</script>
+			<script>jQuery(document).ready(function() {new TitheMaps();});</script>
 		<?php } elseif(!is_front_page()) { ?>
 			<script src="<?php bloginfo("template_url"); ?>/js/app.js"></script>
 		<?php }
