@@ -22,11 +22,52 @@
 	<link rel="stylesheet" href="/css/main-ie.css" media="screen">
 	<script src="/js/html5shiv.min"></script>
 	<![endif]-->
+
+	<?php
+	if (is_page_template("tithe-map.php")) { ?>
+	   <style>
+	    body { background-image: none; }
+	    .page { background-image: none; }
+	    #map {position:absolute; top:50px; left:0; bottom:0; right:0;}
+	    .item-media {height:75px; line-height:73px; text-align:center; border:1px solid #706b65; background:#ddd; padding:2px;}
+	    .item-media img {border:none;}
+	    .item-county {
+	      height:75px;overflow:hidden;
+	      -webkit-transition:all .4s;
+	      -moz-transition:all .4s;
+	      -o-transition:all .4s;
+	      transition:all .4s;
+	    }
+	    .item-county.filtered {height:0;padding-top:0;padding-bottom:0;opacity:0;}
+
+	    .item-btn .item-media {height:auto;border:none;background:none;padding:none;}
+
+	    .no-county-detail {width:174px;}
+	    .no-county-detail .box-counties .box-content {right:9px;}
+	    .no-county-detail #county-detail {display:none;}
+
+	    .counties-list li:hover, .counties-list li.highlighted {background-color:#c0ced3;}
+
+	    .form-map-zoom-in {top:185px;}
+	    .form-map-zoom-out {top:230px;}
+
+	    .ac-renderer {position:absolute;width:240px;background:#fff;border:1px solid #cdcdcd;font-size:12px;}
+	    .ac-row {position:relative;padding:3px;padding-left:8px;cursor:pointer;border-bottom:1px solid #ddd;}
+	    .ac-highlighted {font-weight:bold;}
+	    .ac-active {background:#eee;}
+
+	    .search-marker {width:10px;height:10px;background:#6b8c95;outline:2px solid #fff;margin:-5px -5px;}
+	    </style>
+	<?php } ?>
 </head>
 <body <?php body_class( $class ); ?>>
 
 	<div class="page">
-
+		<?php
+			if(is_page_template("tithe-map.php")) {
+				echo '<div id="map"></div>';
+			}
+		?>
 		<header>
 			<div class="inner">
 
