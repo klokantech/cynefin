@@ -8,7 +8,7 @@ get_header();
 
 
 <section class="application">
-  <iframe id="app-frame" />
+  <iframe id="app-frame"></iframe>
 </section>
 
 <script src="<?php bloginfo("template_url"); ?>/js/inittool.js"></script>
