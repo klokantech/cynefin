@@ -402,6 +402,7 @@ cynefin.Counties.prototype.replacePlaceholders_ = function(html, e) {
   replaceGroup('visualize_url', e['visualize_url']);
   replaceGroup('object_url', e['object_url']);
   replaceGroup('link_hash', this.createLinkHash_(e));
+  if (goog.isNull(e['thumbnail_url'])) replaceGroup('no_thumbnail', '&nbsp;');
 
   return html;
 };
