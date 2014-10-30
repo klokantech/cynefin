@@ -82,7 +82,7 @@
 				);
 				wp_nav_menu($menu_args);
 				?>
-
+				<p id="map-title"></p>
 				<hr>
 
 				<div class="languages">
