@@ -33,7 +33,7 @@ if ( have_posts() ) {
 						<div class="column">
 
 							<p>
-								<strong>352</strong>
+								<strong id="stats_total_volunteers">&nbsp;</strong>
 								<?php _e("Total Volunteers", "cynefin"); ?>
 							</p>
 
@@ -43,7 +43,7 @@ if ( have_posts() ) {
 						<div class="column">
 
 							<p>
-								<strong>289345</strong>
+								<strong id="stats_records_transed">&nbsp;</strong>
 								<?php _e("Records Transcribed", "cynefin"); ?>
 							</p>
 
@@ -53,7 +53,7 @@ if ( have_posts() ) {
 						<div class="column">
 
 							<p>
-								<strong>167</strong>
+								<strong id="stats_maps">&nbsp;</strong>
 								<?php _e("Maps", "cynefin"); ?>
 							</p>
 
@@ -126,5 +126,10 @@ if ( have_posts() ) {
 ?>
 </section>
 <!-- .content -->
+
+<script src="<?php bloginfo("template_url"); ?>/js/home.js" type="text/javascript"></script>
+<script>
+new Home();
+</script>
 
 <?php get_footer(); ?>
