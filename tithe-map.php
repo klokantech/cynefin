@@ -13,24 +13,24 @@ get_header();
             <div class="column column-thin">
               <div class="box box-counties">
                 <div class="box-title box-inner">
-                  Counties
+                  <?php _e("Counties", "cynefin"); ?>
                 </div>
                 <!-- .box-title -->
                 <div class="box-content box-content-scroll box-inner">
                   <ul id="counties-list" class="counties-list">
-                    <li data-collection-id="86808972" data-center="51.7032,-2.9443"><a href="#" title="">Monmouth</a></li>
-                    <li data-collection-id="22340810" data-center="51.5975,-3.6118"><a href="#" title="">Glamorgan</a></li>
-                    <li data-collection-id="25638567" data-center="51.8968,-4.1858"><a href="#" title="">Carmarthen</a></li>
-                    <li data-collection-id="51277134" data-center="51.8527,-4.8862"><a href="#" title="">Pembroke</a></li>
-                    <li data-collection-id="93404486" data-center="52.2547,-4.0814"><a href="#" title="">Cardigan</a></li>
-                    <li data-collection-id="28936324" data-center="51.9747,-3.4689"><a href="#" title="">Brecknock</a></li>
-                    <li data-collection-id="83511215" data-center="52.2749,-3.2986"><a href="#" title="">Radnor</a></li>
-                    <li data-collection-id="19043053" data-center="52.6097,-3.4003"><a href="#" title="">Montgomery</a></li>
-                    <li data-collection-id="57872648" data-center="53.0759,-3.4085"><a href="#" title="">Denbigh</a></li>
-                    <li data-collection-id="90106729" data-center="53.2208,-3.2108"><a href="#" title="">Flint</a></li>
-                    <li data-collection-id="54574891" data-center="52.8260,-3.8123"><a href="#" title="">Merioneth</a></li>
-                    <li data-collection-id="61170405" data-center="53.0577,-4.1666"><a href="#" title="">Caernarfon</a></li>
-                    <li data-collection-id="96702243" data-center="53.2866,-4.3671"><a href="#" title="">Anglesey</a></li>
+                    <li data-collection-id="86808972" data-center="51.7032,-2.9443"><a href="#" title=""><?php _e("Monmouth", "cynefin"); ?></a></li>
+                    <li data-collection-id="22340810" data-center="51.5975,-3.6118"><a href="#" title=""><?php _e("Glamorgan", "cynefin"); ?></a></li>
+                    <li data-collection-id="25638567" data-center="51.8968,-4.1858"><a href="#" title=""><?php _e("Carmarthen", "cynefin"); ?></a></li>
+                    <li data-collection-id="51277134" data-center="51.8527,-4.8862"><a href="#" title=""><?php _e("Pembroke", "cynefin"); ?></a></li>
+                    <li data-collection-id="93404486" data-center="52.2547,-4.0814"><a href="#" title=""><?php _e("Cardigan", "cynefin"); ?></a></li>
+                    <li data-collection-id="28936324" data-center="51.9747,-3.4689"><a href="#" title=""><?php _e("Brecknock", "cynefin"); ?></a></li>
+                    <li data-collection-id="83511215" data-center="52.2749,-3.2986"><a href="#" title=""><?php _e("Radnor", "cynefin"); ?></a></li>
+                    <li data-collection-id="19043053" data-center="52.6097,-3.4003"><a href="#" title=""><?php _e("Montgomery", "cynefin"); ?></a></li>
+                    <li data-collection-id="57872648" data-center="53.0759,-3.4085"><a href="#" title=""><?php _e("Denbigh", "cynefin"); ?></a></li>
+                    <li data-collection-id="90106729" data-center="53.2208,-3.2108"><a href="#" title=""><?php _e("Flint", "cynefin"); ?></a></li>
+                    <li data-collection-id="54574891" data-center="52.8260,-3.8123"><a href="#" title=""><?php _e("Merioneth", "cynefin"); ?></a></li>
+                    <li data-collection-id="61170405" data-center="53.0577,-4.1666"><a href="#" title=""><?php _e("Caernarfon", "cynefin"); ?></a></li>
+                    <li data-collection-id="96702243" data-center="53.2866,-4.3671"><a href="#" title=""><?php _e("Anglesey", "cynefin"); ?></a></li>
                   </ul>
                   <div class="partners partners-vertical">
                     <a href="/" title="">
@@ -57,7 +57,7 @@ get_header();
               <div class="box box-county">
                 <div class="box-title box-inner">
                   <a href="#" id="county-detail-hide"><span class="icon-chevron-left"></span></a>
-                  <span id="county-detail-name">Montgomery</span>
+                  <span id="county-detail-name"><?php _e("Montgomery", "cynefin"); ?></span>
                   <form action="./" method="post" class="form form-filter">
                     <fieldset>
                       <div class="control-group">
@@ -78,10 +78,10 @@ get_header();
                 <!-- .box-title -->
                 <div id="map-list" class="box-content box-content-scroll box-inner">
                   <p class="filter">
-                    <a id="map-filter-all" href="#" title="" class="active">All&nbsp;(<span id="map-count-all"></span>)</a>
+                    <a id="map-filter-all" href="#" title="" class="active"><?php _e("All", "cynefin"); ?>&nbsp;(<span id="map-count-all"></span>)</a>
                     <span class="sep">|</span>
                     <span id="map-filter-scanned-block"> <!-- wrap for hiding -->
-                      <a id="map-filter-scanned" href="#" title="">Scanned&nbsp;(<span id="map-count-scanned"></span>)</a>
+                      <a id="map-filter-scanned" href="#" title=""><?php _e("Scanned", "cynefin"); ?>&nbsp;(<span id="map-count-scanned"></span>)</a>
                       <span class="sep">|</span>
                     </span>
                     <a id="map-filter-notgeorefed" href="#" title="">Not&nbsp;georeferenced&nbsp;(<span id="map-count-notgeorefed"></span>)</a>
@@ -96,20 +96,20 @@ get_header();
                         <div class="metrics-pipeline">
                           <h2 class="total">
                             <span id="progress-total-count" class="count">3221</span>
-                            <span class="label">maps</span>
+                            <span class="label"><?php _e("maps", "cynefin"); ?></span>
                           </h2>
                           <ul class="pipeline">
                             <li id="progress-visual" class="group" title="Georeferenced">
                               <div class="state">
                                 <span id="progress-percent" class="percent">45%</span>
-                                <span class="label">Georeferenced</span>
+                                <span class="label"><?php _e("Georeferenced", "cynefin"); ?></span>
                               </div>
                               <ul>
                                 <li class="tooltip" style="width: 100%;" title="">
                                   <div class="color" style="background-color: #e95925"></div>
                                   <div class="status">
                                     <span id="progress-count" class="count">1462</span>
-                                    <span class="label">maps</span>
+                                    <span class="label"><?php _e("maps", "cynefin"); ?></span>
                                   </div>
                                 </li>
                               </ul>
@@ -117,14 +117,14 @@ get_header();
                             <li id="progress-not-visual" class="group" title="Awaiting">
                               <div class="state">
                                 <span id="progress-not-percent" class="percent">55%</span>
-                                <span class="label">Awaiting</span>
+                                <span class="label"><?php _e("Awaiting", "cynefin"); ?></span>
                               </div>
                               <ul>
                                 <li class="tooltip" style="width: 100%;" title="">
                                   <div class="color" style="background-color: #d7caad"></div>
                                   <div class="status">
                                     <span id="progress-not-count" class="count">1759</span>
-                                    <span class="label">maps</span>
+                                    <span class="label"><?php _e("maps", "cynefin"); ?></span>
                                   </div>
                                 </li>
                               </ul>
@@ -134,27 +134,27 @@ get_header();
                       </div>
                       <div class="clearfix"></div>
                     </div>
-                    <div class="note">The progress bar is updated live.</div>
+                    <div class="note"><?php _e("The progress bar is updated live.", "cynefin"); ?></div>
                   </div>
                   <div class="item item-btn">
                     <div class="item-media">
-                      <a href="/tithe-maps/transcribe" title="" id="transcribe-random" class="btn">Transcribe</a>
+                      <a href="/tithe-maps/transcribe" title="" id="transcribe-random" class="btn"><?php _e("Transcribe", "cynefin"); ?></a>
                     </div>
                     <div class="item-content">
                       <p>
-                        Documents Total <span id="stats-docs-total"></span><br />
-                        Documents Transcribed <span id="stats-docs-transed"><span>
+                        <?php _e("Documents Total", "cynefin"); ?> <span id="stats-docs-total"></span><br />
+                        <?php _e("Documents Transcribed", "cynefin"); ?> <span id="stats-docs-transed"><span>
                       </p>
                     </div>
                   </div>
                   <div class="item item-btn">
                     <div class="item-media">
-                      <a href="/tithe-maps/georeference" title="" id="georeference-random" class="btn">Georeference</a>
+                      <a href="/tithe-maps/georeference" title="" id="georeference-random" class="btn"><?php _e("Georeference", "cynefin"); ?></a>
                     </div>
                     <div class="item-content">
                       <p>
-                        Maps Total <span id="stats-maps-total"></span><br />
-                        Maps Georeferenced <span id="stats-maps-georefed"><span>
+                        <?php _e("Maps Total", "cynefin"); ?> <span id="stats-maps-total"></span><br />
+                        <?php _e("Maps Georeferenced", "cynefin"); ?> <span id="stats-maps-georefed"><span>
                       </p>
                     </div>
                   </div>
