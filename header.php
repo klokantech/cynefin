@@ -82,7 +82,6 @@
 				);
 				wp_nav_menu($menu_args);
 				?>
-				<p id="map-title"></p>
 				<hr>
 
 				<div class="languages">
@@ -111,6 +110,38 @@
 
 			</div>
 			<!-- .inner -->
+			<?php if(
+				is_page_template("tithe-map-accuracy.php")
+				|| is_page_template("tithe-map-georeference.php")
+				|| is_page_template("tithe-map-thismap.php")
+				|| is_page_template("tithe-map-transcribe.php")
+				|| is_page_template("tithe-map-visualize.php")
+			) { ?>
+	        <div class="panel">
+	          <nav>
+	            <ul class="navigation navigation-panel">
+	              <li id="link-transcribe">
+	                <a href="/tithe-maps/transcribe" title="Transcribe">Transcribe</a>
+	              </li>
+	              <li id="link-georeference">
+	                <a href="/tithe-maps/georeference" title="Georeference">Georeference</a>
+	              </li>
+	              <li id="link-visualize">
+	                <a href="/tithe-maps/visualize" title="Visualize">Visualize</a>
+	              </li>
+	              <li id="link-accuracy" class="active">
+	                <a href="/tithe-maps/accuracy" title="Accuracy">Accuracy</a>
+	              </li>
+	              <li id="link-this-map">
+	                <a href="/tithe-maps/this-map" title="This map">This map</a>
+	              </li>
+	            </ul>
+	            <!-- .navigation -->
+	          </nav>
+	          <p id="map-title"></p>
+        	</div>
+        	<?php } ?>
+
 
 		</header>
 
