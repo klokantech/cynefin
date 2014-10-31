@@ -135,7 +135,8 @@ cynefin.Counties = function() {
         if (!goog.dom.classlist.contains(this.transcribeRandElement_,
                                          'disabled')) {
           this.sendToRandomMap_(this.transcribeRandElement_.href,
-                                '/random/public/transcription/json', true);
+                                '/supplement/random/public/transcription/json',
+                                true);
         }
         e.preventDefault();
       }, false, this);

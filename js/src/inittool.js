@@ -68,7 +68,7 @@ cynefin.initTool = function(toolId) {
     goog.events.listen(anchor, goog.events.EventType.CLICK, function(e) {
       var isTranscribe = toolId == 1;
       cynefin.urlmaker.sendToRandomMap(null, title, randomCollectionId,
-          isTranscribe ? '/random/public/transcription/json' :
+          isTranscribe ? '/supplement/random/public/transcription/json' :
           '/random/public/georeference/json',
           isTranscribe);
       e.preventDefault();
