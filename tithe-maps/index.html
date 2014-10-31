@@ -104,6 +104,11 @@
     .sheets:after {content: " sheets";}
     .bar-count:after{margin-top: 16px; font-size: 12px;}
     .bar-label:after{margin-top: 12px; font-size: 10px;}
+
+    .item-btns {text-align:center;padding-top:0;}
+    .floating-btn {display:inline-block;width:110px;margin:0 12px;}
+    .floating-btn .btn {font-size:13px;padding:5px 0;display:block;text-transform:none;}
+    .floating-btn p {font-size:11px;width:220px;margin-left:-55px;}
     </style>
   </head>
   <body onLoad="new TitheMaps()">
@@ -232,7 +237,6 @@
                   <div class="progress">
                     <div class="bar">
                       <div id="progress-maps-reviewed-bar" class="bar-segment" style="width: 30%;">
-               
                       </div>
                       <div id="progress-maps-edited-bar" class="bar-segment" style="width: 50%;">
                         <div id="progress-maps-reviewed" class="bar-label maps">30</div>
@@ -243,29 +247,29 @@
                     </div>
                     <div id="progress-maps-total" class="bar-count maps">100</div>
                   </div>
-                  <div class="item item-btn">
-                    <div class="item-media">
+                  <div class="progress" style="display:none;">
+                    <div class="bar">
+                      <div id="progress-sheets-reviewed-bar" class="bar-segment" style="width: 30%;">
+                      </div>
+                      <div id="progress-sheets-edited-bar" class="bar-segment" style="width: 50%;">
+                        <div id="progress-sheets-reviewed" class="bar-label sheets">30</div>
+                      </div>
+                      <div id="progress-sheets-rest-bar" class="bar-segment" style="width: 20%;">
+                        <div id="progress-sheets-edited" class="bar-label sheets">80</div>
+                      </div>
+                    </div>
+                    <div id="progress-sheets-total" class="bar-count sheets">100</div>
+                  </div>
+                  <div class="item item-btns">
+                    <div class="floating-btn">
                       <a href="/tithe-maps/transcribe" title="" id="transcribe-random" class="btn">Transcribe</a>
+                      <p>Already <span id="stats-label-count"></span> records</p>
                     </div>
-                    <div class="item-content">
-                      <p>
-                        Documents Total <span id="stats-docs-total"></span><br />
-                        Documents Transcribed <span id="stats-docs-transed"><span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="item item-btn">
-                    <div class="item-media">
+                    <div class="floating-btn">
                       <a href="/tithe-maps/georeference" title="" id="georeference-random" class="btn">Georeference</a>
-                    </div>
-                    <div class="item-content">
-                      <p>
-                        Maps Total <span id="stats-maps-total"></span><br />
-                        Maps Georeferenced <span id="stats-maps-georefed"><span>
-                      </p>
+                      <p>Already <span id="stats-gcp-count"></span> points</p>
                     </div>
                   </div>
-                  <br>
                   <div id="item-template">
                     <div class="item item-county">
                       <div class="item-media">
