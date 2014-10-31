@@ -7,6 +7,7 @@
 
 goog.provide('cynefin.initTool');
 
+goog.require('cynefin.urlmaker');
 goog.require('goog.dom');
 
 
@@ -25,18 +26,35 @@ cynefin.initTool = function(toolId) {
     // TODO
   }
 
+  var randomCollectionId = hashParts[6];
+  var isRandom = goog.isDefAndNotNull(randomCollectionId) &&
+                 randomCollectionId > 0;
+  var title = '';
+
   if (hashParts.length > 0) {
-    goog.dom.setTextContent(goog.dom.getElement('map-title'),
-                            hashParts[0].substr(1));
+    var mapTitleEl = goog.dom.getElement('map-title');
+    title = hashParts[0].substr(1);
+    goog.dom.setTextContent(mapTitleEl,
+        (isRandom ? goog.dom.getTextContent(mapTitleEl) : '') + title);
   }
-  var setShowAndHash = function(id, partId) {
+
+  /**
+   * @param {string} id
+   * @param {number} partId
+   * @param {boolean=} opt_show
+   * @return {?Element}
+   */
+  var setShowAndHash = function(id, partId, opt_show) {
     var hashPart = hashParts[partId];
     var el = goog.dom.getElement('link-' + id);
-    if (hashPart && hashPart.length > 0) {
+    if ((!goog.isDef(opt_show) || opt_show == true) &&
+        hashPart && hashPart.length > 0) {
       var anchor = goog.dom.getFirstElementChild(el);
       if (anchor) anchor.href += hash;
+      return anchor;
     } else {
       goog.dom.removeNode(el);
+      return null;
     }
   };
   setShowAndHash('transcribe', 1);
@@ -44,6 +62,18 @@ cynefin.initTool = function(toolId) {
   setShowAndHash('visualize', 3);
   setShowAndHash('accuracy', 4);
   setShowAndHash('this-map', 5);
+
+  var anchor = setShowAndHash('next-random', 6, isRandom);
+  if (isRandom) {
+    goog.events.listen(anchor, goog.events.EventType.CLICK, function(e) {
+      var isTranscribe = toolId == 1;
+      cynefin.urlmaker.sendToRandomMap(null, title, randomCollectionId,
+          isTranscribe ? '/random/public/transcription/json' :
+          '/random/public/georeference/json',
+          isTranscribe);
+      e.preventDefault();
+    });
+  }
 };
 
 

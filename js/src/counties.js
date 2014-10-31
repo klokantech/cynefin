@@ -7,6 +7,7 @@
 
 goog.provide('cynefin.Counties');
 
+goog.require('cynefin.urlmaker');
 goog.require('goog.array');
 goog.require('goog.dom');
 goog.require('goog.dom.TagName');
@@ -374,22 +375,6 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
 
 
 /**
- * @param {Object.<string, string>} e .
- * @return {string} .
- * @private
- */
-cynefin.Counties.prototype.createLinkHash_ = function(e) {
-  var linkHash = e['title'] +
-                 '|' + new goog.Uri(e['transcription_url'] || '').getPath() +
-                 '|' + new goog.Uri(e['georeference_url'] || '').getPath() +
-                 '|' + new goog.Uri(e['visualize_url'] || '').getPath() +
-                 '|' + //TODO: accuracy
-                 '|' + new goog.Uri(e['object_url'] || '').getPath();
-  return linkHash;
-};
-
-
-/**
  * @param {string} html .
  * @param {Object.<string, string>} e .
  * @return {string} .
@@ -415,7 +400,7 @@ cynefin.Counties.prototype.replacePlaceholders_ = function(html, e) {
   replaceGroup('georeference_url', e['georeference_url']);
   replaceGroup('visualize_url', e['visualize_url']);
   replaceGroup('object_url', e['object_url']);
-  replaceGroup('link_hash', this.createLinkHash_(e));
+  replaceGroup('link_hash', cynefin.urlmaker.createLinkHash(e));
   if (goog.isNull(e['thumbnail_url'])) replaceGroup('no_thumbnail', '&nbsp;');
 
   return html;
@@ -541,25 +526,8 @@ cynefin.Counties.prototype.sendToRandomMap_ =
     function(toolPath, randomPath, opt_supp) {
   if (!this.activeCounty_) return;
 
-  var requestUrl = cynefin.Counties.COLLECTION_BASE_URL +
-                       this.activeCounty_.id + randomPath;
-  var xhr_ = new goog.net.XhrIo(new goog.net.CorsXmlHttpFactory());
-  goog.events.listen(xhr_, goog.net.EventType.COMPLETE, function() {
-    if (xhr_.isSuccess()) {
-      var data = /** @type {Object.<string, string>} */(xhr_.getResponseJson());
-      var hash;
-      if (opt_supp) {
-        hash = data['title'] + '|' +
-            new goog.Uri(data['transcription_url'] || '').getPath() + '#' +
-            (data['supplement_id'] || '') + '||||';
-      } else {
-        hash = this.createLinkHash_(data);
-      }
-      var dst = toolPath + '#' + hash;
-      window.location = dst;
-    }
-  }, false, this);
-  xhr_.send(requestUrl);
+  cynefin.urlmaker.sendToRandomMap(toolPath, this.activeCounty_.name,
+                                   this.activeCounty_.id, randomPath, opt_supp);
 };
 
 
