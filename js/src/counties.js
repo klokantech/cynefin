@@ -181,21 +181,19 @@ cynefin.Counties = function() {
   listenStateFilter('nottransed');
   listenStateFilter('notfin');
 
-  // Progress bar elements
-  /** @type {Element} @private */
-  this.progressTotalCountEl_ = goog.dom.getElement('progress-total-count');
-  /** @type {Element} @private */
-  this.progressVisualEl_ = goog.dom.getElement('progress-visual');
-  /** @type {Element} @private */
-  this.progressPercentEl_ = goog.dom.getElement('progress-percent');
-  /** @type {Element} @private */
-  this.progressCountEl_ = goog.dom.getElement('progress-count');
-  /** @type {Element} @private */
-  this.progressNotVisualEl_ = goog.dom.getElement('progress-not-visual');
-  /** @type {Element} @private */
-  this.progressNotPercentEl_ = goog.dom.getElement('progress-not-percent');
-  /** @type {Element} @private */
-  this.progressNotCountEl_ = goog.dom.getElement('progress-not-count');
+  /**
+   * @type {{reviewedBar: Element, editedBar: Element, restBar: Element,
+   *         reviewed: Element, edited: Element, total: Element}}
+   * @private
+   */
+  this.progressMapElements_ = {
+    reviewedBar: goog.dom.getElement('progress-maps-reviewed-bar'),
+    editedBar: goog.dom.getElement('progress-maps-edited-bar'),
+    restBar: goog.dom.getElement('progress-maps-rest-bar'),
+    reviewed: goog.dom.getElement('progress-maps-reviewed'),
+    edited: goog.dom.getElement('progress-maps-edited'),
+    total: goog.dom.getElement('progress-maps-total')
+  };
 
   // Stats elements
   /** @type {Element} @private */
@@ -333,7 +331,7 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
         goog.dom.setTextContent(this.statsDocsTransedEl_, suppsDone);
         goog.dom.setTextContent(this.statsMapsGeorefedEl_, mapsDone);
 
-        this.setProgress_(mapsDone, mapCount);
+        //this.setProgress_(mapsDone, mapCount);
       }
     }, false, this);
     xhrStats_.send(requestStatsUrl);
@@ -342,7 +340,7 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
     goog.dom.setTextContent(this.countyNameElement_, name);
     goog.dom.classlist.remove(this.applicationPanelElement_,
                               'no-county-detail');
-    this.setProgress_(null, null);
+    this.setProgress_(0, 0, 0);
 
     if (this.activeCounty_) {
       goog.dom.classlist.remove(this.activeCounty_.li, 'active');
@@ -422,7 +420,7 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
   this.setFilter('');
   this.setStateFilter('all');
 
-  var allSum = 0, scannedSum = 0,
+  var allSum = 0, scannedSum = 0, editedSum = 0, reviewedSum = 0,
       notgeorefedSum = 0, nottransedSum = 0, notfinSum = 0;
 
   goog.array.forEach(data, function(el, i, arr) {
@@ -436,11 +434,15 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
 
     var georefstat = el['georeference_status'];
     var scanned = goog.isDefAndNotNull(el['thumbnail_url']),
-        notgeorefed = scanned && !goog.isDefAndNotNull(el['visualize_url']),
+        edited = goog.isDefAndNotNull(el['visualize_url']),
+        reviewed = georefstat && goog.string.endsWith(georefstat, '-reviewed'),
+        notgeorefed = scanned && !edited,
         nottransed = true, //TODO
         notfin = (goog.isNull(georefstat) || georefstat == 'fresh');
     allSum++;
     if (scanned) scannedSum++;
+    if (edited) editedSum++;
+    if (reviewed) reviewedSum++;
     if (notgeorefed) notgeorefedSum++;
     if (nottransed) nottransedSum++;
     if (notfin) notfinSum++;
@@ -468,35 +470,30 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
 
   goog.style.setElementShown(goog.dom.getElement('map-filter-scanned-block'),
                              allSum != scannedSum);
+
+  this.setProgress_(reviewedSum, editedSum, allSum);
 };
 
 
 /**
- * @param {?number} done
- * @param {?number} total
+ * @param {number} reviewed
+ * @param {number} edited
+ * @param {number} total
  * @private
  */
-cynefin.Counties.prototype.setProgress_ = function(done, total) {
-  var empty = goog.isNull(done) || goog.isNull(total);
+cynefin.Counties.prototype.setProgress_ = function(reviewed, edited, total) {
+  var progress = this.progressMapElements_;
 
-  var percent = empty ? 0 : (100 * done / total);
-  var notPercent = 100 - percent;
+  goog.dom.setTextContent(progress.reviewed, reviewed);
+  goog.dom.setTextContent(progress.edited, edited);
+  goog.dom.setTextContent(progress.total, total);
 
+  var reviewedPercent = (100 * reviewed / total) || 0;
+  var editedPercent = (100 * edited / total) || 0;
 
-  goog.dom.setTextContent(this.progressTotalCountEl_, total || 0);
-
-  goog.dom.setTextContent(this.progressCountEl_,
-                          done || 0);
-  goog.dom.setTextContent(this.progressPercentEl_,
-                          Math.floor(percent) + '%');
-  this.progressVisualEl_.style.width = percent + '%';
-
-  goog.dom.setTextContent(this.progressNotCountEl_,
-                          (total || 0) - (done || 0));
-  goog.dom.setTextContent(this.progressNotPercentEl_,
-                          (100 - Math.floor(percent)) + '%');
-  this.progressNotVisualEl_.style.width = (100 - percent) + '%';
-
+  progress.reviewedBar.style.width = reviewedPercent + '%';
+  progress.editedBar.style.width = (editedPercent - reviewedPercent) + '%';
+  progress.restBar.style.width = (100 - editedPercent) + '%';
 };
 
 
