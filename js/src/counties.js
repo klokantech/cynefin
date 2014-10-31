@@ -186,7 +186,7 @@ cynefin.Counties = function() {
    *         reviewed: Element, edited: Element, total: Element}}
    * @private
    */
-  this.progressMapElements_ = {
+  this.progressMapsElements_ = {
     reviewedBar: goog.dom.getElement('progress-maps-reviewed-bar'),
     editedBar: goog.dom.getElement('progress-maps-edited-bar'),
     restBar: goog.dom.getElement('progress-maps-rest-bar'),
@@ -195,15 +195,25 @@ cynefin.Counties = function() {
     total: goog.dom.getElement('progress-maps-total')
   };
 
+  /**
+   * @type {{reviewedBar: Element, editedBar: Element, restBar: Element,
+   *         reviewed: Element, edited: Element, total: Element}}
+   * @private
+   */
+  this.progressSheetsElements_ = {
+    reviewedBar: goog.dom.getElement('progress-sheets-reviewed-bar'),
+    editedBar: goog.dom.getElement('progress-sheets-edited-bar'),
+    restBar: goog.dom.getElement('progress-sheets-rest-bar'),
+    reviewed: goog.dom.getElement('progress-sheets-reviewed'),
+    edited: goog.dom.getElement('progress-sheets-edited'),
+    total: goog.dom.getElement('progress-sheets-total')
+  };
+
   // Stats elements
   /** @type {Element} @private */
-  this.statsDocsTotalEl_ = goog.dom.getElement('stats-docs-total');
+  this.statsGCPCountEl_ = goog.dom.getElement('stats-gcp-count');
   /** @type {Element} @private */
-  this.statsDocsTransedEl_ = goog.dom.getElement('stats-docs-transed');
-  /** @type {Element} @private */
-  this.statsMapsTotalEl_ = goog.dom.getElement('stats-maps-total');
-  /** @type {Element} @private */
-  this.statsMapsGeorefedEl_ = goog.dom.getElement('stats-maps-georefed');
+  this.statsLabelCountEl_ = goog.dom.getElement('stats-label-count');
 };
 goog.inherits(cynefin.Counties, goog.events.EventTarget);
 
@@ -308,10 +318,8 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
     xhr_.send(requestUrl);
 
     // stats request
-    goog.dom.setTextContent(this.statsDocsTotalEl_, '...');
-    goog.dom.setTextContent(this.statsMapsTotalEl_, '...');
-    goog.dom.setTextContent(this.statsDocsTransedEl_, '...');
-    goog.dom.setTextContent(this.statsMapsGeorefedEl_, '...');
+    goog.dom.setTextContent(this.statsGCPCountEl_, '...');
+    goog.dom.setTextContent(this.statsLabelCountEl_, '...');
     var requestStatsUrl = cynefin.Counties.COLLECTION_BASE_URL +
                               county.id + '/stats.json';
     var xhrStats_ = new goog.net.XhrIo(new goog.net.CorsXmlHttpFactory());
@@ -321,17 +329,17 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
         window['console']['log'](data);
         var map = data['map'], supps = map['supplement'];
         var trans = supps['products']['transcription'];
-        var georef = map['products']['georeference'];
-        var mapCount = map['objects'],
-            mapsDone = mapCount - georef['fresh'];
         var suppCount = supps['objects'],
             suppsDone = suppCount - trans['fresh'];
-        goog.dom.setTextContent(this.statsDocsTotalEl_, suppCount);
-        goog.dom.setTextContent(this.statsMapsTotalEl_, mapCount);
-        goog.dom.setTextContent(this.statsDocsTransedEl_, suppsDone);
-        goog.dom.setTextContent(this.statsMapsGeorefedEl_, mapsDone);
 
-        //this.setProgress_(mapsDone, mapCount);
+        this.setProgress_(true, 0, 0, suppCount);
+
+        var gcpCount = map['components']['gcp'];
+        var labelCount = map['components']['label'] +
+                         supps['components']['label'];
+
+        goog.dom.setTextContent(this.statsGCPCountEl_, gcpCount.toString());
+        goog.dom.setTextContent(this.statsLabelCountEl_, labelCount.toString());
       }
     }, false, this);
     xhrStats_.send(requestStatsUrl);
@@ -340,7 +348,8 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
     goog.dom.setTextContent(this.countyNameElement_, name);
     goog.dom.classlist.remove(this.applicationPanelElement_,
                               'no-county-detail');
-    this.setProgress_(0, 0, 0);
+    this.setProgress_(false, 0, 0, 0);
+    this.setProgress_(true, 0, 0, 0);
 
     if (this.activeCounty_) {
       goog.dom.classlist.remove(this.activeCounty_.li, 'active');
@@ -471,18 +480,21 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
   goog.style.setElementShown(goog.dom.getElement('map-filter-scanned-block'),
                              allSum != scannedSum);
 
-  this.setProgress_(reviewedSum, editedSum, allSum);
+  this.setProgress_(false, reviewedSum, editedSum, allSum);
 };
 
 
 /**
+ * @param {boolean} sheets
  * @param {number} reviewed
  * @param {number} edited
  * @param {number} total
  * @private
  */
-cynefin.Counties.prototype.setProgress_ = function(reviewed, edited, total) {
-  var progress = this.progressMapElements_;
+cynefin.Counties.prototype.setProgress_ = function(sheets,
+                                                   reviewed, edited, total) {
+  var progress = sheets ? this.progressSheetsElements_ :
+                          this.progressMapsElements_;
 
   goog.dom.setTextContent(progress.reviewed, reviewed);
   goog.dom.setTextContent(progress.edited, edited);
