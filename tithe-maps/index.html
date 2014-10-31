@@ -22,18 +22,23 @@
     body { background-image: none; }
     .page { background-image: none; }
     #map {position:absolute; top:50px; left:0; bottom:0; right:0;}
-    .item-media {height:75px; line-height:73px; text-align:center; border:1px solid #706b65; background:#ddd; padding:2px;}
+    #county-detail-name {position:relative;top:5px;}
+    .form-search-map button span {top:3px;}
+    .item-media {height:65px; line-height:63px; text-align:center; border:1px solid #706b65; background:#ddd; padding:2px;}
     .item-media img {border:none;}
     .item-county {
-      height:75px;overflow:hidden;
+      overflow:hidden;
       -webkit-transition:all .4s;
       -moz-transition:all .4s;
       -o-transition:all .4s;
       transition:all .4s;
+      cursor:default !important;
+      padding: 10px 20px;
     }
     .item-county.filtered {height:0;padding-top:0;padding-bottom:0;opacity:0;}
 
     .item-btn .item-media {height:auto;border:none;background:none;padding:none;}
+    .item-media img:hover {opacity:1;}
 
     .no-county-detail {width:174px;}
     .no-county-detail .box-counties .box-content {right:9px;}
@@ -53,7 +58,7 @@
 
     .progress{
       width: 400px;
-      padding: 20px;
+      padding: 20px 0 20px 20px;
       height: 50px;
       font-size: 12px;
       line-height: 12px;
