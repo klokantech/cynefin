@@ -332,13 +332,14 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
     goog.events.listen(xhrStats_, goog.net.EventType.COMPLETE, function() {
       if (xhrStats_.isSuccess()) {
         var data = /** @type {Array} */(xhrStats_.getResponseJson());
-        window['console']['log'](data);
         var map = data['map'], supps = map['supplement'];
-        var trans = supps['products']['transcription'];
-        var suppCount = supps['objects'],
-            suppsDone = suppCount - trans['fresh'];
+        var trans = (supps['products'] || {})['transcription'] || {};
+        var suppReviewed = (trans['impossible-reviewed'] || 0) +
+                           (trans['finished-reviewed'] || 0);
+        var suppEdited = (trans['touched'] || 0);
+        var suppCount = (supps['objects'] || 0);
 
-        this.setProgress_(true, 0, 0, suppCount);
+        this.setProgress_(true, suppReviewed, suppEdited, suppCount);
 
         var gcpCount = map['components']['gcp'];
         var labelCount = map['components']['label'] +
@@ -520,6 +521,13 @@ cynefin.Counties.prototype.setProgress_ = function(sheets,
   progress.reviewedBar.style.width = reviewedPercent + '%';
   progress.editedBar.style.width = (editedPercent - reviewedPercent) + '%';
   progress.restBar.style.width = (100 - editedPercent) + '%';
+
+  var showReviewed = reviewed > 0;
+  var showEdited = !showReviewed || edited > reviewed;
+  goog.style.setElementShown(progress.reviewed, showReviewed);
+  goog.style.setElementShown(progress.reviewedBar, showReviewed);
+  goog.style.setElementShown(progress.edited, showEdited);
+  goog.style.setElementShown(progress.editedBar, showEdited);
 };
 
 
