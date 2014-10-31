@@ -115,8 +115,11 @@ cynefin.Counties = function() {
 
   goog.events.listen(this.georeferenceRandElement_,
       goog.events.EventType.CLICK, function(e) {
-        this.sendToRandomMap_(this.georeferenceRandElement_.href,
-                              '/random/public/georeference/json');
+        if (!goog.dom.classlist.contains(this.georeferenceRandElement_,
+                                         'disabled')) {
+          this.sendToRandomMap_(this.georeferenceRandElement_.href,
+                                '/random/public/georeference/json');
+        }
         e.preventDefault();
       }, false, this);
 
@@ -128,8 +131,11 @@ cynefin.Counties = function() {
 
   goog.events.listen(this.transcribeRandElement_,
       goog.events.EventType.CLICK, function(e) {
-        this.sendToRandomMap_(this.transcribeRandElement_.href,
-                              '/random/public/transcription/json', true);
+        if (!goog.dom.classlist.contains(this.transcribeRandElement_,
+                                         'disabled')) {
+          this.sendToRandomMap_(this.transcribeRandElement_.href,
+                                '/random/public/transcription/json', true);
+        }
         e.preventDefault();
       }, false, this);
 
@@ -431,6 +437,7 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
 
   var allSum = 0, scannedSum = 0, editedSum = 0, reviewedSum = 0,
       notgeorefedSum = 0, nottransedSum = 0, notfinSum = 0;
+  var anyGeoref = false, anyTrans = false;
 
   goog.array.forEach(data, function(el, i, arr) {
     var keys = [];
@@ -448,6 +455,8 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
         notgeorefed = scanned && !edited,
         nottransed = true, //TODO
         notfin = (goog.isNull(georefstat) || georefstat == 'fresh');
+    anyGeoref = anyGeoref || goog.isDefAndNotNull(el['georeference_url']);
+    anyTrans = anyTrans || goog.isDefAndNotNull(el['transcription_url']);
     allSum++;
     if (scanned) scannedSum++;
     if (edited) editedSum++;
@@ -479,6 +488,11 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
 
   goog.style.setElementShown(goog.dom.getElement('map-filter-scanned-block'),
                              allSum != scannedSum);
+
+  goog.dom.classlist.enable(this.georeferenceRandElement_,
+                            'disabled', !anyGeoref);
+  goog.dom.classlist.enable(this.transcribeRandElement_,
+                            'disabled', !anyTrans);
 
   this.setProgress_(false, reviewedSum, editedSum, allSum);
 };
