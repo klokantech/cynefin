@@ -50,6 +50,60 @@
     .ac-active {background:#eee;}
 
     .search-marker {width:10px;height:10px;background:#6b8c95;outline:2px solid #fff;margin:-5px -5px;}
+
+    .progress{
+      width: 400px;
+      padding: 20px;
+      height: 50px;
+      font-size: 12px;
+      line-height: 12px;
+    }
+    .bar{width: 80%;height: 42px;float: left;}
+    .bar:before{
+       position: absolute;
+       content: "0";
+       font-size: 14px;
+       margin-top: 20px;
+       z-index: 10;
+       padding-right: 8px;           
+    }
+    .bar-segment{
+      float: left;
+      background-color: #d4c5a9;
+      height: 15px;
+      display: block;
+    }
+    .bar-segment:first-child{background-color: #da4d00;}
+    .bar-segment:nth-child(2){background-color: #41768a;}
+    .bar-segment:first-child:before, .bar-segment:nth-child(2):before{
+      position: absolute;
+      margin-top: -15px;
+      padding-right: 10px;
+    }
+    .bar-segment:first-child:before{content: 'Reviewed';}
+    .bar-segment:nth-child(2):before{content: 'Edited';}
+    .bar-label{
+      position: absolute;
+      font-size: 14px;
+      margin-top: 15px;
+      padding-top: 4px;
+    }
+    .bar-count{
+      position: relative;
+      width: 16%;
+      float: right;
+      font-size: 28px;
+      padding: 15px 2%;
+      margin-top: -15px;
+      z-index: 10;
+    }
+    .bar-count:after, .bar-label:after{position: absolute;margin-top: 20px;left: 0;}
+    .maps:after, .sheets:after, .bar:before, .bar-count, .bar-segment:first-child:before, .bar-segment:nth-child(2):before{background-color: #ffffff;}
+    .bar-count:after{padding-left: 10px; padding-bottom: 16px;}
+    .maps:after {content: " maps";}
+    .sheets:after {content: " sheets";}
+    .bar-count:after{margin-top: 16px; font-size: 12px;}
+    .bar-label:after{margin-top: 12px; font-size: 10px;}
     </style>
   </head>
   <body onLoad="new TitheMaps()">
@@ -175,51 +229,19 @@
                     <span class="sep">|</span>
                     <a id="map-filter-notfin" href="#" title="">Not&nbsp;finished&nbsp;(<span id="map-count-notfin"></span>)</a>
                   </p>
-                  <div class="gadget progressbar">
-                    <div class="metrics-container">
-                      <div class="metrics">
-                        <div class="metrics-pipeline">
-                          <h2 class="total">
-                            <span id="progress-total-count" class="count">3221</span>
-                            <span class="label">maps</span>
-                          </h2>
-                          <ul class="pipeline">
-                            <li id="progress-visual" class="group" title="Georeferenced">
-                              <div class="state">
-                                <span id="progress-percent" class="percent">45%</span>
-                                <span class="label">Georeferenced</span>
-                              </div>
-                              <ul>
-                                <li class="tooltip" style="width: 100%;" title="">
-                                  <div class="color" style="background-color: #e95925"></div>
-                                  <div class="status">
-                                    <span id="progress-count" class="count">1462</span>
-                                    <span class="label">maps</span>
-                                  </div>
-                                </li>
-                              </ul>
-                            </li>
-                            <li id="progress-not-visual" class="group" title="Awaiting">
-                              <div class="state">
-                                <span id="progress-not-percent" class="percent">55%</span>
-                                <span class="label">Awaiting</span>
-                              </div>
-                              <ul>
-                                <li class="tooltip" style="width: 100%;" title="">
-                                  <div class="color" style="background-color: #d7caad"></div>
-                                  <div class="status">
-                                    <span id="progress-not-count" class="count">1759</span>
-                                    <span class="label">maps</span>
-                                  </div>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </div>
+                  <div class="progress">
+                    <div class="bar">
+                      <div id="progress-maps-reviewed-bar" class="bar-segment" style="width: 30%;">
+               
                       </div>
-                      <div class="clearfix"></div>
+                      <div id="progress-maps-edited-bar" class="bar-segment" style="width: 50%;">
+                        <div id="progress-maps-reviewed" class="bar-label maps">30</div>
+                      </div>
+                      <div id="progress-maps-rest-bar" class="bar-segment" style="width: 20%;">
+                        <div id="progress-maps-edited" class="bar-label maps">80</div>
+                      </div>
                     </div>
-                    <div class="note">The progress bar is updated live.</div>
+                    <div id="progress-maps-total" class="bar-count maps">100</div>
                   </div>
                   <div class="item item-btn">
                     <div class="item-media">
