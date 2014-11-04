@@ -29,18 +29,23 @@
 	    body { background-image: none; }
 	    .page { background-image: none; }
 	    #map {position:absolute; top:50px; left:0; bottom:0; right:0;}
-	    .item-media {height:75px; line-height:73px; text-align:center; border:1px solid #706b65; background:#ddd; padding:2px;}
+	    #county-detail-name {position:relative;top:5px;}
+	    .form-search-map button span {top:3px;}
+	    .item-media {width:100px; height:60px; text-align:center; border:1px solid #706b65; background:#ddd;}
 	    .item-media img {border:none;}
 	    .item-county {
-	      height:75px;overflow:hidden;
+	      overflow:hidden;
 	      -webkit-transition:all .4s;
 	      -moz-transition:all .4s;
 	      -o-transition:all .4s;
 	      transition:all .4s;
+	      cursor:default !important;
+	      padding: 10px 20px;
 	    }
 	    .item-county.filtered {height:0;padding-top:0;padding-bottom:0;opacity:0;}
 
 	    .item-btn .item-media {height:auto;border:none;background:none;padding:none;}
+	    .item-media img:hover {opacity:1;}
 
 	    .no-county-detail {width:174px;}
 	    .no-county-detail .box-counties .box-content {right:9px;}
@@ -57,6 +62,68 @@
 	    .ac-active {background:#eee;}
 
 	    .search-marker {width:10px;height:10px;background:#6b8c95;outline:2px solid #fff;margin:-5px -5px;}
+
+	    .progress{
+	      width: 400px;
+	      padding: 20px 0 20px 20px;
+	      height: 50px;
+	      font-size: 12px;
+	      line-height: 12px;
+	    }
+	    .bar{width: 80%;height: 42px;float: left;}
+	    .bar:before{
+	       position: absolute;
+	       content: "0";
+	       font-size: 14px;
+	       margin-top: 20px;
+	       z-index: 10;
+	       padding-right: 8px;           
+	    }
+	    .bar-segment{
+	      float: left;
+	      background-color: #d4c5a9;
+	      height: 15px;
+	      display: block;
+	    }
+	    .bar-segment:first-child{background-color: #da4d00;}
+	    .bar-segment:nth-child(2){background-color: #41768a;}
+	    .bar-segment:first-child:before, .bar-segment:nth-child(2):before{
+	      position: absolute;
+	      margin-top: -15px;
+	      padding-right: 10px;
+	    }
+	    .bar-segment:first-child:before{content: 'Reviewed';}
+	    .bar-segment:nth-child(2):before{content: 'Edited';}
+	    .bar-label{
+	      position: absolute;
+	      font-size: 14px;
+	      margin-top: 15px;
+	      padding-top: 4px;
+	    }
+	    .bar-count{
+	      position: relative;
+	      width: 16%;
+	      float: right;
+	      font-size: 28px;
+	      padding: 15px 2%;
+	      margin-top: -15px;
+	      z-index: 10;
+	    }
+	    .bar-count:after, .bar-label:after{position: absolute;margin-top: 20px;left: 0;}
+	    .maps:after, .sheets:after, .bar:before, .bar-count, .bar-segment:first-child:before, .bar-segment:nth-child(2):before{background-color: #ffffff;}
+	    .bar-count:after{padding-left: 10px; padding-bottom: 16px;}
+	    .maps:after {content: " maps";}
+	    .sheets:after {content: " sheets";}
+	    .bar-count:after{margin-top: 16px; font-size: 12px;}
+	    .bar-label:after{margin-top: 12px; font-size: 10px;}
+
+	    .item-btns {text-align:center;padding-top:0;}
+	    .floating-btn {display:inline-block;width:110px;margin:0 12px;}
+	    .floating-btn .btn {font-size:13px;padding:5px 0;display:block;text-transform:none;}
+	    .floating-btn .btn.disabled {background:#555 !important;cursor:default;}
+	    .floating-btn p {font-size:11px;width:220px;margin-left:-55px;}
+
+	    .map-attribution {position:absolute;right:0;bottom:0;font-size:10px;color:#333;background:rgba(255,255,255,0.3);line-height:10px;padding:4px;}
 	    </style>
 	<?php } ?>
 </head>
@@ -65,7 +132,13 @@
 	<div class="page">
 		<?php
 			if(is_page_template("tithe-map.php")) {
-				echo '<div id="map"></div>';
+    ?>
+    <div id="map"></div>
+    <div class="map-attribution">
+      Made by <a href="http://www.klokantech.com/">Klokan Technologies</a>.
+      Parish Boundary Mapping &copy; <a href="http://www.port.ac.uk/research/gbhgis/">University of Portsmouth</a>.
+    </div>
+    <?php
 			}
 		?>
 		<header>
@@ -138,10 +211,13 @@
 	              <li id="link-this-map">
 	                <a href="/tithe-maps/this-map" title="This map">This map</a>
 	              </li>
+	              <li id="link-next-random">
+	                <a href="/tithe-maps/transcribe" title="Next random">Next random</a>
+	              </li>
 	            </ul>
 	            <!-- .navigation -->
 	          </nav>
-	          <p id="map-title"></p>
+	          <p id="map-title"><?php if(is_page_template("tithe-map-transcribe.php")) { ?>Sheet from&nbsp;<?php } ?></p>
         	</div>
         	<?php } ?>
 

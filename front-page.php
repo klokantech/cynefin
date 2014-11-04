@@ -93,19 +93,19 @@ if ( have_posts() ) {
 
 				<div class="partners">
 
-					<a href="/" title="">
+					<a href="http://www.archiveswales.org.uk/" title="">
 						<img src="<?php bloginfo("template_url"); ?>/assets/img/partner-1.png" alt="">
 					</a>
 
-					<a href="/" title="">
+					<a href="http://www.hlf.org.uk/" title="">
 						<img src="<?php bloginfo("template_url"); ?>/assets/img/partner-2.png" alt="">
 					</a>
 
-					<a href="/" title="">
+					<a href="http://www.llgc.org.uk/" title="">
 						<img src="<?php bloginfo("template_url"); ?>/assets/img/partner-3.png" alt="">
 					</a>
 
-					<a href="/" title="">
+					<a href="http://wales.gov.uk/" title="">
 						<img src="<?php bloginfo("template_url"); ?>/assets/img/partner-4.png" alt="">
 					</a>
 

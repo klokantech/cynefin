@@ -33,16 +33,16 @@ get_header();
                     <li data-collection-id="96702243" data-center="53.2866,-4.3671"><a href="#" title=""><?php _e("Anglesey", "cynefin"); ?></a></li>
                   </ul>
                   <div class="partners partners-vertical">
-                    <a href="/" title="">
+                    <a href="http://www.archiveswales.org.uk/" title="">
                       <img src="<?php bloginfo("template_url"); ?>/assets/img/partner-1.png" alt="">
                     </a>
-                    <a href="/" title="">
+                    <a href="http://www.hlf.org.uk/" title="">
                       <img src="<?php bloginfo("template_url"); ?>/assets/img/partner-2.png" alt="">
                     </a>
-                    <a href="/" title="">
+                    <a href="http://www.llgc.org.uk/" title="">
                       <img src="<?php bloginfo("template_url"); ?>/assets/img/partner-3.png" alt="">
                     </a>
-                    <a href="/" title="">
+                    <a href="http://wales.gov.uk/" title="">
                       <img src="<?php bloginfo("template_url"); ?>/assets/img/partner-4.png" alt="">
                     </a>
                   </div>
@@ -90,79 +90,49 @@ get_header();
                     <span class="sep">|</span>
                     <a id="map-filter-notfin" href="#" title="">Not&nbsp;finished&nbsp;(<span id="map-count-notfin"></span>)</a>
                   </p>
-                  <div class="gadget progressbar">
-                    <div class="metrics-container">
-                      <div class="metrics">
-                        <div class="metrics-pipeline">
-                          <h2 class="total">
-                            <span id="progress-total-count" class="count">3221</span>
-                            <span class="label"><?php _e("maps", "cynefin"); ?></span>
-                          </h2>
-                          <ul class="pipeline">
-                            <li id="progress-visual" class="group" title="Georeferenced">
-                              <div class="state">
-                                <span id="progress-percent" class="percent">45%</span>
-                                <span class="label"><?php _e("Georeferenced", "cynefin"); ?></span>
-                              </div>
-                              <ul>
-                                <li class="tooltip" style="width: 100%;" title="">
-                                  <div class="color" style="background-color: #e95925"></div>
-                                  <div class="status">
-                                    <span id="progress-count" class="count">1462</span>
-                                    <span class="label"><?php _e("maps", "cynefin"); ?></span>
-                                  </div>
-                                </li>
-                              </ul>
-                            </li>
-                            <li id="progress-not-visual" class="group" title="Awaiting">
-                              <div class="state">
-                                <span id="progress-not-percent" class="percent">55%</span>
-                                <span class="label"><?php _e("Awaiting", "cynefin"); ?></span>
-                              </div>
-                              <ul>
-                                <li class="tooltip" style="width: 100%;" title="">
-                                  <div class="color" style="background-color: #d7caad"></div>
-                                  <div class="status">
-                                    <span id="progress-not-count" class="count">1759</span>
-                                    <span class="label"><?php _e("maps", "cynefin"); ?></span>
-                                  </div>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </div>
+                  <div class="progress">
+                    <div class="bar">
+                      <div id="progress-maps-reviewed-bar" class="bar-segment" style="width: 30%;">
                       </div>
-                      <div class="clearfix"></div>
+                      <div id="progress-maps-edited-bar" class="bar-segment" style="width: 50%;">
+                        <div id="progress-maps-reviewed" class="bar-label maps">30</div>
+                      </div>
+                      <div id="progress-maps-rest-bar" class="bar-segment" style="width: 20%;">
+                        <div id="progress-maps-edited" class="bar-label maps">80</div>
+                      </div>
                     </div>
-                    <div class="note"><?php _e("The progress bar is updated live.", "cynefin"); ?></div>
+                    <div id="progress-maps-total" class="bar-count maps">100</div>
                   </div>
-                  <div class="item item-btn">
-                    <div class="item-media">
+                  <div class="progress">
+                    <div class="bar">
+                      <div id="progress-sheets-reviewed-bar" class="bar-segment" style="width: 30%;">
+                      </div>
+                      <div id="progress-sheets-edited-bar" class="bar-segment" style="width: 50%;">
+                        <div id="progress-sheets-reviewed" class="bar-label sheets">30</div>
+                      </div>
+                      <div id="progress-sheets-rest-bar" class="bar-segment" style="width: 20%;">
+                        <div id="progress-sheets-edited" class="bar-label sheets">80</div>
+                      </div>
+                    </div>
+                    <div id="progress-sheets-total" class="bar-count sheets">100</div>
+                  </div>
+
+
+                  <div class="item item-btns">
+                    <div class="floating-btn">
                       <a href="/tithe-maps/transcribe" title="" id="transcribe-random" class="btn"><?php _e("Transcribe", "cynefin"); ?></a>
+                      <p>Already <span id="stats-label-count"></span> records</p>
                     </div>
-                    <div class="item-content">
-                      <p>
-                        <?php _e("Documents Total", "cynefin"); ?> <span id="stats-docs-total"></span><br />
-                        <?php _e("Documents Transcribed", "cynefin"); ?> <span id="stats-docs-transed"><span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="item item-btn">
-                    <div class="item-media">
+                    <div class="floating-btn">
                       <a href="/tithe-maps/georeference" title="" id="georeference-random" class="btn"><?php _e("Georeference", "cynefin"); ?></a>
-                    </div>
-                    <div class="item-content">
-                      <p>
-                        <?php _e("Maps Total", "cynefin"); ?> <span id="stats-maps-total"></span><br />
-                        <?php _e("Maps Georeferenced", "cynefin"); ?> <span id="stats-maps-georefed"><span>
-                      </p>
+                      <p>Already <span id="stats-gcp-count"></span> points</p>
                     </div>
                   </div>
-                  <br>
                   <div id="item-template">
                     <div class="item item-county">
                       <div class="item-media">
-                        <!--thumbnail_url <img src="$thumbnail_url$/full/!105,75/0/native.jpg" alt="$title$"> thumbnail_url-->
+                        <!--thumbnail_url <img src="$thumbnail_url$/100,100,400,240/!200,120/0/native.jpg" alt="$title$" width="100" height="60"> thumbnail_url-->
+                        <!--no_thumbnail <img src="<?php bloginfo("template_url"); ?>/assets/img/placeholder.png" alt="$title$" width="100" height="60"> no_thumbnail-->
                       </div>
                       <div class="item-content">
                         <h2>$title$</h2>
