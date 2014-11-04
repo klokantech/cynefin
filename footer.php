@@ -10,5 +10,8 @@
 		<?php }
 		?>
 	 	<?php wp_footer(); ?>
+	 	<script>
+	 		<?php echo 'var LANG = "' . ICL_LANGUAGE_CODE . '";'; ?>
+	 	</script>
 	</body>
 </html>

@@ -77,7 +77,7 @@
 	       font-size: 14px;
 	       margin-top: 20px;
 	       z-index: 10;
-	       padding-right: 8px;           
+	       padding-right: 8px;
 	    }
 	    .bar-segment{
 	      float: left;
