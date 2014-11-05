@@ -15,7 +15,7 @@ goog.require('goog.dom');
  * @param {number} toolId Number of the tool. Starting at 1.
  */
 cynefin.initTool = function(toolId) {
-  var hash = window.location.hash.toString();
+  var hash = decodeURIComponent(window.location.hash.toString());
   var hashParts = hash.split('|');
 
   var frameUrlPath = hashParts[toolId];
