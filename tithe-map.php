@@ -63,7 +63,7 @@ get_header();
                       <div class="control-group">
                         <div class="control-field">
                           <span class="control-addon control-addon-small">
-                            <input id="map-filter" type="text" class="control-input" placeholder="Filter">
+                            <input id="map-filter" type="text" class="control-input" placeholder="<?php _e("Filter", "cynefin"); ?>">
                             <span class="control-addon-item">
                               <span id="map-filter-clear" class="icon-remove"></span>
                             </span>
@@ -84,11 +84,11 @@ get_header();
                       <a id="map-filter-scanned" href="#" title=""><?php _e("Scanned", "cynefin"); ?>&nbsp;(<span id="map-count-scanned"></span>)</a>
                       <span class="sep">|</span>
                     </span>
-                    <a id="map-filter-notgeorefed" href="#" title="">Not&nbsp;georeferenced&nbsp;(<span id="map-count-notgeorefed"></span>)</a>
+                    <a id="map-filter-notgeorefed" href="#" title=""><?php _e("Not georeferenced", "cynefin"); ?>&nbsp;(<span id="map-count-notgeorefed"></span>)</a>
                     <span class="sep" style="display:none;">|</span>
-                    <a id="map-filter-nottransed" href="#" title="" style="display:none;">Not&nbsp;transcribed&nbsp;(<span id="map-count-nottransed"></span>)</a>
+                    <a id="map-filter-nottransed" href="#" title="" style="display:none;"><?php _e("Not transcribed", "cynefin"); ?>&nbsp;(<span id="map-count-nottransed"></span>)</a>
                     <span class="sep">|</span>
-                    <a id="map-filter-notfin" href="#" title="">Not&nbsp;finished&nbsp;(<span id="map-count-notfin"></span>)</a>
+                    <a id="map-filter-notfin" href="#" title=""><?php _e("Not finished", "cynefin"); ?>&nbsp;(<span id="map-count-notfin"></span>)</a>
                   </p>
                   <div class="progress">
                     <div class="bar">
@@ -121,11 +121,11 @@ get_header();
                   <div class="item item-btns">
                     <div class="floating-btn">
                       <a href="/tithe-maps/transcribe" title="" id="transcribe-random" class="btn"><?php _e("Transcribe", "cynefin"); ?></a>
-                      <p>Already <span id="stats-label-count"></span> records</p>
+                      <p><? printf(__('Already %s records', 'cynefin'), '<span id="stats-label-count"></span>'); ?></p>
                     </div>
                     <div class="floating-btn">
                       <a href="/tithe-maps/georeference" title="" id="georeference-random" class="btn"><?php _e("Georeference", "cynefin"); ?></a>
-                      <p>Already <span id="stats-gcp-count"></span> points</p>
+                      <p><? printf(__('Already %s points', 'cynefin'), '<span id="stats-gcp-count"></span>'); ?></p>
                     </div>
                   </div>
                   <div id="item-template">
@@ -143,9 +143,9 @@ get_header();
                         </p>
                         -->
                         <div class="item-content-actions">
-                          <!--transcription_url <a href="/tithe-maps/transcribe#$link_hash$" title="">Transcribe</a> transcription_url-->
-                          <!--georeference_url <a href="/tithe-maps/georeference#$link_hash$" title="">Georeference</a> georeference_url-->
-                          <!--visualize_url <a href="/tithe-maps/visualize#$link_hash$" title="">Visualize</a> visualize_url-->
+                          <!--transcription_url <a href="/tithe-maps/transcribe#$link_hash$" title=""><?php _e("Transcribe", "cynefin"); ?></a> transcription_url-->
+                          <!--georeference_url <a href="/tithe-maps/georeference#$link_hash$" title=""><?php _e("Georeference", "cynefin"); ?></a> georeference_url-->
+                          <!--visualize_url <a href="/tithe-maps/visualize#$link_hash$" title=""><?php _e("Visualize", "cynefin"); ?></a> visualize_url-->
                         </div>
                       </div>
                     </div>
@@ -165,7 +165,7 @@ get_header();
             <div class="control-group">
               <div class="control-field">
                 <span class="control-appended">
-                  <input id="nominatim-input" type="text" placeholder="Find a place on map" class="control-input control-appended-input">
+                  <input id="nominatim-input" type="text" placeholder="<?php _e("Find a place on map", "cynefin"); ?>" class="control-input control-appended-input">
                   <span class="control-appended-btn">
                     <button type="submit"><span class="icon-search"></span></button>
                   </span>

@@ -92,8 +92,8 @@
 	      margin-top: -15px;
 	      padding-right: 10px;
 	    }
-	    .bar-segment:first-child:before{content: 'Reviewed';}
-	    .bar-segment:nth-child(2):before{content: 'Edited';}
+	    .bar-segment:first-child:before{content: '<?php _e("Reviewed", "cynefin"); ?>';}
+	    .bar-segment:nth-child(2):before{content: '<?php _e("Edited", "cynefin"); ?>';}
 	    .bar-label{
 	      position: absolute;
 	      font-size: 14px;
@@ -112,8 +112,8 @@
 	    .bar-count:after, .bar-label:after{position: absolute;margin-top: 20px;left: 0;}
 	    .maps:after, .sheets:after, .bar:before, .bar-count, .bar-segment:first-child:before, .bar-segment:nth-child(2):before{background-color: #ffffff;}
 	    .bar-count:after{padding-left: 10px; padding-bottom: 16px;}
-	    .maps:after {content: " maps";}
-	    .sheets:after {content: " sheets";}
+	    .maps:after {content: " <?php _e("maps", "cynefin"); ?>";}
+	    .sheets:after {content: " <?php _e("sheets", "cynefin"); ?>";}
 	    .bar-count:after{margin-top: 16px; font-size: 12px;}
 	    .bar-label:after{margin-top: 12px; font-size: 10px;}
 
@@ -135,8 +135,8 @@
     ?>
     <div id="map"></div>
     <div class="map-attribution">
-      Made by <a href="http://www.klokantech.com/">Klokan Technologies</a>.
-      Parish Boundary Mapping &copy; <a href="http://www.port.ac.uk/research/gbhgis/">University of Portsmouth</a>.
+      <? printf(__('Made by %s.', 'cynefin'), '<a href="http://www.klokantech.com/">Klokan Technologies</a>'); ?>
+      <? printf(__('Parish Boundary Mapping &copy; %s.', 'cynefin'), '<a href="http://www.port.ac.uk/research/gbhgis/">' . __('University of Portsmouth', 'cynefin') . '</a>'); ?>
     </div>
     <?php
 			}
@@ -197,27 +197,27 @@
 	          <nav>
 	            <ul class="navigation navigation-panel">
 	              <li id="link-transcribe">
-	                <a href="/tithe-maps/transcribe" title="Transcribe">Transcribe</a>
+	                <a href="/tithe-maps/transcribe" title="<?php _e("Transcribe", "cynefin"); ?>"><?php _e("Transcribe", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-georeference">
-	                <a href="/tithe-maps/georeference" title="Georeference">Georeference</a>
+	                <a href="/tithe-maps/georeference" title="<?php _e("Georeference", "cynefin"); ?>"><?php _e("Georeference", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-visualize">
-	                <a href="/tithe-maps/visualize" title="Visualize">Visualize</a>
+	                <a href="/tithe-maps/visualize" title="<?php _e("Visualize", "cynefin"); ?>"><?php _e("Visualize", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-accuracy" class="active">
-	                <a href="/tithe-maps/accuracy" title="Accuracy">Accuracy</a>
+	                <a href="/tithe-maps/accuracy" title="<?php _e("Accuracy", "cynefin"); ?>"><?php _e("Accuracy", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-this-map">
-	                <a href="/tithe-maps/this-map" title="This map">This map</a>
+	                <a href="/tithe-maps/this-map" title="<?php _e("This map", "cynefin"); ?>"><?php _e("This map", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-next-random">
-	                <a href="/tithe-maps/transcribe" title="Next random">Next random</a>
+	                <a href="/tithe-maps/transcribe" title="<?php _e("Next random", "cynefin"); ?>"><?php _e("Next random", "cynefin"); ?></a>
 	              </li>
 	            </ul>
 	            <!-- .navigation -->
 	          </nav>
-	          <p id="map-title"><?php if(is_page_template("tithe-map-transcribe.php")) { ?>Sheet from&nbsp;<?php } ?></p>
+	          <p id="map-title"><?php if(is_page_template("tithe-map-transcribe.php")) { _e("Sheet from", "cynefin"); } ?>&nbsp;</p>
         	</div>
         	<?php } ?>
 
