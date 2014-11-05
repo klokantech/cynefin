@@ -23,5 +23,7 @@
     "missingProperties": "ERROR",
     "nonStandardJsDocs": "OFF",
     "undefinedVars": "ERROR"
-  }
+  },
+
+  "output-wrapper": "(function() {%output%})();"
 }
