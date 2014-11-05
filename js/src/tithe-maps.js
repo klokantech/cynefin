@@ -51,7 +51,7 @@ cynefin.TitheMaps = function() {
     extent: viewConstraintExtent,
     zoom: 7,
     minZoom: 6,
-    maxZoom: 14
+    maxZoom: 9
   });
 
   /**
@@ -65,15 +65,17 @@ cynefin.TitheMaps = function() {
       new ol.layer.Tile({
         source: new ol.source.TileJSON({
           url: cynefin.TitheMaps.COUNTIES_TILEJSON
-        }),
-        minResolution: cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD
+        })
+        //minResolution: cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD
       }),
+      /*
       new ol.layer.Tile({
         source: new ol.source.TileJSON({
           url: cynefin.TitheMaps.PARISHES_TILEJSON
         }),
         maxResolution: cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD
       }),
+      */
       new ol.layer.Tile({source: this.utfGridSource_})
     ],
     view: this.view_
