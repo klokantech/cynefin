@@ -120,11 +120,11 @@ get_header();
 
                   <div class="item item-btns">
                     <div class="floating-btn">
-                      <a href="/tithe-maps/transcribe" title="" id="transcribe-random" class="btn"><?php _e("Transcribe", "cynefin"); ?></a>
+                      <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/transcribe" title="" id="transcribe-random" class="btn"><?php _e("Transcribe", "cynefin"); ?></a>
                       <p><? printf(__('Already %s records', 'cynefin'), '<span id="stats-label-count"></span>'); ?></p>
                     </div>
                     <div class="floating-btn">
-                      <a href="/tithe-maps/georeference" title="" id="georeference-random" class="btn"><?php _e("Georeference", "cynefin"); ?></a>
+                      <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/georeference" title="" id="georeference-random" class="btn"><?php _e("Georeference", "cynefin"); ?></a>
                       <p><? printf(__('Already %s points', 'cynefin'), '<span id="stats-gcp-count"></span>'); ?></p>
                     </div>
                   </div>
@@ -143,9 +143,9 @@ get_header();
                         </p>
                         -->
                         <div class="item-content-actions">
-                          <!--transcription_url <a href="/tithe-maps/transcribe#$link_hash$" title=""><?php _e("Transcribe", "cynefin"); ?></a> transcription_url-->
-                          <!--georeference_url <a href="/tithe-maps/georeference#$link_hash$" title=""><?php _e("Georeference", "cynefin"); ?></a> georeference_url-->
-                          <!--visualize_url <a href="/tithe-maps/visualize#$link_hash$" title=""><?php _e("Visualize", "cynefin"); ?></a> visualize_url-->
+                          <!--transcription_url <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/transcribe#$link_hash$" title=""><?php _e("Transcribe", "cynefin"); ?></a> transcription_url-->
+                          <!--georeference_url <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/georeference#$link_hash$" title=""><?php _e("Georeference", "cynefin"); ?></a> georeference_url-->
+                          <!--visualize_url <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/visualize#$link_hash$" title=""><?php _e("Visualize", "cynefin"); ?></a> visualize_url-->
                         </div>
                       </div>
                     </div>

@@ -197,22 +197,22 @@
 	          <nav>
 	            <ul class="navigation navigation-panel">
 	              <li id="link-transcribe">
-	                <a href="/tithe-maps/transcribe" title="<?php _e("Transcribe", "cynefin"); ?>"><?php _e("Transcribe", "cynefin"); ?></a>
+	                <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/transcribe" title="<?php _e("Transcribe", "cynefin"); ?>"><?php _e("Transcribe", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-georeference">
-	                <a href="/tithe-maps/georeference" title="<?php _e("Georeference", "cynefin"); ?>"><?php _e("Georeference", "cynefin"); ?></a>
+	                <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/georeference" title="<?php _e("Georeference", "cynefin"); ?>"><?php _e("Georeference", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-visualize">
-	                <a href="/tithe-maps/visualize" title="<?php _e("Visualize", "cynefin"); ?>"><?php _e("Visualize", "cynefin"); ?></a>
+	                <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/visualize" title="<?php _e("Visualize", "cynefin"); ?>"><?php _e("Visualize", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-accuracy" class="active">
-	                <a href="/tithe-maps/accuracy" title="<?php _e("Accuracy", "cynefin"); ?>"><?php _e("Accuracy", "cynefin"); ?></a>
+	                <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/accuracy" title="<?php _e("Accuracy", "cynefin"); ?>"><?php _e("Accuracy", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-this-map">
-	                <a href="/tithe-maps/this-map" title="<?php _e("This map", "cynefin"); ?>"><?php _e("This map", "cynefin"); ?></a>
+	                <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/this-map" title="<?php _e("This map", "cynefin"); ?>"><?php _e("This map", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-next-random">
-	                <a href="/tithe-maps/transcribe" title="<?php _e("Next random", "cynefin"); ?>"><?php _e("Next random", "cynefin"); ?></a>
+	                <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/transcribe" title="<?php _e("Next random", "cynefin"); ?>"><?php _e("Next random", "cynefin"); ?></a>
 	              </li>
 	            </ul>
 	            <!-- .navigation -->

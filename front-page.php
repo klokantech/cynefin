@@ -12,7 +12,7 @@ if ( have_posts() ) {
 			</p>
 
 			<p>
-				<a href="/tithe-maps" class="btn btn-large btn-noise"><?php _e("Get started", "cynefin"); ?></a>
+				<a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps" class="btn btn-large btn-noise"><?php _e("Get started", "cynefin"); ?></a>
 			</p>
 
 
