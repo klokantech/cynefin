@@ -32,7 +32,7 @@ cynefin.urlmaker.createLinkHash = function(e) {
  * @define {string} base url for collection requests
  */
 cynefin.urlmaker.COLLECTION_BASE_URL =
-    'http://cynefin.georeferencer.com/collection/';
+    'http://earth.georeferencer.com/collection/';
 
 
 /**

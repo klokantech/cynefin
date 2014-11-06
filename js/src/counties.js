@@ -230,7 +230,7 @@ goog.inherits(cynefin.Counties, goog.events.EventTarget);
  * @define {string} base url for collection requests
  */
 cynefin.Counties.COLLECTION_BASE_URL =
-    'http://cynefin.georeferencer.com/collection/';
+    'http://earth.georeferencer.com/collection/';
 
 
 /**
