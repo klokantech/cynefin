@@ -71,14 +71,6 @@
 	      line-height: 12px;
 	    }
 	    .bar{width: 80%;height: 42px;float: left;}
-	    .bar:before{
-	       position: absolute;
-	       content: "0";
-	       font-size: 14px;
-	       margin-top: 20px;
-	       z-index: 10;
-	       padding-right: 8px;
-	    }
 	    .bar-segment{
 	      float: left;
 	      background-color: #d4c5a9;
@@ -114,7 +106,7 @@
 	    .bar-count:after{padding-left: 10px; padding-bottom: 16px;}
 	    .maps:after {content: " <?php _e("maps", "cynefin"); ?>";}
 	    .sheets:after {content: " <?php _e("sheets", "cynefin"); ?>";}
-	    .bar-count:after{margin-top: 16px; font-size: 12px;}
+	    .bar-count:after{font-size: 12px;}
 	    .bar-label:after{margin-top: 12px; font-size: 10px;}
 
 	    .item-btns {text-align:center;padding-top:0;}
