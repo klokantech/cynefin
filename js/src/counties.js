@@ -432,7 +432,8 @@ cynefin.Counties.prototype.processLoadedMaps_ = function(data) {
     var itemHTML = this.replacePlaceholders_(this.itemTemplate_,
         /** @type {Object.<string, string>} */(el));
 
-    var item = goog.dom.htmlToDocumentFragment(itemHTML).firstElementChild;
+    var item = goog.dom.getFirstElementChild(
+        goog.dom.htmlToDocumentFragment(itemHTML));
     goog.dom.appendChild(this.mapListElement_, item);
 
     var georefstat = el['georeference_status'];
