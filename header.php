@@ -204,7 +204,7 @@
 	                <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/this-map/" title="<?php _e("This map", "cynefin"); ?>"><?php _e("This map", "cynefin"); ?></a>
 	              </li>
 	              <li id="link-next-random">
-	                <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/transcribe/" title="<?php _e("Next random", "cynefin"); ?>"><?php _e("Next random", "cynefin"); ?></a>
+	                <a href="" title="<?php _e("Next random", "cynefin"); ?>"><?php _e("Next random", "cynefin"); ?></a>
 	              </li>
 	            </ul>
 	            <!-- .navigation -->
