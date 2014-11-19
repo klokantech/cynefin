@@ -51,7 +51,7 @@ cynefin.TitheMaps = function() {
     extent: viewConstraintExtent,
     zoom: 7,
     minZoom: 6,
-    maxZoom: 9
+    maxZoom: 14
   });
 
   /**
@@ -65,17 +65,15 @@ cynefin.TitheMaps = function() {
       new ol.layer.Tile({
         source: new ol.source.TileJSON({
           url: cynefin.TitheMaps.COUNTIES_TILEJSON
-        })
-        //minResolution: cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD
+        }),
+        minResolution: cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD
       }),
-      /*
       new ol.layer.Tile({
         source: new ol.source.TileJSON({
           url: cynefin.TitheMaps.PARISHES_TILEJSON
         }),
         maxResolution: cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD
       }),
-      */
       new ol.layer.Tile({source: this.utfGridSource_})
     ],
     view: this.view_
@@ -241,7 +239,7 @@ cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD = 500;
  * @define {string} url for the parishes TileJSON
  */
 cynefin.TitheMaps.UTFGRID_TILEJSON =
-    'http://cynefinproject.eu/tileserver/cynefin-parishes.json';
+    '/tileserver/cynefin-parishes.json';
 
 
 /**
