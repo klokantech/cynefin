@@ -135,8 +135,15 @@
 		?>
 		<header>
 			<div class="inner">
-
-				<?php
+                          <?php if(
+				is_page_template("tithe-map-accuracy.php")
+				|| is_page_template("tithe-map-georeference.php")
+				|| is_page_template("tithe-map-thismap.php")
+				|| is_page_template("tithe-map-transcribe.php")
+				|| is_page_template("tithe-map-visualize.php")
+			) { ?>
+                          <a href="/" class="logo">Cynefin</a>
+                        <?php } 
 				$menu_args = array(
 					'theme_location'  => 'main_menu',
 					'container'       => 'nav',
