@@ -20,8 +20,10 @@ cynefin.initTool = function(toolId) {
 
   var frameUrlPath = hashParts[toolId];
   if (frameUrlPath) {
+    var lang = window['LANG'] || 'en';
+    if (lang == 'cy') lang = 'cy-gb';
     goog.dom.getElement('app-frame').src =
-        cynefin.initTool.TOOL_BASE_URL + frameUrlPath;
+        cynefin.initTool.TOOL_BASE_URL + frameUrlPath + '?lang=' + lang;
   } else {
     // TODO
   }
