@@ -20,6 +20,7 @@ goog.require('goog.net.XhrIo');
 
 /**
  * @typedef {{name: string,
+ *            label: string,
  *            id: string,
  *            center: Array.<number>,
  *            anchor: Element,
@@ -245,7 +246,8 @@ cynefin.Counties.prototype.initCountyList_ = function() {
         var collId = li.getAttribute('data-collection-id');
         var anchor = goog.dom.getElementsByTagNameAndClass(goog.dom.TagName.A,
                                                            undefined, li)[0];
-        var name = goog.dom.getTextContent(anchor);
+        var label = goog.dom.getTextContent(anchor);
+        var name = li.getAttribute('data-name');
         if (collId && anchor && name && name.length > 0) {
           var centerString = li.getAttribute('data-center');
           var center = null;
@@ -254,6 +256,7 @@ cynefin.Counties.prototype.initCountyList_ = function() {
             center = [parseFloat(broken[1]), parseFloat(broken[0])];
           }
           this.counties_.push({
+            label: label,
             name: name,
             id: collId,
             center: center,
@@ -354,7 +357,7 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
     xhrStats_.send(requestStatsUrl);
 
     // UI changes
-    goog.dom.setTextContent(this.countyNameElement_, name);
+    goog.dom.setTextContent(this.countyNameElement_, county.label);
     goog.dom.classlist.remove(this.applicationPanelElement_,
                               'no-county-detail');
     this.setProgress_(false, 0, 0, 0);
@@ -528,7 +531,7 @@ cynefin.Counties.prototype.sendToRandomMap_ =
     function(toolPath, randomPath, opt_supp) {
   if (!this.activeCounty_) return;
 
-  cynefin.urlmaker.sendToRandomMap(toolPath, this.activeCounty_.name,
+  cynefin.urlmaker.sendToRandomMap(toolPath, this.activeCounty_.label,
                                    this.activeCounty_.id, randomPath, opt_supp);
 };
 

@@ -18,19 +18,19 @@ get_header();
                 <!-- .box-title -->
                 <div class="box-content box-content-scroll box-inner">
                   <ul id="counties-list" class="counties-list">
-                    <li data-collection-id="86808972" data-center="51.7032,-2.9443"><a href="#" title=""><?php _e("Monmouth", "cynefin"); ?></a></li>
-                    <li data-collection-id="22340810" data-center="51.5975,-3.6118"><a href="#" title=""><?php _e("Glamorgan", "cynefin"); ?></a></li>
-                    <li data-collection-id="25638567" data-center="51.8968,-4.1858"><a href="#" title=""><?php _e("Carmarthen", "cynefin"); ?></a></li>
-                    <li data-collection-id="51277134" data-center="51.8527,-4.8862"><a href="#" title=""><?php _e("Pembroke", "cynefin"); ?></a></li>
-                    <li data-collection-id="93404486" data-center="52.2547,-4.0814"><a href="#" title=""><?php _e("Cardigan", "cynefin"); ?></a></li>
-                    <li data-collection-id="28936324" data-center="51.9747,-3.4689"><a href="#" title=""><?php _e("Brecknock", "cynefin"); ?></a></li>
-                    <li data-collection-id="83511215" data-center="52.2749,-3.2986"><a href="#" title=""><?php _e("Radnor", "cynefin"); ?></a></li>
-                    <li data-collection-id="19043053" data-center="52.6097,-3.4003"><a href="#" title=""><?php _e("Montgomery", "cynefin"); ?></a></li>
-                    <li data-collection-id="57872648" data-center="53.0759,-3.4085"><a href="#" title=""><?php _e("Denbigh", "cynefin"); ?></a></li>
-                    <li data-collection-id="90106729" data-center="53.2208,-3.2108"><a href="#" title=""><?php _e("Flint", "cynefin"); ?></a></li>
-                    <li data-collection-id="54574891" data-center="52.8260,-3.8123"><a href="#" title=""><?php _e("Merioneth", "cynefin"); ?></a></li>
-                    <li data-collection-id="61170405" data-center="53.0577,-4.1666"><a href="#" title=""><?php _e("Caernarfon", "cynefin"); ?></a></li>
-                    <li data-collection-id="96702243" data-center="53.2866,-4.3671"><a href="#" title=""><?php _e("Anglesey", "cynefin"); ?></a></li>
+                    <li data-collection-id="86808972" data-center="51.7032,-2.9443" data-name="Monmouth"><a href="#" title=""><?php _e("Monmouth", "cynefin"); ?></a></li>
+                    <li data-collection-id="22340810" data-center="51.5975,-3.6118" data-name="Glamorgan"><a href="#" title=""><?php _e("Glamorgan", "cynefin"); ?></a></li>
+                    <li data-collection-id="25638567" data-center="51.8968,-4.1858" data-name="Carmarthen"><a href="#" title=""><?php _e("Carmarthen", "cynefin"); ?></a></li>
+                    <li data-collection-id="51277134" data-center="51.8527,-4.8862" data-name="Pembroke"><a href="#" title=""><?php _e("Pembroke", "cynefin"); ?></a></li>
+                    <li data-collection-id="93404486" data-center="52.2547,-4.0814" data-name="Cardigan"><a href="#" title=""><?php _e("Cardigan", "cynefin"); ?></a></li>
+                    <li data-collection-id="28936324" data-center="51.9747,-3.4689" data-name="Brecknock"><a href="#" title=""><?php _e("Brecknock", "cynefin"); ?></a></li>
+                    <li data-collection-id="83511215" data-center="52.2749,-3.2986" data-name="Radnor"><a href="#" title=""><?php _e("Radnor", "cynefin"); ?></a></li>
+                    <li data-collection-id="19043053" data-center="52.6097,-3.4003" data-name="Montgomery"><a href="#" title=""><?php _e("Montgomery", "cynefin"); ?></a></li>
+                    <li data-collection-id="57872648" data-center="53.0759,-3.4085" data-name="Denbigh"><a href="#" title=""><?php _e("Denbigh", "cynefin"); ?></a></li>
+                    <li data-collection-id="90106729" data-center="53.2208,-3.2108" data-name="Flint"><a href="#" title=""><?php _e("Flint", "cynefin"); ?></a></li>
+                    <li data-collection-id="54574891" data-center="52.8260,-3.8123" data-name="Merioneth"><a href="#" title=""><?php _e("Merioneth", "cynefin"); ?></a></li>
+                    <li data-collection-id="61170405" data-center="53.0577,-4.1666" data-name="Caernarfon"><a href="#" title=""><?php _e("Caernarfon", "cynefin"); ?></a></li>
+                    <li data-collection-id="96702243" data-center="53.2866,-4.3671" data-name="Anglesey"><a href="#" title=""><?php _e("Anglesey", "cynefin"); ?></a></li>
                   </ul>
                   <div class="partners partners-vertical">
                     <a href="http://www.archiveswales.org.uk/" title="">
