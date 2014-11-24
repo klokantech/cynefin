@@ -5530,7 +5530,7 @@ ol.commentlist .comment-author {
   z-index: 200;
   top: 13px;
   margin-left: 15px;
-  margin-right: 40px;
+  margin-right: 0;
 }
 .vertical {
   display: table;
@@ -6905,10 +6905,10 @@ footer .follow-links a + a {
 @media screen and (max-width: 1170px) {
   .responsive .navigation-header {
     text-align: left;
-    margin-left: 10px;
+    margin-left: 0;
   }
   .responsive .navigation-header li a {
-    margin: 0 5px;
+    margin: 0 3px;
     padding: 0 5px;
   }
   .responsive .fixed-col {
