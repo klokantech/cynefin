@@ -78,7 +78,7 @@ if ( have_posts() ) {
 						<h2>Video tutorial</h2>
 
 						<p>
-							<a href="/" class="thumb">
+							<a href="#" class="thumb" id="popup-btn">
 								<img src="<?php bloginfo("template_url"); ?>/assets/img/video-placeholder.png" alt="<?php _e("Watch video", "cynefin"); ?>">
 							</a>
 						</p>
@@ -131,5 +131,50 @@ if ( have_posts() ) {
 <script>
 new Home();
 </script>
+
+<!-- video -->
+<style>
+  #popup-bg{position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 230; display: none;}
+  #popup-bg.active{display: block;}
+  #popup{position: absolute; width: 640px; height: 480px; top: 100px; left: 50%; margin-left: -330px; z-index: 250; padding: 15px; background-color: #F7F8FA; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px;}
+</style>
+<div id="popup-bg">
+  <div id="popup">
+    <div id="popup-video"></div>
+  </div>
+</div>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script type="text/javascript">
+  document.getElementById('popup-bg').onclick = bindPopup;
+  document.getElementById('popup-btn').onclick = bindPopup;
+
+  var player;
+  function bindPopup() {
+    var popBg = document.getElementById('popup-bg');
+    if (popBg.className === 'active') {
+      popBg.className = '';
+      if (player) player.stopVideo();
+    } else {
+      popBg.className = 'active';
+      if (player) {
+        player.seekTo(0);
+        player.playVideo();
+      }
+    }
+    return false;
+  };
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('popup-video', {
+      width: '640',
+      height: '480',
+      videoId: '4TpdqKsRxZA',
+      playerVars: {'showinfo': 0, 'rel': 0, 'controls': 2},
+      events: {
+        'onStateChange': function(e) {if (e.data == 0) bindPopup();}
+      }
+    });
+  };
+</script>
+<!-- endvideo -->
 
 <?php get_footer(); ?>
