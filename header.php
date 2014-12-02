@@ -117,7 +117,18 @@
 
 	    .map-attribution {position:absolute;right:0;bottom:0;font-size:10px;color:#333;background:rgba(255,255,255,0.3);line-height:10px;padding:4px;}
 	    </style>
-	<?php } ?>
+	<?php }
+         if(is_page_template("tithe-map-accuracy.php")
+	    || is_page_template("tithe-map-georeference.php")
+	    || is_page_template("tithe-map-thismap.php")
+	    || is_page_template("tithe-map-transcribe.php")
+	    || is_page_template("tithe-map-visualize.php")
+	    || is_page_template("tithe-map.php")
+	) { ?>
+            <style>
+              .menu-main-menu-container{text-align: left;}
+            </style>
+        <?php } ?>
 </head>
 <body <?php body_class( $class ); ?>>
 
