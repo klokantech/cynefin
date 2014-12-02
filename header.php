@@ -141,6 +141,7 @@
 				|| is_page_template("tithe-map-thismap.php")
 				|| is_page_template("tithe-map-transcribe.php")
 				|| is_page_template("tithe-map-visualize.php")
+				|| is_page_template("tithe-map.php")
 			) { ?>
                           <a href="/" class="logo">Cynefin</a>
                         <?php } 
