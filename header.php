@@ -126,7 +126,8 @@
 	    || is_page_template("tithe-map.php")
 	) { ?>
             <style>
-              .menu-main-menu-container{text-align: left;}
+              .menu-main-menu-container, .menu-main-menu-welsh0-container{text-align: left;}
+              .navigation-header{position: absolute; top: 0;}
             </style>
         <?php } ?>
 </head>
