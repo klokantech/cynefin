@@ -18,12 +18,12 @@ goog.require('goog.net.XhrIo');
  * @return {string} .
  */
 cynefin.urlmaker.createLinkHash = function(e) {
-  var linkHash = e['title'] +
-                 '|' + new goog.Uri(e['transcription_url'] || '').getPath() +
-                 '|' + new goog.Uri(e['georeference_url'] || '').getPath() +
-                 '|' + new goog.Uri(e['visualize_url'] || '').getPath() +
-                 '|' + //TODO: accuracy
-                 '|' + new goog.Uri(e['object_url'] || '').getPath();
+  var linkHash = encodeURIComponent(e['title']) +
+                 '&' + new goog.Uri(e['transcription_url'] || '').getPath() +
+                 '&' + new goog.Uri(e['georeference_url'] || '').getPath() +
+                 '&' + new goog.Uri(e['visualize_url'] || '').getPath() +
+                 '&' + //TODO: accuracy
+                 '&' + new goog.Uri(e['object_url'] || '').getPath();
   return linkHash;
 };
 
@@ -52,11 +52,11 @@ cynefin.urlmaker.sendToRandomMap =
       var data = /** @type {Object.<string, string>} */(xhr_.getResponseJson());
       var hash;
       if (opt_supp) {
-        hash = title + '|' +
+        hash = encodeURIComponent(title) + '&' +
             new goog.Uri(data['transcription_url'] || '').getPath() +
-            '|||||' + collId;
+            '&&&&&' + collId;
       } else {
-        hash = cynefin.urlmaker.createLinkHash(data) + '|' + collId;
+        hash = cynefin.urlmaker.createLinkHash(data) + '&' + collId;
       }
       if (goog.isDefAndNotNull(toolPath)) {
         var dst = toolPath + '#' + hash;

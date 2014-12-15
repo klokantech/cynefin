@@ -15,8 +15,8 @@ goog.require('goog.dom');
  * @param {number} toolId Number of the tool. Starting at 1.
  */
 cynefin.initTool = function(toolId) {
-  var hash = decodeURIComponent(window.location.hash.toString());
-  var hashParts = hash.split('|');
+  var hash = window.location.hash.toString();
+  var hashParts = hash.split('&');
 
   var frameUrlPath = hashParts[toolId];
   if (frameUrlPath) {
@@ -35,7 +35,7 @@ cynefin.initTool = function(toolId) {
 
   if (hashParts.length > 0) {
     var mapTitleEl = goog.dom.getElement('map-title');
-    title = hashParts[0].substr(1);
+    title = decodeURIComponent(hashParts[0].substr(1));
     goog.dom.setTextContent(mapTitleEl,
         (isRandom ? goog.dom.getTextContent(mapTitleEl) : '') + title);
   }
