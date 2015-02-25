@@ -147,7 +147,7 @@
     <div id="map"></div>
     <div class="map-attribution">
       <? printf(__('Made by %s.', 'cynefin'), '<a href="http://www.klokantech.com/">Klokan Technologies</a>'); ?>
-      <? printf(__('Parish Boundary Mapping &copy; %s.', 'cynefin'), '<a href="http://www.port.ac.uk/research/gbhgis/">' . __('University of Portsmouth', 'cynefin') . '</a>'); ?>
+      <? printf(__('Boundary Mapping &copy; %s.', 'cynefin'), '<a href="http://www.port.ac.uk/research/gbhgis/">' . __('GBHGIS/University of Portsmouth', 'cynefin') . '</a>'); ?>
     </div>
     <?php
 			}
