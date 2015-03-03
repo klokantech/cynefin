@@ -29,10 +29,15 @@
     <div id="popup-video"></div>
   </div>
 </div>
-<script src="https://www.youtube.com/iframe_api"></script>
+
 <script type="text/javascript">
   document.getElementById('popup-bg').onclick = bindPopup;
   document.getElementById('popup-btn').onclick = bindPopup;
+
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
   var autoplay = false;
   var player;
@@ -57,20 +62,20 @@
       videoId: '<?php echo $videoId; ?>',
       playerVars: {'showinfo': 0, 'rel': 0, 'controls': 2},
       events: {
+        'onReady': function(e) {if (autoplay) bindPopup();},
         'onStateChange': function(e) {if (e.data === 0) bindPopup();}
       }
     });
-		if (autoplay) bindPopup();
   };
-	<?php if (!is_front_page()) { // do not autoplay on front page
-		$md5Id = 'v' + md5($videoId); // to "remove" bad characters
-	?>
-		if (document.cookie.indexOf('<?php echo $md5Id; ?>') === -1) {
-			var date = new Date(); date.setTime(date.getTime()+(365*24*60*60*1000));
-			document.cookie = '<?php echo $md5Id; ?>=1; expires='+date.toGMTString()+'; path=/';
-			autoplay = true;
-		}
-	<?php } ?>
+  <?php if (!is_front_page()) { // do not autoplay on front page
+          $md5Id = 'v' + md5($videoId); // to "remove" bad characters
+  ?>
+  if (document.cookie.indexOf('<?php echo $md5Id; ?>') < 0) {
+          var date = new Date(); date.setTime(date.getTime()+(365*24*60*60*1000));
+          document.cookie = '<?php echo $md5Id; ?>=1; expires='+date.toGMTString()+'; path=/';
+          autoplay = true;
+  }
+  <?php } ?>
 </script>
 <!-- endvideo -->
         <?php } ?>
