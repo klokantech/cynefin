@@ -132,44 +132,4 @@ if ( have_posts() ) {
 new Home();
 </script>
 
-<!-- video -->
-<div id="popup-bg">
-  <div id="popup">
-    <div id="popup-video"></div>
-  </div>
-</div>
-<script src="https://www.youtube.com/iframe_api"></script>
-<script type="text/javascript">
-  document.getElementById('popup-bg').onclick = bindPopup;
-  document.getElementById('popup-btn').onclick = bindPopup;
-
-  var player;
-  function bindPopup() {
-    var popBg = document.getElementById('popup-bg');
-    if (popBg.className === 'active') {
-      popBg.className = '';
-      if (player) player.stopVideo();
-    } else {
-      popBg.className = 'active';
-      if (player) {
-        player.seekTo(0);
-        player.playVideo();
-      }
-    }
-    return false;
-  };
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('popup-video', {
-      width: '640',
-      height: '480',
-      videoId: '4TpdqKsRxZA',
-      playerVars: {'showinfo': 0, 'rel': 0, 'controls': 2},
-      events: {
-        'onStateChange': function(e) {if (e.data == 0) bindPopup();}
-      }
-    });
-  };
-</script>
-<!-- endvideo -->
-
 <?php get_footer(); ?>

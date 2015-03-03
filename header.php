@@ -230,11 +230,20 @@
 	              <li id="link-this-map">
 	                <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/this-map/" title="<?php _e("This map", "cynefin"); ?>"><?php _e("This map", "cynefin"); ?></a>
 	              </li>
-	              <li id="link-next-random">
-	                <a href="" title="<?php _e("Next random", "cynefin"); ?>"><?php _e("Next random", "cynefin"); ?></a>
-	              </li>
 	            </ul>
 	            <!-- .navigation -->
+                    <ul class="navigation navigation-panel right">
+                      <?php 
+                        if(is_page_template("tithe-map-georeference.php") || is_page_template("tithe-map-transcribe.php")){
+                      ?>
+                      <li id="popup-btn">
+	                <a href="" title="<?php _e("Watch video", "cynefin"); ?>"><?php _e("Watch video", "cynefin"); ?></a>
+	              </li>
+                        <?php } ?>
+                      <li id="link-next-random">
+	                <a href="" title="<?php _e("Next random", "cynefin"); ?>"><?php _e("Next random", "cynefin"); ?></a>
+	              </li>
+                    </ul>
 	          </nav>
 	          <p id="map-title"><?php if(is_page_template("tithe-map-transcribe.php")) { _e("Sheet from", "cynefin"); } ?>&nbsp;</p>
         	</div>
