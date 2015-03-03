@@ -18,10 +18,13 @@ goog.require('goog.net.XhrIo');
  * @return {string} .
  */
 cynefin.urlmaker.createLinkHash = function(e) {
+  // handle new visualize urls
+  var visualizeUrl = (e['visualize_url'] || '').
+                     replace('/?#', '/').replace('/#', '/');
   var linkHash = encodeURIComponent(e['title']) +
                  '&' + new goog.Uri(e['transcription_url'] || '').getPath() +
                  '&' + new goog.Uri(e['georeference_url'] || '').getPath() +
-                 '&' + new goog.Uri(e['visualize_url'] || '').getPath() +
+                 '&' + new goog.Uri(visualizeUrl).getPath() +
                  '&' + //TODO: accuracy
                  '&' + new goog.Uri(e['object_url'] || '').getPath();
   return linkHash;
