@@ -59,6 +59,19 @@ cynefin.Counties = function() {
    * @type {Element}
    * @private
    */
+  this.countyContribLink_ = goog.dom.getElement('county-detail-contrib-link');
+
+  /**
+   * @type {string}
+   * @private
+   */
+  this.countyContribLinkBase_ =
+    this.countyContribLink_ ? this.countyContribLink_.href : '';
+
+  /**
+   * @type {Element}
+   * @private
+   */
   this.countyHideElement_ = goog.dom.getElement('county-detail-hide');
 
   goog.events.listen(this.countyHideElement_, goog.events.EventType.CLICK,
@@ -358,6 +371,10 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
 
     // UI changes
     goog.dom.setTextContent(this.countyNameElement_, county.label);
+    if (this.countyContribLink_) {
+      this.countyContribLink_.href = this.countyContribLinkBase_ +
+                                    '#' + encodeURIComponent(county.label);
+    }
     goog.dom.classlist.remove(this.applicationPanelElement_,
                               'no-county-detail');
     this.setProgress_(false, 0, 0, 0);

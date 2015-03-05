@@ -58,6 +58,7 @@ get_header();
                 <div class="box-title box-inner">
                   <a href="#" id="county-detail-hide"><span class="icon-chevron-left"></span></a>
                   <span id="county-detail-name"><?php _e("Montgomery", "cynefin"); ?></span>
+                  <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/contributors/" title="<?php _e("Contributors", "cynefin"); ?>" id="county-detail-contrib-link">O</a>
                   <form action="./" method="post" class="form form-filter">
                     <fieldset>
                       <div class="control-group">
