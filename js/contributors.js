@@ -261,6 +261,7 @@ function ajax(url, callback, errorcallback) {
       }
     };
     xhr.open('GET', url, true);
+    xhr.withCredentials = true;
     xhr.send();
   }
 }
