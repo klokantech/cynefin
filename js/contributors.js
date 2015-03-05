@@ -254,10 +254,12 @@ function ajax(url, callback, errorcallback) {
   if (window.XMLHttpRequest) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        callback(xhr.responseText);
-      } else {
-        errorcallback();
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          callback(xhr.responseText);
+        } else {
+          errorcallback();
+        }
       }
     };
     xhr.open('GET', url, true);
