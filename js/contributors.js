@@ -95,8 +95,8 @@ function loadAll(period) {
     period = 'total';
   }
   //TODO: use responseHandler:callback
-  //TODO: After implemetation on server use link: http://earth.georeferencer.com/repository/15872231/top-contributors.json?callback=google.visualization.Query.setResponse
-  var url = 'http://earth.georeferencer.com/repository/15872231/top-contributors.json';
+  //TODO: After implemetation on server use link: http://cynefin.georeferencer.com/repository/15872231/top-contributors.json?callback=google.visualization.Query.setResponse
+  var url = 'http://cynefin.georeferencer.com/repository/15872231/top-contributors.json';
   if (period) {
     url += '?period=' + period;
   }
@@ -109,7 +109,7 @@ function loadUser() {
   renderContent('my');
   document.getElementById('cws-filter-period').style.display = 'none';
   document.getElementById('cws-my').style.display = 'block';
-  var url = 'http://earth.georeferencer.com/person/current/contributions.json';
+  var url = 'http://cynefin.georeferencer.com/person/current/contributions.json';
   ajax(url, function(resp) {
     var data = JSON.parse(resp);
     var contrib = data.contributions;
@@ -237,7 +237,7 @@ function loadMap(datajson) {
  */
 function displayCountyStats(feature, i) {
   var attr = feature.properties;
-  drawVisualization('http://earth.georeferencer.com/collection/'
+  drawVisualization('http://cynefin.georeferencer.com/collection/'
           + attr.Collection + '/top-contributors.json');
   var countyFilter = document.getElementById('cws-filter-county');
   renderContent('county');

@@ -48,7 +48,7 @@ cynefin.Home = function() {
  * @define {string} Url for the stats object.
  */
 cynefin.Home.STATS_URL =
-    'http://earth.georeferencer.com/repository/15872231/stats.json';
+    'http://cynefin.georeferencer.com/repository/15872231/stats.json';
 
 
 goog.exportSymbol('Home', cynefin.Home);

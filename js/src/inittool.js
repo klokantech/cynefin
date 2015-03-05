@@ -82,7 +82,7 @@ cynefin.initTool = function(toolId) {
 /**
  * @define {string} Base url to append the tool address to.
  */
-cynefin.initTool.TOOL_BASE_URL = 'http://earth.georeferencer.com';
+cynefin.initTool.TOOL_BASE_URL = 'http://cynefin.georeferencer.com';
 
 
 goog.exportSymbol('initTool', cynefin.initTool);
