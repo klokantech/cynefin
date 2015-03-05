@@ -30,7 +30,7 @@
 	    .page { background-image: none; }
 	    #map {position:absolute; top:50px; left:0; bottom:0; right:0;}
 	    #county-detail-name {position:relative;top:5px;}
-			#county-detail-contrib-link {float:none;font-family:'icons';font-size:16px;padding-left:5px;}
+	    #county-detail-contrib-link {float:none;font-family:'icons';vertical-align:bottom;padding-left:5px;}
 	    .form-search-map button span {top:3px;}
 	    .item-media {width:100px; height:60px; text-align:center; border:1px solid #706b65; background:#ddd;}
 	    .item-media img {border:none;}
