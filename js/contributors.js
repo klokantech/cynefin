@@ -10,7 +10,7 @@ function contributors(basePath) {
   loadMap(basePath + '/js/counties.topojson');
 
   //load county from hash
-  var hash = document.location.hash;
+  var hash = decodeURIComponent(document.location.hash);
   if (hash) {
     var county = hash.substring(1);
     var collection = null;
@@ -242,7 +242,7 @@ function displayCountyStats(feature, i) {
   var countyFilter = document.getElementById('cws-filter-county');
   renderContent('county');
   countyFilter.innerHTML = attr.County;
-  document.location.hash = attr.County;
+  document.location.hash = encodeURIComponent(attr.County);
 }
 
 /**

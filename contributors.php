@@ -30,10 +30,10 @@ get_header();
   section .content{min-height: 600px !important;}
   section .paper-base{min-height: 800px !important;}
 
-  .google-visualization-table-tr-head .gradient, 
-  .google-visualization-table-tr-head-nonstrict .gradient, 
+  .google-visualization-table-tr-head .gradient,
+  .google-visualization-table-tr-head-nonstrict .gradient,
   .google-visualization-table-div-page .gradient{
-    background: #d4c5a9 !important;  
+    background: #d4c5a9 !important;
   }
   .google-visualization-table-th, .google-visualization-table-td{
     border: 1px solid #d4c5a9 !important;
@@ -51,17 +51,18 @@ get_header();
         <div id="cws-content">
           <h1><?php _e("Contributors", "cynefin"); ?></h1>
           <p class="filter">
-            <a id="cws-filter-all" href="#" title=""><?php _e("All the time", "cynefin"); ?></a>
+            Filter:
+            <a id="cws-filter-all" href="#" title=""><?php _e("Whole project", "cynefin"); ?></a>
             <span class="sep">|</span>
             <a id="cws-filter-my" href="#" title=""><?php _e("My contributions", "cynefin"); ?></a>
             <span class="sep">|</span>
             <a id="cws-filter-county" href="#" title=""><?php _e("By county", "cynefin"); ?></a>
           </p>
           <select id="cws-filter-period">
-            <option value="total" selected=""><?php _e("All period", "cynefin"); ?>:</option>
-            <option value="month"><?php _e("Last month", "cynefin"); ?>:</option>
-            <option value="week"><?php _e("Last week", "cynefin"); ?>:</option>
-            <option value="day"><?php _e("Last day", "cynefin"); ?>:</option>
+            <option value="total" selected=""><?php _e("All the time", "cynefin"); ?></option>
+            <option value="month"><?php _e("Last month", "cynefin"); ?></option>
+            <option value="week"><?php _e("Last week", "cynefin"); ?></option>
+            <option value="day"><?php _e("Last day", "cynefin"); ?></option>
           </select>
           <div id="cws-widgets">
             <div id="cws-pie"></div>
@@ -69,7 +70,7 @@ get_header();
           </div>
           <div id="cws-my">
             <p><b><?php _e("Score", "cynefin"); ?>:</b> <span id="cws-my-score"></span> points<br>
-              <b><?php _e("Total contributions", "cynefin"); ?>?</b> <span id="cws-my-total"></span><br>
+              <b><?php _e("Total contributions", "cynefin"); ?>:</b> <span id="cws-my-total"></span><br>
               <b><?php _e("Last month", "cynefin"); ?>:</b> <span id="cws-my-month"></span><br>
               <b><?php _e("Last week", "cynefin"); ?>:</b> <span id="cws-my-week"></span><br>
               <b><?php _e("Today", "cynefin"); ?>:</b> <span id="cws-my-day"></span></p>
