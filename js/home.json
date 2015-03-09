@@ -3,5 +3,6 @@
   "inherits": "base.json",
 
   "inputs": ["src/home.js"],
-  "paths": ["src", "closure-library/third_party"]
+  "paths": ["src", "closure-library/third_party"],
+  "externs" : ["src/gviz-api.js"]
 }

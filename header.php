@@ -131,6 +131,13 @@
               .navigation-header{position: absolute; top: 0;}
             </style>
         <?php } ?>
+          <style>
+            .google-visualization-table.content{top: 0; padding: 0 0 10px 0; min-height: 100px;}
+            .google-visualization-table-tr-head .gradient, 
+            .google-visualization-table-tr-head-nonstrict .gradient, 
+            .google-visualization-table-div-page .gradient{background: #d4c5a9 !important;}
+            .google-visualization-table-th, .google-visualization-table-td{border: 1px solid #d4c5a9 !important;}
+           </style>
 </head>
 <body <?php body_class( $class ); ?>>
 	<script>

@@ -25,30 +25,62 @@ cynefin.Home = function() {
       var supplement = map['supplement'];
 
       var totalVolunteers = Math.max(
-          Math.max(map['products']['transcription']['contributors'],
-          map['products']['georeference']['contributors']),
-          Math.max(supplement['products']['transcription']['contributors'],
-          supplement['products']['georeference']['contributors']));
+              Math.max(map['products']['transcription']['contributors'],
+                      map['products']['georeference']['contributors']),
+              Math.max(supplement['products']['transcription']['contributors'],
+                      supplement['products']['georeference']['contributors']));
       var recordsTransed = map['components']['label'] +
-                           supplement['components']['label'];
+              supplement['components']['label'];
       var maps = map['objects'];
 
       goog.dom.setTextContent(goog.dom.getElement('stats_total_volunteers'),
-                              totalVolunteers);
+              totalVolunteers);
       goog.dom.setTextContent(goog.dom.getElement('stats_records_transed'),
-                              recordsTransed);
+              recordsTransed);
       goog.dom.setTextContent(goog.dom.getElement('stats_maps'), maps);
     }
   }, false, this);
-  xhr_.send(cynefin.Home.STATS_URL);
-};
+  xhr_.send(cynefin.Home.STATS_URL + 'stats.json');
 
+  this.loadContibutors_();
+};
 
 /**
  * @define {string} Url for the stats object.
  */
 cynefin.Home.STATS_URL =
-    'http://cynefin.georeferencer.com/repository/15872231/stats.json';
+        'http://cynefin.georeferencer.com/repository/15872231/';
+
+
+/**
+ * Loads tables
+ */
+cynefin.Home.prototype.loadContibutors_ = function() {
+  var queryDay = 'top-contributors.json?period=day&limit=5';
+  this.drawVisualization(cynefin.Home.STATS_URL + queryDay, 'topc-day');
+  
+  var queryAll = 'top-contributors.json?limit=5';
+  this.drawVisualization(cynefin.Home.STATS_URL + queryAll, 'topc-all');
+};
+
+/**
+ * Draws visualisation to table via google tabs
+ * @param {string} dataSourceUrl
+ * @param {string} elementId
+ */
+cynefin.Home.prototype.drawVisualization = function(dataSourceUrl, elementId) {
+  var tableContainer = document.getElementById(elementId);
+  var table = new google.visualization.Table(tableContainer);
+  var query = new google.visualization.Query(dataSourceUrl, {});
+  query.send(function(response) {
+    if (response.isError()) {
+      throw Error(response.getMessage() + ' ' + response.getDetailedMessage());
+    } else {
+      var dataTable = response.getDataTable();
+      table.draw(dataTable, {showRowNumber: true});
+    }
+  });
+};
 
 
 goog.exportSymbol('Home', cynefin.Home);
