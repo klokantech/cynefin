@@ -88,7 +88,7 @@ get_header();
             <div id="cws-table"></div>
           </div>
           <div id="cws-my">
-            <h2>My level</h2>
+            <h2><?php _e('My level', 'cynefin'); ?></h2>
             <div class="progress" id="progress-my">
               <div class="bar">
                 <div id="cws-my-bar-sgm1" class="bar-segment" style="width: 30%;">
@@ -118,8 +118,8 @@ get_header();
                 </div>
               </div>
             </div>
-            <p>Make <b><span id="cws-nextscore"></span> points</b> to reach next level!</p>
-            <h2>In numbers</h2>
+            <p><?php _e('Make', 'cynefin'); ?> <b><span id="cws-nextscore"></span> <?php _e('points', 'cynefin'); ?></b> <?php _e('to reach next level', 'cynefin'); ?>!</p>
+            <h2><?php _e('In numbers', 'cynefin'); ?></h2>
             <p><?php _e('Score', 'cynefin'); ?>: <span id="cws-my-score"></span> points<br>
               <?php _e('Total contributions', 'cynefin'); ?>: <span id="cws-my-total"></span><br>
               <?php _e('Last month', 'cynefin'); ?>: <span id="cws-my-month"></span><br>
