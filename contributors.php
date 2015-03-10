@@ -23,10 +23,40 @@ get_header();
   #cws-map{text-align: right; padding-top: 30px;}
   #cws-content{}
   #cws-filter-period{height: 16px; padding: 3px 6px; font-size: 12px;}
-  #cws-my{display: none; margin: 40px 0;}
+  #cws-my{display: none; margin: 20px 0;}
   #cws-my-error{display: none;}
   #cws-text{clear: both;}
   h1{margin-bottom: 0;}
+
+  .progress{
+    width: 500px;
+    padding: 10px 0 10px 0;
+    height: 50px;
+    font-size: 12px;
+    line-height: 12px;
+  }
+  .bar{width: 80%;height: 42px;float: left;}
+  .bar-segment{
+    float: left;
+    background-color: #d4c5a9;
+    height: 15px;
+    display: block;
+  }
+  .bar-segment:first-child{background-color: #da4d00;}
+  .bar-segment:first-child:before, .bar-segment:nth-child(2):before{
+    position: absolute;
+    margin-top: -15px;
+    padding-right: 10px;
+  }
+  .bar-label{
+    position: absolute;
+    font-size: 10px;
+    margin-top: 15px;
+    padding-top: 4px;
+  }
+  #progress-my{position: absolute;}
+  #progress-my .bar-label{margin-top: -18px;}
+  #progress-labels .bar-label{border-left: 1px solid #000; padding-left: 5px;}
 </style>
 
 <section>
@@ -58,11 +88,43 @@ get_header();
             <div id="cws-table"></div>
           </div>
           <div id="cws-my">
-            <p><b><?php _e('Score', 'cynefin'); ?>:</b> <span id="cws-my-score"></span> points<br>
-              <b><?php _e('Total contributions', 'cynefin'); ?>:</b> <span id="cws-my-total"></span><br>
-              <b><?php _e('Last month', 'cynefin'); ?>:</b> <span id="cws-my-month"></span><br>
-              <b><?php _e('Last week', 'cynefin'); ?>:</b> <span id="cws-my-week"></span><br>
-              <b><?php _e('Today', 'cynefin'); ?>:</b> <span id="cws-my-day"></span></p>
+            <h2>My level</h2>
+            <div class="progress" id="progress-my">
+              <div class="bar">
+                <div id="cws-my-bar-sgm1" class="bar-segment" style="width: 30%;">
+                  <div class="bar-label"></div>
+                </div>
+                <div id="cws-my-bar-sgm2" class="bar-segment" style="width: 70%;">
+                  <div id="cws-my-bar-score" class="bar-label"></div>
+                </div>
+              </div>
+            </div>
+            <div class="progress" id="progress-labels">
+              <div class="bar">
+                <div class="bar-segment" style="width: 20%;">
+                  <div class="bar-label maps">Tenant</div>
+                </div>
+                <div class="bar-segment" style="width: 20%;">
+                  <div class="bar-label maps">Landowner</div>
+                </div>
+                <div class="bar-segment" style="width: 20%;">
+                  <div class="bar-label maps">Valuer</div>
+                </div>
+                <div class="bar-segment" style="width: 20%;">
+                  <div class="bar-label maps">Surveyor</div>
+                </div>
+                <div class="bar-segment" style="width: 20%;">
+                  <div class="bar-label maps">Commissioner</div>
+                </div>
+              </div>
+            </div>
+            <p>Make <b><span id="cws-nextscore"></span> points</b> to reach next level!</p>
+            <h2>In numbers</h2>
+            <p><?php _e('Score', 'cynefin'); ?>: <span id="cws-my-score"></span> points<br>
+              <?php _e('Total contributions', 'cynefin'); ?>: <span id="cws-my-total"></span><br>
+              <?php _e('Last month', 'cynefin'); ?>: <span id="cws-my-month"></span><br>
+              <?php _e('Last week', 'cynefin'); ?>: <span id="cws-my-week"></span><br>
+              <?php _e('Today', 'cynefin'); ?>: <span id="cws-my-day"></span></p>
           </div>
           <div id="cws-my-error">
             <p><?php _e('Please login to see results.', 'cynefin'); ?> <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/"><?php _e('Tithe maps', 'cynefin'); ?></a></p>

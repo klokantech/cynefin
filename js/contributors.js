@@ -34,14 +34,16 @@ var Contributors = function(basePath) {
   };
   document.getElementById('cws-filter-my').onclick = function() {
     self.renderContent_('user');
-    self.loadUser();
+    var url = 'http://cynefin.georeferencer.com/person/current/contributions.json';
+    url = basePath + '/js/contributions.json';
+    self.loadUser(url);
     return false;
   };
-  document.getElementById('cws-filter-county').onclick = function() {
-    //TODO: if county not selected display warning message
-    self.renderContent_('county');
-    return false;
-  };
+//  document.getElementById('cws-filter-county').onclick = function() {
+//    //TODO: if county not selected display warning message
+//    self.renderContent_('county');
+//    return false;
+//  };
   document.getElementById('cws-filter-period').onchange = function() {
     self.setQueryData({
       'period': this.value
@@ -57,7 +59,7 @@ var Contributors = function(basePath) {
 Contributors.prototype.setQueryData = function(queryData) {
   if (queryData.collection) {
     this.queryData.collection = queryData.collection;
-  }else if( queryData.collection === null){
+  } else if (queryData.collection === null) {
     this.queryData.collection = null;
   }
   if (queryData.limit) {
@@ -155,11 +157,10 @@ Contributors.prototype.renderContent_ = function(filter) {
 /**
  * Loads user stats
  */
-Contributors.prototype.loadUser = function() {
+Contributors.prototype.loadUser = function(url) {
   this.renderContent_('my');
   document.getElementById('cws-filter-period').style.display = 'none';
   document.getElementById('cws-my').style.display = 'block';
-  var url = 'http://cynefin.georeferencer.com/person/current/contributions.json';
   ajax(url, function(resp) {
     var data = JSON.parse(resp);
     var contrib = data.contributions;
@@ -175,6 +176,19 @@ Contributors.prototype.loadUser = function() {
       }
       score += contrib[i].score;
     }
+    //bar
+    var maxScore = 10000;
+    var nextBreak = maxScore-score;
+    while(nextBreak > 2000){
+      nextBreak = nextBreak - 2000;
+    }
+    var percentScore = Math.floor(score / maxScore * 100);
+    var barScore = percentScore > 100 ? 100 : percentScore;
+    document.getElementById('cws-my-bar-sgm1').style.width = barScore + '%';
+    document.getElementById('cws-my-bar-sgm2').style.width = (100 - barScore) + '%';
+    document.getElementById('cws-nextscore').innerHTML = nextBreak;
+    document.getElementById('cws-my-bar-score').innerHTML = score;
+    //data
     document.getElementById('cws-my-score').innerHTML = score;
     document.getElementById('cws-my-total').innerHTML = contrib.length;
     document.getElementById('cws-my-month').innerHTML = month;
