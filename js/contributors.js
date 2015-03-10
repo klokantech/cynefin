@@ -1,61 +1,128 @@
-/* Contributors */
-
 google.load('visualization', '1', {'packages': ['corechart', 'table']});
 
-function contributors(basePath) {
+/**
+ * Contributors stats
+ * @param {string} basePath
+ */
+var Contributors = function(basePath) {
 
-  var counties = [{"name": "Radnor", "namecy": "Maesyfed", "collection": "83511215"}, {"name": "Pembroke", "namecy": "Penfro", "collection": "51277134"}, {"name": "Montgomery", "namecy": "Maldwyn", "collection": "19043053"}, {"name": "Monmouth", "namecy": "Mynwy", "collection": "86808972"}, {"name": "Merioneth", "namecy": "Meirionnydd", "collection": "54574891"}, {"name": "Glamorgan", "namecy": "Morgannwg", "collection": "22340810"}, {"name": "Flint", "namecy": "Fflint", "collection": "90106729"}, {"name": "Denbigh", "namecy": "Dinbych", "collection": "57872648"}, {"name": "Carmarthen", "namecy": "Caerfyrddin", "collection": "25638567"}, {"name": "Cardigan", "namecy": "Ceredigion", "collection": "93404486"}, {"name": "Caernarfon", "namecy": "Caernarfon", "collection": "61170405"}, {"name": "Brecknock", "namecy": "Brycheiniog", "collection": "28936324"}, {"name": "Anglesey", "namecy": "Môn", "collection": "96702243"}];
+  this.counties = [{"name": "Radnor", "namecy": "Maesyfed", "collection": "83511215"}, {"name": "Pembroke", "namecy": "Penfro", "collection": "51277134"}, {"name": "Montgomery", "namecy": "Maldwyn", "collection": "19043053"}, {"name": "Monmouth", "namecy": "Mynwy", "collection": "86808972"}, {"name": "Merioneth", "namecy": "Meirionnydd", "collection": "54574891"}, {"name": "Glamorgan", "namecy": "Morgannwg", "collection": "22340810"}, {"name": "Flint", "namecy": "Fflint", "collection": "90106729"}, {"name": "Denbigh", "namecy": "Dinbych", "collection": "57872648"}, {"name": "Carmarthen", "namecy": "Caerfyrddin", "collection": "25638567"}, {"name": "Cardigan", "namecy": "Ceredigion", "collection": "93404486"}, {"name": "Caernarfon", "namecy": "Caernarfon", "collection": "61170405"}, {"name": "Brecknock", "namecy": "Brycheiniog", "collection": "28936324"}, {"name": "Anglesey", "namecy": "Môn", "collection": "96702243"}];
+
+  this.URL_STATS = 'http://earth.georeferencer.com/';
+
+  this.queryData = {
+    period: 'total',
+    collection: this.parseHash(),
+    limit: 10
+  };
+
+  var self = this;
 
   //draw map
-  loadMap(basePath + '/js/counties.topojson');
-
-  //load county from hash
-  var hash = decodeURIComponent(document.location.hash);
-  if (hash) {
-    var county = hash.substring(1);
-    var collection = null;
-    for (var i = 0; i < counties.length; i++) {
-      if (counties[i].name === county || counties[i].namecy === county) {
-        collection = counties[i].collection;
-        break;
-      }
-    }
-    if (collection !== null) {
-      displayCountyStats({
-        'properties': {
-          'Collection': collection,
-          'County': county
-        }}, null);
-    } else {
-      loadAll();
-    }
-  } else {
-    loadAll();
-  }
+  this.loadMap(basePath + '/js/counties.topojson');
+  //load data
+  this.loadData(this.queryData);
 
   //filter's handlers
-  document.getElementById('cws-filter-all').onclick = loadAll;
+  document.getElementById('cws-filter-all').onclick = function() {
+    self.renderContent_('all');
+    self.setQueryData({
+      'collection': null,
+      'period': document.getElementById('cws-filter-period').value
+    });
+    return false;
+  };
   document.getElementById('cws-filter-my').onclick = function() {
-    loadUser();
+    self.renderContent_('user');
+    self.loadUser();
     return false;
   };
   document.getElementById('cws-filter-county').onclick = function() {
     //TODO: if county not selected display warning message
-    renderContent('county');
+    self.renderContent_('county');
     return false;
   };
   document.getElementById('cws-filter-period').onchange = function() {
-    loadAll(this.value);
+    self.setQueryData({
+      'period': this.value
+    });
     return false;
   };
-}
+};
 
+/**
+ * Sets query data a runs loading
+ * @param {Objct} queryData
+ */
+Contributors.prototype.setQueryData = function(queryData) {
+  if (queryData.collection) {
+    this.queryData.collection = queryData.collection;
+  }else if( queryData.collection === null){
+    this.queryData.collection = null;
+  }
+  if (queryData.limit) {
+    this.queryData.limit = queryData.limit;
+  }
+  if (queryData.period) {
+    this.queryData.period = queryData.period;
+  }
+  this.loadData(this.queryData);
+};
+
+/**
+ * Parse county from hash
+ * @returns {Object}
+ */
+Contributors.prototype.parseHash = function() {
+  var hash = decodeURIComponent(document.location.hash);
+
+  if (hash) {
+    var results;
+    var county = hash.substring(1);
+    var collection = null;
+    for (var i = 0; i < this.counties.length; i++) {
+      if (this.counties[i].name === county || this.counties[i].namecy === county) {
+        collection = this.counties[i].collection;
+        break;
+      }
+    }
+    if (collection !== null) {
+      results = {
+        'id': collection,
+        'County': county
+      };
+    } else {
+      results = null;
+    }
+  } else {
+    results = null;
+  }
+  return results;
+};
+
+/**
+ * Creates url from data and runs visualisation
+ * @param {Object} data
+ */
+Contributors.prototype.loadData = function(data) {
+  var query = '?limit=' + data.limit;
+  if (data.period) {
+    query += '&period=' + data.period;
+  }
+  var url = this.URL_STATS;
+  if (data.collection === null) {
+    url += 'repository/15872231/top-contributors.json';
+  } else {
+    url += 'collection/' + data.collection.id + '/top-contributors.json';
+  }
+  this.drawVisualization(url + query);
+};
 
 /**
  * Filter ux control
  * @param {string} filter
  */
-function renderContent(filter) {
+Contributors.prototype.renderContent_ = function(filter) {
   document.getElementById('cws-filter-all').className = '';
   document.getElementById('cws-filter-my').className = '';
   document.getElementById('cws-filter-county').className = '';
@@ -72,7 +139,7 @@ function renderContent(filter) {
       break;
     case 'county':
       document.getElementById('cws-filter-county').className = 'active';
-      filterPeriod.style.display = 'none';
+      filterPeriod.style.display = 'block';
       blockMy.style.display = 'none';
       blockWidgets.style.display = 'block';
       break;
@@ -83,30 +150,13 @@ function renderContent(filter) {
       blockWidgets.style.display = 'block';
       break;
   }
-}
+};
 
 /**
- * Loads data from whole project
- * @param {string|null} period [day, week, month, total]
+ * Loads user stats
  */
-function loadAll(period) {
-  var periods = ['day', 'week', 'month', 'total'];
-  if (periods.indexOf(period) === -1) {
-    period = 'total';
-  }
-  //TODO: use responseHandler:callback
-  //TODO: After implemetation on server use link: http://cynefin.georeferencer.com/repository/15872231/top-contributors.json?callback=google.visualization.Query.setResponse
-  var url = 'http://cynefin.georeferencer.com/repository/15872231/top-contributors.json';
-  if (period) {
-    url += '?period=' + period;
-  }
-  drawVisualization(url);
-  renderContent('all');
-  return false;
-}
-
-function loadUser() {
-  renderContent('my');
+Contributors.prototype.loadUser = function() {
+  this.renderContent_('my');
   document.getElementById('cws-filter-period').style.display = 'none';
   document.getElementById('cws-my').style.display = 'block';
   var url = 'http://cynefin.georeferencer.com/person/current/contributions.json';
@@ -134,13 +184,13 @@ function loadUser() {
     document.getElementById('cws-my').style.display = 'none';
     document.getElementById('cws-my-error').style.display = 'block';
   });
-}
+};
 
 /**
  * Draw table and chart from data
  * @param {string} dataSourceUrl
  */
-function drawVisualization(dataSourceUrl) {
+Contributors.prototype.drawVisualization = function(dataSourceUrl) {
   var pieContainer = document.getElementById('cws-pie');
   var pie = new google.visualization.PieChart(pieContainer);
   var tableContainer = document.getElementById('cws-table');
@@ -152,7 +202,9 @@ function drawVisualization(dataSourceUrl) {
     } else {
       var dataTable = response.getDataTable();
       pie.draw(dataTable, {
-        'legend': {textStyle: {color: 'black', fontName: '"Arial"', fontSize: 11}},
+        'legend': {
+          textStyle: {color: 'black', fontName: '"Arial"', fontSize: 11}
+        },
         'width': 450,
         'height': 250,
         'is3D': false,
@@ -163,13 +215,13 @@ function drawVisualization(dataSourceUrl) {
       table.draw(dataTable, {showRowNumber: true});
     }
   });
-}
+};
 
 /**
- * Load SVG map vie 3djs
+ * Load SVG map via 3djs
  * @param datajson
  */
-function loadMap(datajson) {
+Contributors.prototype.loadMap = function(datajson) {
   //Map dimensions (in pixels)
   var width = 482 / 2, height = 536 / 2;
   //Map projection
@@ -190,6 +242,8 @@ function loadMap(datajson) {
           .attr('class', 'features');
   //Create a tooltip, hidden at the start
   var tooltip = d3.select('#cws-map').append('div').attr('class', 'tooltip');
+
+  var self = this;
   d3.json(datajson, function(error, geodata) {
     if (error)
       return console.log(error); //unknown error, check the console
@@ -203,7 +257,18 @@ function loadMap(datajson) {
             .on('mouseover', showTooltip)
             .on('mousemove', moveTooltip)
             .on('mouseout', hideTooltip)
-            .on('click', displayCountyStats);
+            .on('click', function(feature, i) {
+
+              var attr = feature.properties;
+              self.setQueryData({'collection': {
+                  'id': attr.Collection,
+                  'County': attr.County
+                }});
+              self.renderContent_('county');
+              var countyFilter = document.getElementById('cws-filter-county');
+              countyFilter.innerHTML = attr.County;
+              document.location.hash = encodeURIComponent(attr.County);
+            });
   });
   //Position of the tooltip relative to the cursor
   var tooltipOffset = {x: -250, y: -300};
@@ -224,26 +289,7 @@ function loadMap(datajson) {
   function hideTooltip() {
     tooltip.style('display', 'none');
   }
-
-  // Add optional onClick events for features here
-  // d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
-
-}
-
-/**
- * Runs on click on county
- * @param {Object} feature
- * @param {Object} i
- */
-function displayCountyStats(feature, i) {
-  var attr = feature.properties;
-  drawVisualization('http://cynefin.georeferencer.com/collection/'
-          + attr.Collection + '/top-contributors.json');
-  var countyFilter = document.getElementById('cws-filter-county');
-  renderContent('county');
-  countyFilter.innerHTML = attr.County;
-  document.location.hash = encodeURIComponent(attr.County);
-}
+};
 
 /**
  * Ajax request

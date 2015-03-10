@@ -41,17 +41,17 @@ get_header();
           <h1><?php the_title(); ?></h1>
           <p class="filter">
             Filter:
-            <a id="cws-filter-all" href="#" title=""><?php _e('Whole project', 'cynefin'); ?></a>
+            <a id="cws-filter-all" href="#" title="" class="active"><?php _e('Whole project', 'cynefin'); ?></a>
             <span class="sep">|</span>
             <a id="cws-filter-my" href="#" title=""><?php _e('My contributions', 'cynefin'); ?></a>
             <span class="sep">|</span>
             <a id="cws-filter-county" href="#" title=""><?php _e('By county', 'cynefin'); ?></a>
           </p>
           <select id="cws-filter-period">
-            <option value="total" selected=""><?php _e('All period', 'cynefin'); ?>:</option>
-            <option value="month"><?php _e('Last month', 'cynefin'); ?>:</option>
-            <option value="week"><?php _e('Last week', 'cynefin'); ?>:</option>
-            <option value="day"><?php _e('Last day', 'cynefin'); ?>:</option>
+            <option value="total" selected=""><?php _e('All period', 'cynefin'); ?></option>
+            <option value="month"><?php _e('Last month', 'cynefin'); ?></option>
+            <option value="week"><?php _e('Last week', 'cynefin'); ?></option>
+            <option value="day"><?php _e('Last day', 'cynefin'); ?></option>
           </select>
           <div id="cws-widgets">
             <div id="cws-pie"></div>
@@ -59,7 +59,7 @@ get_header();
           </div>
           <div id="cws-my">
             <p><b><?php _e('Score', 'cynefin'); ?>:</b> <span id="cws-my-score"></span> points<br>
-              <b><?php _e('Total contributions', 'cynefin'); ?>?</b> <span id="cws-my-total"></span><br>
+              <b><?php _e('Total contributions', 'cynefin'); ?>:</b> <span id="cws-my-total"></span><br>
               <b><?php _e('Last month', 'cynefin'); ?>:</b> <span id="cws-my-month"></span><br>
               <b><?php _e('Last week', 'cynefin'); ?>:</b> <span id="cws-my-week"></span><br>
               <b><?php _e('Today', 'cynefin'); ?>:</b> <span id="cws-my-day"></span></p>
@@ -83,6 +83,6 @@ get_header();
 <script src="<?php bloginfo('template_url'); ?>/js/contributors.js" type="text/javascript"></script>
 <script type="text/javascript">
   var basePath = '<?php bloginfo('template_url'); ?>';
-  contributors(basePath);
+  new Contributors(basePath);
 </script>
 <?php get_footer(); ?>
