@@ -35,7 +35,6 @@ var Contributors = function(basePath) {
   document.getElementById('cws-filter-my').onclick = function() {
     self.renderContent_('user');
     var url = 'http://cynefin.georeferencer.com/person/current/contributions.json';
-    url = basePath + '/js/contributions.json';
     self.loadUser(url);
     return false;
   };
