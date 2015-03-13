@@ -15,11 +15,11 @@
 	 	</script>
 <?php
   if(is_page_template("tithe-map-georeference.php")){
-    $videoId = '-cNmx3MbSEo';
+    $videoId = (ICL_LANGUAGE_CODE == "cy" ? 'AFUnCwN-J0A' : '-cNmx3MbSEo');
   }else if(is_page_template("tithe-map-transcribe.php")){
-    $videoId = '_NMTleL57P8';
+    $videoId = (ICL_LANGUAGE_CODE == "cy" ? '1F49Q4Z6cv0' : '_NMTleL57P8');
   }else if(is_front_page()) {
-    $videoId = 'qomRXu-1dWg';
+    $videoId = (ICL_LANGUAGE_CODE == "cy" ? 'VBGGccHN17k' : 'qomRXu-1dWg');
   }
   if(isset($videoId)){
   ?>
