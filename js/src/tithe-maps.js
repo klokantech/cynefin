@@ -119,8 +119,8 @@ cynefin.TitheMaps = function() {
   /* GEOCODER */
   var geocoderElement = goog.dom.getElement('nominatim-input');
   if (geocoderElement) {
-    var ac = new klokantech.Nominatim(geocoderElement, undefined,
-                                      undefined, extentLL);
+    var ac = new klokantech.Nominatim(geocoderElement,
+        'http://nominatim.klokantech.com/', undefined, extentLL);
 
     var handleResult = goog.bind(function(result) {
       this.searchResultOverlay_.setPosition(undefined);
