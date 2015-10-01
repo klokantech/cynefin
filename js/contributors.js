@@ -23,6 +23,23 @@ var Contributors = function(basePath) {
   //load data
   this.loadData(this.queryData);
 
+  //tabs handlers
+  document.getElementById('cws-btn-contr').onclick = function() {
+    this.className = 'active';
+    document.getElementById('cws-btn-teams').className = '';
+    document.getElementById('cws-contr').className = '';
+    document.getElementById('cws-teams').className = 'hidden';
+  };
+  document.getElementById('cws-btn-teams').onclick = function() {
+    this.className = 'active';
+    document.getElementById('cws-btn-contr').className = '';
+    self.loadTeams('http://api.georeferencer.com/repository/15872231/\n\
+top-teams.json?limit=10&period=total&tqx=reqId%3A0');
+
+    document.getElementById('cws-contr').className = 'hidden';
+    document.getElementById('cws-teams').className = '';
+  };
+
   //filter's handlers
   document.getElementById('cws-filter-all').onclick = function() {
     self.renderContent_('all');
@@ -177,8 +194,8 @@ Contributors.prototype.loadUser = function(url) {
     }
     //bar
     var maxScore = 10000;
-    var nextBreak = maxScore-score;
-    while(nextBreak > 2000){
+    var nextBreak = maxScore - score;
+    while (nextBreak > 2000) {
       nextBreak = nextBreak - 2000;
     }
     var percentScore = Math.floor(score / maxScore * 100);
@@ -302,6 +319,38 @@ Contributors.prototype.loadMap = function(datajson) {
   function hideTooltip() {
     tooltip.style('display', 'none');
   }
+};
+
+/**
+ * Load teams
+ * @param {string} data
+ */
+Contributors.prototype.loadTeams = function(dataSourceUrl) {
+
+  var pieContainer = document.getElementById('cws-teams-pie');
+  var pie = new google.visualization.PieChart(pieContainer);
+  var tableContainer = document.getElementById('cws-teams-table');
+  var table = new google.visualization.Table(tableContainer);
+  var query = new google.visualization.Query(dataSourceUrl);
+  query.send(function(response) {
+    if (response.isError()) {
+      throw Error(response.getMessage() + ' ' + response.getDetailedMessage());
+    } else {
+      var dataTable = response.getDataTable();
+      pie.draw(dataTable, {
+        'legend': {
+          textStyle: {color: 'black', fontName: '"Arial"', fontSize: 11}
+        },
+        'width': 450,
+        'height': 250,
+        'is3D': false,
+        'backgroundColor': 'transparent',
+        'chartArea.left': 0
+      }
+      );
+      table.draw(dataTable, {showRowNumber: true});
+    }
+  });
 };
 
 /**
