@@ -69,27 +69,27 @@
                     <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
                     <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                     <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0bd7432dc29f2351e63d68328_f99ec3ceba" tabindex="-1" value=""></div>
-                    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                    <div class="clear"><input type="submit" value="<?php _e("Subscribe", "cynefin"); ?>" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
                     </div>
                 </form>
                 </div>
                 <!-- End MailChimp Signup Form -->
 
-                <h2>Video introduction</h2>
+                <h2><?php _e("Video introduction", "cynefin"); ?></h2>
                 <p>
                   <a href="#" class="thumb" id="popup-btn">
                     <img src="<?php bloginfo("template_url"); ?>/assets/img/video-placeholder.png" alt="<?php _e("Watch video", "cynefin"); ?>">
                   </a>
                 </p>
                 <p>
-                  Follow us on <a href="https://twitter.com/cynefinproject" target="_blank" style="font-family:'icons';color:#55ACEE;">&#xe621;</a> <a href="https://www.facebook.com/cynefinproject/" target="_blank" style="font-family:'icons';color:#3B5998;">&#xe620;</a>
+                  <?php _e("Follow us on", "cynefin"); ?> <a href="https://twitter.com/cynefinproject" target="_blank" style="font-family:'icons';color:#55ACEE;">&#xe621;</a> <a href="https://www.facebook.com/cynefinproject/" target="_blank" style="font-family:'icons';color:#3B5998;">&#xe620;</a>
                 </p>
                 <br>
                 <div id="topc">
-                  <h1><a href="/<?php echo ICL_LANGUAGE_CODE; ?>/contributors/">Top contributors</a></h1>
-                  <h2>Previous day</h2>
+                  <h1><a href="/<?php echo ICL_LANGUAGE_CODE; ?>/contributors/"><?php _e("Top contributors", "cynefin"); ?></a></h1>
+                  <h2><?php _e("Previous day", "cynefin"); ?></h2>
                   <div id="topc-day"></div>
-                  <h2>All the time</h2>
+                  <h2><?php _e("All the time", "cynefin"); ?></h2>
                   <div id="topc-all"></div>
                 </div>
               </div>

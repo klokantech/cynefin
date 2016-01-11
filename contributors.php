@@ -71,15 +71,15 @@ get_header();
       </div>
       <div class="content">
         <div class="filter">
-          <a href="#" id="cws-btn-contr" class="active">Contributors</a>
+          <a href="#" id="cws-btn-contr" class="active"><?php _e("Contributors", "cynefin"); ?></a>
           <span class="sep">|</span>
-          <a href="#teams" id="cws-btn-teams">Teams</a>
+          <a href="#teams" id="cws-btn-teams"><?php _e("Teams", "cynefin"); ?></a>
         </div>
         <div id="cws-contr">
           <div id="cws-content">
             <h1><?php the_title(); ?></h1>
             <p class="filter">
-              Filter:
+              <?php _e("Filter:", "cynefin"); ?>
               <a id="cws-filter-all" href="#" title="" class="active"><?php _e('Whole project', 'cynefin'); ?></a>
               <span class="sep">|</span>
               <a id="cws-filter-my" href="#" title=""><?php _e('My contributions', 'cynefin'); ?></a>
@@ -111,25 +111,25 @@ get_header();
               <div class="progress" id="progress-labels">
                 <div class="bar">
                   <div class="bar-segment" style="width: 20%;">
-                    <div class="bar-label maps">Tenant</div>
+                    <div class="bar-label maps"><?php _e("Tenant", "cynefin"); ?></div>
                   </div>
                   <div class="bar-segment" style="width: 20%;">
-                    <div class="bar-label maps">Landowner</div>
+                    <div class="bar-label maps"><?php _e("Landowner", "cynefin"); ?></div>
                   </div>
                   <div class="bar-segment" style="width: 20%;">
-                    <div class="bar-label maps">Valuer</div>
+                    <div class="bar-label maps"><?php _e("Valuer", "cynefin"); ?></div>
                   </div>
                   <div class="bar-segment" style="width: 20%;">
-                    <div class="bar-label maps">Surveyor</div>
+                    <div class="bar-label maps"><?php _e("Surveyor", "cynefin"); ?></div>
                   </div>
                   <div class="bar-segment" style="width: 20%;">
-                    <div class="bar-label maps">Commissioner</div>
+                    <div class="bar-label maps"><?php _e("Commissioner", "cynefin"); ?></div>
                   </div>
                 </div>
               </div>
               <p><?php _e('Make', 'cynefin'); ?> <b><span id="cws-nextscore"></span> <?php _e('points', 'cynefin'); ?></b> <?php _e('to reach next level', 'cynefin'); ?>!</p>
               <h2><?php _e('In numbers', 'cynefin'); ?></h2>
-              <p><?php _e('Score', 'cynefin'); ?>: <span id="cws-my-score"></span> points<br>
+              <p><?php _e('Score', 'cynefin'); ?>: <span id="cws-my-score"></span> <?php _e("points", "cynefin"); ?><br>
                 <?php _e('Total contributions', 'cynefin'); ?>: <span id="cws-my-total"></span><br>
                 <?php _e('Last month', 'cynefin'); ?>: <span id="cws-my-month"></span><br>
                 <?php _e('Last week', 'cynefin'); ?>: <span id="cws-my-week"></span><br>
@@ -144,7 +144,7 @@ get_header();
         <div id="cws-teams" class="hidden">
           <h1><?php _e('Teams', 'cynefin'); ?></h1>
           <div id="cws-teams-pie"></div>
-          <div id="cws-teams-table"></div>        
+          <div id="cws-teams-table"></div>
         </div>
         <div id="cws-text">
           <?php the_content(); ?>
