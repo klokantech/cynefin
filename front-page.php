@@ -86,6 +86,7 @@
                   <h1><a href="/<?php echo ICL_LANGUAGE_CODE; ?>/contributors/"><?php _e("Top contributors", "cynefin"); ?></a></h1>
                   <h2><?php _e("Previous day", "cynefin"); ?></h2>
                   <div id="topc-day"></div>
+                  <br>
                   <h2><?php _e("All the time", "cynefin"); ?></h2>
                   <div id="topc-all"></div>
                 </div>
