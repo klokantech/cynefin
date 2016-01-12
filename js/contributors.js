@@ -180,18 +180,19 @@ Contributors.prototype.loadUser = function(url) {
   ajax(url, function(resp) {
     var data = JSON.parse(resp);
     var contrib = data.contributions;
-    var month = 0, week = 0, day = 0, total = 0;
+    var month = 0, week = 0, day = 0;
     var score = 0;
     for (var i = 0; i < contrib.length; i++) {
-      if (contrib[i].period === 'month') {
-        month++;
-      } else if (contrib[i].period === 'week') {
-        week++;
-      } else if (contrib[i].period === 'day') {
-        day++;
-      } else if (contrib[i].period === 'total') {
-        total ++;
-        score += contrib[i].score;
+      if (contrib[i].repository_id === '15872231') {
+        if (contrib[i].period === 'month') {
+          month += contrib[i].score;
+        } else if (contrib[i].period === 'week') {
+          week += contrib[i].score;
+        } else if (contrib[i].period === 'day') {
+          day += contrib[i].score;
+        } else if (contrib[i].period === 'total') {
+          score += contrib[i].score;
+        }
       }
     }
     //bar
@@ -208,7 +209,6 @@ Contributors.prototype.loadUser = function(url) {
     document.getElementById('cws-my-bar-score').innerHTML = score;
     //data
     document.getElementById('cws-my-score').innerHTML = score;
-    document.getElementById('cws-my-total').innerHTML = total;
     document.getElementById('cws-my-month').innerHTML = month;
     document.getElementById('cws-my-week').innerHTML = week;
     document.getElementById('cws-my-day').innerHTML = day;

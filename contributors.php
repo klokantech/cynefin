@@ -128,12 +128,11 @@ get_header();
                 </div>
               </div>
               <p><?php _e('Make', 'cynefin'); ?> <b><span id="cws-nextscore"></span> <?php _e('points', 'cynefin'); ?></b> <?php _e('to reach next level', 'cynefin'); ?>!</p>
-              <h2><?php _e('In numbers', 'cynefin'); ?></h2>
-              <p><?php _e('Score', 'cynefin'); ?>: <span id="cws-my-score"></span> <?php _e("points", "cynefin"); ?><br>
-                <?php _e('Total contributions', 'cynefin'); ?>: <span id="cws-my-total"></span><br>
-                <?php _e('Last month', 'cynefin'); ?>: <span id="cws-my-month"></span><br>
-                <?php _e('Last week', 'cynefin'); ?>: <span id="cws-my-week"></span><br>
-                <?php _e('Today', 'cynefin'); ?>: <span id="cws-my-day"></span></p>
+              <h2><?php _e('Score in numbers', 'cynefin'); ?></h2>
+              <p><?php _e('Total', 'cynefin'); ?>: <span id="cws-my-score"></span> <?php _e("points", "cynefin"); ?><br>
+                <?php _e('Last month', 'cynefin'); ?>: <span id="cws-my-month"></span> <?php _e("points", "cynefin"); ?><br>
+                <?php _e('Last week', 'cynefin'); ?>: <span id="cws-my-week"></span> <?php _e("points", "cynefin"); ?><br>
+                <?php _e('Yesterday', 'cynefin'); ?>: <span id="cws-my-day"></span> <?php _e("points", "cynefin"); ?></p>
             </div>
             <div id="cws-my-error">
               <p><?php _e('Please login to see results.', 'cynefin'); ?> <a href="/<?php echo ICL_LANGUAGE_CODE; ?>/tithe-maps/"><?php _e('Tithe maps', 'cynefin'); ?></a></p>
