@@ -57,7 +57,7 @@
               <div class="column column-thin">
                 <p>
                   <b><?php _e("Follow us on", "cynefin"); ?></b> &nbsp;
-                  <a href="https://twitter.com/cynefinproject" target="_blank" style="font-family:'icons';color:#55ACEE;font-size:20px;text-decoration:none;vertical-align:text-bottom;">&#xe621;</a>
+                  <a href="https://twitter.com/<?php echo (ICL_LANGUAGE_CODE == "cy" ? 'prosiectcynefin' : 'cynefinproject') ?>" target="_blank" style="font-family:'icons';color:#55ACEE;font-size:20px;text-decoration:none;vertical-align:text-bottom;">&#xe621;</a>
                   <a href="https://www.facebook.com/cynefinproject/" target="_blank" style="font-family:'icons';color:#3B5998;font-size:20px;text-decoration:none;vertical-align:text-bottom;">&#xe620;</a>
                 </p>
                 <h2><?php _e("Newsletter signup", "cynefin"); ?></h2>
