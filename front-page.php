@@ -55,15 +55,20 @@
               </div>
               <!-- .column -->
               <div class="column column-thin">
+                <p>
+                  <b><?php _e("Follow us on", "cynefin"); ?></b> &nbsp;
+                  <a href="https://twitter.com/cynefinproject" target="_blank" style="font-family:'icons';color:#55ACEE;font-size:20px;text-decoration:none;vertical-align:text-bottom;">&#xe621;</a>
+                  <a href="https://www.facebook.com/cynefinproject/" target="_blank" style="font-family:'icons';color:#3B5998;font-size:20px;text-decoration:none;vertical-align:text-bottom;">&#xe620;</a>
+                </p>
                 <h2><?php _e("Newsletter signup", "cynefin"); ?></h2>
                 <!-- Begin MailChimp Signup Form -->
                 <div id="mc_embed_signup">
                   <form action="//wales.us11.list-manage.com/subscribe/post?u=0bd7432dc29f2351e63d68328&amp;id=f99ec3ceba" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                     <div id="mc_embed_signup_scroll">
-                      <input style="width:126px;" type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="<?php _e("email address", "cynefin"); ?>" required>
+                      <input style="width:125px; padding: 4px 0 4px 4px;border-radius: 5px;border: 1px solid #989898;" type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="<?php _e("email address", "cynefin"); ?>" required>
                       <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                       <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0bd7432dc29f2351e63d68328_f99ec3ceba" tabindex="-1" value=""></div>
-                      <input type="submit" value="<?php _e("Subscribe", "cynefin"); ?>" name="subscribe" id="mc-embedded-subscribe" class="btn btn-small">
+                      <input style="margin-top: -3px;" type="submit" value="<?php _e("Subscribe", "cynefin"); ?>" name="subscribe" id="mc-embedded-subscribe" class="btn btn-small">
                     </div>
                   </form>
                 </div>
@@ -75,11 +80,6 @@
                   <a href="#" class="thumb" id="popup-btn">
                     <img src="<?php bloginfo("template_url"); ?>/assets/img/video-placeholder.png" alt="<?php _e("Watch video", "cynefin"); ?>">
                   </a>
-                </p>
-                <p>
-                  <?php _e("Follow us on", "cynefin"); ?>
-                  <a href="https://twitter.com/cynefinproject" target="_blank" style="font-family:'icons';color:#55ACEE;font-size:20px;text-decoration:none;vertical-align:text-bottom;">&#xe621;</a>
-                  <a href="https://www.facebook.com/cynefinproject/" target="_blank" style="font-family:'icons';color:#3B5998;font-size:20px;text-decoration:none;vertical-align:text-bottom;">&#xe620;</a>
                 </p>
                 <br>
                 <div id="topc">
