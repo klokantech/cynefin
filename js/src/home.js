@@ -58,7 +58,7 @@ cynefin.Home.STATS_URL =
 cynefin.Home.prototype.loadContibutors_ = function() {
   var queryDay = 'top-contributors.json?period=day&limit=5';
   this.drawVisualization(cynefin.Home.STATS_URL + queryDay, 'topc-day');
-  
+
   var queryAll = 'top-contributors.json?limit=5';
   this.drawVisualization(cynefin.Home.STATS_URL + queryAll, 'topc-all');
 };
@@ -77,6 +77,8 @@ cynefin.Home.prototype.drawVisualization = function(dataSourceUrl, elementId) {
       throw Error(response.getMessage() + ' ' + response.getDetailedMessage());
     } else {
       var dataTable = response.getDataTable();
+      dataTable.setColumnLabel(0, window['STATS_NAME_LABEL']);
+      dataTable.setColumnLabel(1, window['STATS_SCORE_LABEL']);
       table.draw(dataTable, {showRowNumber: true});
     }
   });

@@ -233,6 +233,8 @@ Contributors.prototype.drawVisualization = function(dataSourceUrl) {
       throw Error(response.getMessage() + ' ' + response.getDetailedMessage());
     } else {
       var dataTable = response.getDataTable();
+      dataTable.setColumnLabel(0, window['STATS_NAME_LABEL']);
+      dataTable.setColumnLabel(1, window['STATS_SCORE_LABEL']);
       pie.draw(dataTable, {
         'legend': {
           textStyle: {color: 'black', fontName: '"Arial"', fontSize: 11}
@@ -339,6 +341,8 @@ Contributors.prototype.loadTeams = function(dataSourceUrl) {
       throw Error(response.getMessage() + ' ' + response.getDetailedMessage());
     } else {
       var dataTable = response.getDataTable();
+      dataTable.setColumnLabel(0, window['STATS_TEAM_LABEL']);
+      dataTable.setColumnLabel(1, window['STATS_SCORE_LABEL']);
       pie.draw(dataTable, {
         'legend': {
           textStyle: {color: 'black', fontName: '"Arial"', fontSize: 11}

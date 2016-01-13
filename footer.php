@@ -12,6 +12,9 @@
 	 	<?php wp_footer(); ?>
 	 	<script>
 	 		<?php echo 'var LANG = "' . ICL_LANGUAGE_CODE . '";'; ?>
+	 		<?php echo 'var STATS_NAME_LABEL = "' . _e("Name", "cynefin") . '";'; ?>
+	 		<?php echo 'var STATS_TEAM_LABEL = "' . _e("Team", "cynefin") . '";'; ?>
+	 		<?php echo 'var STATS_SCORE_LABEL = "' . _e("Score", "cynefin") . '";'; ?>
 	 	</script>
 <?php
   if(is_page_template("tithe-map-georeference.php")){
