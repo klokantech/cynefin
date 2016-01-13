@@ -354,7 +354,9 @@ cynefin.Counties.prototype.openCounty = function(name, opt_callback) {
         var trans = (supps['products'] || {})['transcription'] || {};
         var suppReviewed = (trans['impossible-reviewed'] || 0) +
                            (trans['finished-reviewed'] || 0);
-        var suppEdited = (trans['touched'] || 0);
+        var suppEdited = (trans['touched'] || 0) +
+                         (trans['finished'] || 0) +
+                         (trans['impossible'] || 0);
         var suppCount = (supps['objects'] || 0);
 
         this.setProgress_(true, suppReviewed, suppEdited, suppCount);
