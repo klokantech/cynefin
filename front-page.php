@@ -68,7 +68,7 @@
                       <input style="width:125px; padding: 4px 0 4px 4px;border-radius: 5px;border: 1px solid #989898;" type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="<?php _e("email address", "cynefin"); ?>" required>
                       <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                       <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0bd7432dc29f2351e63d68328_f99ec3ceba" tabindex="-1" value=""></div>
-                      <input style="margin-top: -3px;" type="submit" value="<?php _e("Subscribe", "cynefin"); ?>" name="subscribe" id="mc-embedded-subscribe" class="btn btn-small">
+                      <input style="margin-top: -1px;margin-left: 4px;position: absolute;" type="submit" value="<?php _e("Subscribe", "cynefin"); ?>" name="subscribe" id="mc-embedded-subscribe" class="btn btn-small">
                     </div>
                   </form>
                 </div>
