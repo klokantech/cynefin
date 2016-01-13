@@ -205,6 +205,20 @@ get_header();
             </div>
           </fieldset>
         </form>
+
+        <div style="position:absolute;bottom:25px;right:5px;">
+          <a href="#" title="" id="howto-btn" class="btn" style="font-size:13px;text-transform:none;">
+            <?php _e("How to navigate the tithe maps", "cynefin"); ?>
+          </a>
+        </div>
+        <div id="howto-popup" style="display:none;background:#ede9dc;position:absolute;right:5px;bottom:25px;width:500px;padding:10px;">
+          <span id="howto-popup-close" class="icon-remove" style="position:absolute;top:3px;right:3px;cursor:pointer;"></span>
+          <p><?php _e("Start by selecting a county from the list on the left hand side.", "cynefin"); ?></p>
+          <p><?php _e("After a few seconds a list of all the parishes in that county will appear.", "cynefin"); ?></p>
+          <p><?php _e("Select the parish you’d like to view by clicking <b>transcribe</b>.", "cynefin"); ?></p>
+          <p><?php _e("The tithe map and apportionment documents for that parish will then appear on your screen.", "cynefin"); ?></p>
+          <p><?php _e("Please note that some maps may be missing from the website at this time. We are in the process of digitising all the maps, and they will be uploaded to the website over the coming months.", "cynefin"); ?></p>
+        </div>
       </section>
 
 

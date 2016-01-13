@@ -212,6 +212,19 @@ cynefin.TitheMaps = function() {
       this.centerOn_(e.center, true, currentZoom == 10);
     }
   }, false, this);
+
+  /* HOWTO POPUP */
+  var howtoVisible = false;
+  var howtoBtn = goog.dom.getElement('howto-btn');
+  var howtoPopup = goog.dom.getElement('howto-popup');
+  var howtoClose = goog.dom.getElement('howto-popup-close');
+  var howtoToggle = function(e) {
+    howtoVisible = !howtoVisible;
+    howtoPopup.style.display = howtoVisible ? 'block' : 'none';
+    e.preventDefault();
+  };
+  goog.events.listen(howtoBtn, goog.events.EventType.CLICK, howtoToggle);
+  goog.events.listen(howtoClose, goog.events.EventType.CLICK, howtoToggle);
 };
 
 
