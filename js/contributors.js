@@ -8,7 +8,7 @@ var Contributors = function(basePath) {
 
   this.counties = [{"name": "Radnor", "namecy": "Maesyfed", "collection": "83511215"}, {"name": "Pembroke", "namecy": "Penfro", "collection": "51277134"}, {"name": "Montgomery", "namecy": "Maldwyn", "collection": "19043053"}, {"name": "Monmouth", "namecy": "Mynwy", "collection": "86808972"}, {"name": "Merioneth", "namecy": "Meirionnydd", "collection": "54574891"}, {"name": "Glamorgan", "namecy": "Morgannwg", "collection": "22340810"}, {"name": "Flint", "namecy": "Fflint", "collection": "90106729"}, {"name": "Denbigh", "namecy": "Dinbych", "collection": "57872648"}, {"name": "Carmarthen", "namecy": "Caerfyrddin", "collection": "25638567"}, {"name": "Cardigan", "namecy": "Ceredigion", "collection": "93404486"}, {"name": "Caernarfon", "namecy": "Caernarfon", "collection": "61170405"}, {"name": "Brecknock", "namecy": "Brycheiniog", "collection": "28936324"}, {"name": "Anglesey", "namecy": "Môn", "collection": "96702243"}];
 
-  this.URL_STATS = 'http://earth.georeferencer.com/';
+  this.URL_STATS = 'http://cynefin.georeferencer.com/';
 
   this.queryData = {
     period: 'total',
@@ -33,7 +33,7 @@ var Contributors = function(basePath) {
   document.getElementById('cws-btn-teams').onclick = function() {
     this.className = 'active';
     document.getElementById('cws-btn-contr').className = '';
-    self.loadTeams('http://api.georeferencer.com/repository/15872231/\n\
+    self.loadTeams('http://cynefin.georeferencer.com/repository/15872231/\n\
 top-teams.json?limit=10&period=total&tqx=reqId%3A0');
 
     document.getElementById('cws-contr').className = 'hidden';
