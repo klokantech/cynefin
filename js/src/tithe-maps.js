@@ -94,7 +94,7 @@ cynefin.TitheMaps = function() {
   this.map_.once(ol.MapEventType.POSTRENDER, function(e) {
     var mapSize = this.map_.getSize();
     if (mapSize) {
-      this.view_.fitExtent(initFitExtent, mapSize);
+      this.view_.fit(initFitExtent, mapSize);
     } else {
       this.centerOn_([-3.9001, 52.3118], true);
     }
@@ -133,7 +133,7 @@ cynefin.TitheMaps = function() {
         if (ext && mapSize) {
           var transExt = ol.extent.applyTransform(ext, trans);
           ol.extent.scaleFromCenter(transExt, 1.33); //extend by 33%
-          this.view_.fitExtent(transExt, mapSize);
+          this.view_.fit(transExt, mapSize);
           this.centerOn_(this.view_.getCenter());
           this.view_.setResolution(
               this.view_.constrainResolution(this.view_.getResolution()));

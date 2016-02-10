@@ -3,5 +3,5 @@
   "inherits": "base.json",
 
   "inputs": ["src/inittool.js"],
-  "paths": ["src", "closure-library/third_party"]
+  "paths": ["src"]
 }

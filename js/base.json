@@ -1,7 +1,6 @@
 {
   "id": "base",
 
-  "closure-library": "closure-library/closure/goog/",
   "define": {
     "goog.DEBUG": false
   },
