@@ -18,6 +18,12 @@ goog.require('ol.animation');
 goog.require('ol.layer.Tile');
 goog.require('ol.source.TileJSON');
 goog.require('ol.source.TileUTFGrid');
+goog.require('ol.source.Vector');
+goog.require('ol.format.GeoJSON');
+goog.require('ol.style.Style');
+goog.require('ol.style.RegularShape');
+goog.require('ol.style.Text');
+
 
 
 
@@ -54,6 +60,28 @@ cynefin.TitheMaps = function() {
     maxZoom: 14
   });
 
+  this.county_ = new ol.layer.Vector({
+    source: new ol.source.Vector({
+      url: 'http://api.georeferencer.com/repository/15872231/collection-stats.geojson',
+      format: new ol.format.GeoJSON()
+    }),
+     style: this.getGraphStyles(true),
+    visible: true,
+    minResolution: 100, //50,
+    maxResolution: 1000
+  });
+
+  this.parish_ = new ol.layer.Vector({
+    source: new ol.source.Vector({
+      url: 'http://api.georeferencer.com/repository/15872231/parish-stats.geojson',
+      format: new ol.format.GeoJSON()
+    }),
+     style: this.getGraphStyles(false),
+    visible: true,
+    minResolution: 0,
+    maxResolution: 100
+  });
+
   /**
    * @private
    * @type {!ol.Map}
@@ -74,7 +102,9 @@ cynefin.TitheMaps = function() {
         }),
         maxResolution: cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD
       }),
-      new ol.layer.Tile({source: this.utfGridSource_})
+      new ol.layer.Tile({source: this.utfGridSource_}),
+      this.county_,
+      this.parish_
     ],
     view: this.view_
   });
@@ -252,7 +282,7 @@ cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD = 500;
  * @define {string} url for the parishes TileJSON
  */
 cynefin.TitheMaps.UTFGRID_TILEJSON =
-    '/tileserver/cynefin-parishes.json';
+    'http://cynefin.archiveswales.org.uk/tileserver/cynefin-parishes.json';
 
 
 /**
@@ -344,6 +374,78 @@ cynefin.TitheMaps.prototype.handleMapSingleClick_ = function(data) {
       this.dontSetCenter_ = false;
     }
   }
+};
+
+cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
+  return function (feature, resolution) {
+    var styles = [];
+    if (goog.DEBUG){
+      styles.push(new ol.style.Style({
+        image: new ol.style.Circle({
+          fill: new ol.style.Fill({color: 'rgb(0,0,0)'}),
+          radius: 2
+        })
+      }));
+    };
+    var attrs = feature.getProperties();
+
+    if(showBackground){
+      styles.push(new ol.style.Style({
+        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+          anchor: [-6, -6],
+          anchorOrigin: 'bottom-left',
+          anchorXUnits: 'pixels',
+          anchorYUnits: 'pixels',
+          size: [8, 50],
+          opacity: 1,
+          src: '/wp-content/themes/cynefin/assets/img/map-icon-bg.png'
+        }))
+      }));
+
+      styles.push(new ol.style.Style({
+        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+          anchor: [6, -6],
+          anchorOrigin: 'bottom-left',
+          anchorXUnits: 'pixels',
+          anchorYUnits: 'pixels',
+          size: [8, 50],
+          opacity: 1,
+          src: '/wp-content/themes/cynefin/assets/img/map-icon-bg.png'
+        }))
+      }));
+    }
+
+    var georefHeight = Math.round(attrs['georeference']['finished'] / attrs['georeference']['total'] * 100);
+
+    styles.push(new ol.style.Style({
+      image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+        anchor: [-6, -6],
+        anchorOrigin: 'bottom-left',
+        anchorXUnits: 'pixels',
+        anchorYUnits: 'pixels',
+        size: [8, georefHeight],
+        opacity: 0.75,
+        src: '/wp-content/themes/cynefin/assets/img/map-icon-orange.png'
+      }))
+    }));
+
+    var transcHeight = Math.round(attrs['transcription']['finished'] / attrs['transcription']['total'] * 100);
+
+    styles.push(new ol.style.Style({
+      image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+        anchor: [6, -6],
+        anchorOrigin: 'bottom-left',
+        anchorXUnits: 'pixels',
+        anchorYUnits: 'pixels',
+        size: [8, transcHeight],
+        opacity: 0.75,
+        src: '/wp-content/themes/cynefin/assets/img/map-icon-blue.png'
+      }))
+    }));
+
+    return styles;
+  }.bind(showBackground);
+
 };
 
 
