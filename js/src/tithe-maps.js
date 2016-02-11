@@ -276,7 +276,7 @@ cynefin.TitheMaps.COUNTIES_TILEJSON =
  * @define {string} url for the counties GeoJSON overlay
  */
 cynefin.TitheMaps.COUNTIES_GEOJSON =
-    'http://api.georeferencer.com/repository/15872231/collection-stats.geojson';
+    'data/collection-stats.geojson';
 
 /**
  * @define {string} url for the parishes TileJSON
@@ -288,7 +288,7 @@ cynefin.TitheMaps.PARISHES_TILEJSON =
  * @define {string} url for the parishes GeoJSON overlay
  */
 cynefin.TitheMaps.PARISHES_GEOJSON =
-    'http://api.georeferencer.com/repository/15872231/parish-stats.geojson';
+    'data/parish-stats.geojson';
 
 /**
  * @define {number} Resolution when counties and parishes layers change.
@@ -306,7 +306,7 @@ cynefin.TitheMaps.UTFGRID_TILEJSON =
  * @define {string} url for the parishes TileJSON
  */
 cynefin.TitheMaps.ICONS_BASEPATH =
-    '/wp-content/themes/cynefin/assets/img/';
+    'img/';
 
 /**
  * @return {number}
@@ -443,8 +443,8 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
       }));
     }
 
-    var georefHeight = Math.round(attrs['georeference']['finished'] /
-            attrs['georeference']['total'] * 100);
+    var georefHeight = Math.round((attrs['georeference']['finished'] /
+            attrs['georeference']['total'] * 100) / 2);
 
     styles.push(new ol.style.Style({
       image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
@@ -458,8 +458,8 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
       }))
     }));
 
-    var transcHeight = Math.round(attrs['transcription']['finished'] /
-            attrs['transcription']['total'] * 100);
+    var transcHeight = Math.round((attrs['transcription']['finished'] /
+            attrs['transcription']['total'] * 100) /2);
 
     styles.push(new ol.style.Style({
       image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
