@@ -117,6 +117,32 @@
 	    .floating-btn p {font-size:11px;width:220px;margin-left:-55px;}
 
 	    .map-attribution {position:absolute;right:0;bottom:0;font-size:10px;color:#333;background:rgba(255,255,255,0.3);line-height:10px;padding:4px;}
+        
+        #feature-info{
+            display: none;
+            position: absolute;
+            bottom: 68px;
+            right: 10px;
+            width: 190px;
+            height: 65px;
+            background: url('http://cynefin.archiveswales.org.uk/wp-content/themes/cynefin/assets/img/box-county-title.png');
+            padding: 10px;
+            font-size: 12px;
+          }
+          #feature-info.active{display: block;}
+          #feature-info h4{margin: 5px 0 5px 0;overflow: hidden !important;text-overflow: ellipsis;white-space: nowrap;}
+          #feature-info p{margin: 0 0 0 18px;}
+          #feature-info p::before{
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: #da4d00;
+            margin: 4px -16px;
+            content: ' ';
+            position: absolute;
+            opacity: 0.75;
+          }
+          #feature-info p.gr:before{background: #41768a !important;}
 	    </style>
 	<?php }
          if(is_page_template("tithe-map-accuracy.php")

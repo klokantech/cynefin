@@ -205,6 +205,8 @@ get_header();
             </div>
           </fieldset>
         </form>
+        
+        <div id="feature-info"></div>
 
         <div style="position:absolute;bottom:25px;right:5px;">
           <a href="#" title="" id="howto-btn" class="btn" style="font-size:13px;text-transform:none;">

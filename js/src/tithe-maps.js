@@ -118,9 +118,26 @@ cynefin.TitheMaps = function() {
   });
 
   this.map_.on(ol.MapBrowserEvent.EventType.POINTERMOVE, function(e) {
+    //UTFGRID hover
     var res = this.view_.getResolution() || 1;
     this.utfGridSource_.forDataAtCoordinateAndResolution(e.coordinate, res,
         this.handleMapPointerMove_, this);
+
+    //diagrams interaction
+    this.map_.forEachFeatureAtPixel(e.pixel, function(feature) {
+      var attrs = feature.getProperties();
+      var card = goog.dom.getElement('feature-info');
+      card.className = 'active';
+      var content = '<h4>' + feature.get('name') + '</h4>';
+      content += '<p>Transcribed:</span> '
+              + attrs['transcription']['finished'] + ' / ' +
+            attrs['transcription']['total'] + '</p>';
+      content += '<p class="gr">Georeferenced: '
+              + attrs['georeference']['finished'] + ' / ' +
+            attrs['georeference']['total'] + '</p>';
+      card.innerHTML = content;
+
+        });
   }, this);
 
   this.map_.on(ol.MapBrowserEvent.EventType.SINGLECLICK, function(e) {
@@ -276,7 +293,7 @@ cynefin.TitheMaps.COUNTIES_TILEJSON =
  * @define {string} url for the counties GeoJSON overlay
  */
 cynefin.TitheMaps.COUNTIES_GEOJSON =
-    'data/collection-stats.geojson';
+    'http://api.georeferencer.com/repository/15872231/collection-stats.geojson';
 
 /**
  * @define {string} url for the parishes TileJSON
@@ -288,7 +305,7 @@ cynefin.TitheMaps.PARISHES_TILEJSON =
  * @define {string} url for the parishes GeoJSON overlay
  */
 cynefin.TitheMaps.PARISHES_GEOJSON =
-    'data/parish-stats.geojson';
+    'http://api.georeferencer.com/repository/15872231/parish-stats.geojson';
 
 /**
  * @define {number} Resolution when counties and parishes layers change.
@@ -306,7 +323,7 @@ cynefin.TitheMaps.UTFGRID_TILEJSON =
  * @define {string} url for the parishes TileJSON
  */
 cynefin.TitheMaps.ICONS_BASEPATH =
-    'img/';
+    '/wp-content/themes/cynefin/assets/img/';
 
 /**
  * @return {number}
