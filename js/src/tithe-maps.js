@@ -60,9 +60,13 @@ cynefin.TitheMaps = function() {
     maxZoom: 14
   });
 
+  /**
+   * @private
+   * @type {!ol.layer.Vector}
+   */
   this.county_ = new ol.layer.Vector({
     source: new ol.source.Vector({
-      url: 'http://api.georeferencer.com/repository/15872231/collection-stats.geojson',
+      url: cynefin.TitheMaps.COUNTIES_GEOJSON,
       format: new ol.format.GeoJSON()
     }),
      style: this.getGraphStyles(true),
@@ -71,9 +75,13 @@ cynefin.TitheMaps = function() {
     maxResolution: 1000
   });
 
+  /**
+   * @private
+   * @type {!ol.layer.Vector}
+   */
   this.parish_ = new ol.layer.Vector({
     source: new ol.source.Vector({
-      url: 'http://api.georeferencer.com/repository/15872231/parish-stats.geojson',
+      url: cynefin.TitheMaps.PARISHES_GEOJSON,
       format: new ol.format.GeoJSON()
     }),
      style: this.getGraphStyles(false),
@@ -264,6 +272,11 @@ cynefin.TitheMaps = function() {
 cynefin.TitheMaps.COUNTIES_TILEJSON =
     'http://cynefin.tileserver.com/cynefin-counties.json';
 
+/**
+ * @define {string} url for the counties GeoJSON overlay
+ */
+cynefin.TitheMaps.COUNTIES_GEOJSON =
+    'http://api.georeferencer.com/repository/15872231/collection-stats.geojson';
 
 /**
  * @define {string} url for the parishes TileJSON
@@ -271,6 +284,11 @@ cynefin.TitheMaps.COUNTIES_TILEJSON =
 cynefin.TitheMaps.PARISHES_TILEJSON =
     'http://cynefin.tileserver.com/cynefin-parishes.json';
 
+/**
+ * @define {string} url for the parishes GeoJSON overlay
+ */
+cynefin.TitheMaps.PARISHES_GEOJSON =
+    'http://api.georeferencer.com/repository/15872231/parish-stats.geojson';
 
 /**
  * @define {number} Resolution when counties and parishes layers change.
@@ -284,6 +302,11 @@ cynefin.TitheMaps.LAYER_RESOLUTION_THRESHOLD = 500;
 cynefin.TitheMaps.UTFGRID_TILEJSON =
     'http://cynefin.archiveswales.org.uk/tileserver/cynefin-parishes.json';
 
+/**
+ * @define {string} url for the parishes TileJSON
+ */
+cynefin.TitheMaps.ICONS_BASEPATH =
+    '/wp-content/themes/cynefin/assets/img/';
 
 /**
  * @return {number}
@@ -376,6 +399,11 @@ cynefin.TitheMaps.prototype.handleMapSingleClick_ = function(data) {
   }
 };
 
+/**
+ * Styling for diagrams in map
+ * @param {boolean} showBackground
+ * @returns {Function}
+ */
 cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
   return function (feature, resolution) {
     var styles = [];
@@ -398,7 +426,7 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
           anchorYUnits: 'pixels',
           size: [8, 50],
           opacity: 1,
-          src: '/wp-content/themes/cynefin/assets/img/map-icon-bg.png'
+          src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-bg.png'
         }))
       }));
 
@@ -410,12 +438,13 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
           anchorYUnits: 'pixels',
           size: [8, 50],
           opacity: 1,
-          src: '/wp-content/themes/cynefin/assets/img/map-icon-bg.png'
+          src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-bg.png'
         }))
       }));
     }
 
-    var georefHeight = Math.round(attrs['georeference']['finished'] / attrs['georeference']['total'] * 100);
+    var georefHeight = Math.round(attrs['georeference']['finished'] /
+            attrs['georeference']['total'] * 100);
 
     styles.push(new ol.style.Style({
       image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
@@ -425,11 +454,12 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
         anchorYUnits: 'pixels',
         size: [8, georefHeight],
         opacity: 0.75,
-        src: '/wp-content/themes/cynefin/assets/img/map-icon-orange.png'
+        src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-orange.png'
       }))
     }));
 
-    var transcHeight = Math.round(attrs['transcription']['finished'] / attrs['transcription']['total'] * 100);
+    var transcHeight = Math.round(attrs['transcription']['finished'] /
+            attrs['transcription']['total'] * 100);
 
     styles.push(new ol.style.Style({
       image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
@@ -439,7 +469,7 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
         anchorYUnits: 'pixels',
         size: [8, transcHeight],
         opacity: 0.75,
-        src: '/wp-content/themes/cynefin/assets/img/map-icon-blue.png'
+        src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-blue.png'
       }))
     }));
 
