@@ -206,7 +206,13 @@ get_header();
           </fieldset>
         </form>
         
-        <div id="feature-info"></div>
+        <div id="feature-info">
+          <h4 id="info-title"></h4>
+          <p class="info-t">Transcribed: <span id="info-t-touched"></span> / <span id="info-t-total"></span></p>
+          <p><small>Reviewed: <span id="info-t-rev"></span> Edited: <span id="info-t-edi"></span></small></p>
+          <p class="info-g">Georeferenced: <span id="info-g-touched"></span> / <span id="info-g-total"></span></p>
+          <p><small>Reviewed: <span id="info-g-rev"></span> Edited: <span id="info-g-edi"></span></small></p>
+        </div>
 
         <div style="position:absolute;bottom:25px;right:5px;">
           <a href="#" title="" id="howto-btn" class="btn" style="font-size:13px;text-transform:none;">

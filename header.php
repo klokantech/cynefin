@@ -124,25 +124,27 @@
             bottom: 68px;
             right: 10px;
             width: 190px;
-            height: 65px;
-            background: url('http://cynefin.archiveswales.org.uk/wp-content/themes/cynefin/assets/img/box-county-title.png');
+            height: 100px;
+            background: url('/wp-content/themes/cynefin/assets/img/box-info-bg.png');
             padding: 10px;
             font-size: 12px;
           }
           #feature-info.active{display: block;}
-          #feature-info h4{margin: 5px 0 5px 0;overflow: hidden !important;text-overflow: ellipsis;white-space: nowrap;}
-          #feature-info p{margin: 0 0 0 18px;}
-          #feature-info p::before{
+          #feature-info h4{margin: 10px 0 2px 0;overflow: hidden !important;text-overflow: ellipsis;white-space: nowrap;}
+          #feature-info p{margin: 0 0 0 20px; line-height: 10px;}
+          #feature-info .info-t, #feature-info .info-g{padding-top: 7px;}
+          #feature-info .info-t::before, #feature-info .info-g:before{
             display: block;
             width: 10px;
             height: 10px;
-            background: #da4d00;
-            margin: 4px -16px;
+            background: #41768a;
+            margin: 0 -18px;
             content: ' ';
             position: absolute;
             opacity: 0.75;
           }
-          #feature-info p.gr:before{background: #41768a !important;}
+          #feature-info .info-t:before{background:  #da4d00 !important;}
+          #feature-info small{font-size: 10px;}
 	    </style>
 	<?php }
          if(is_page_template("tithe-map-accuracy.php")

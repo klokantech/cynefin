@@ -142,14 +142,18 @@ cynefin.TitheMaps = function() {
             + georef['impossible-reviewed'];
       var transEdited = transTotal - transReviewed - trans['fresh'];
 
-      var card = goog.dom.getElement('feature-info');
-      card.className = 'active';
-      var content = '<h4>' + feature.get('name') + '</h4>';
-      content += '<p>Transcribed:</span> ' + transEdited + ' / '
-              + transTotal + '</p>';
-      content += '<p class="gr">Georeferenced: ' + georefEdited + ' / '
-              + georefTotal + '</p>';
-      card.innerHTML = content;
+      goog.dom.getElement('feature-info').className = 'active';
+      goog.dom.getElement('info-title').innerHTML = feature.get('name');
+
+      goog.dom.getElement('info-t-touched').innerHTML = transReviewed + transEdited;
+      goog.dom.getElement('info-t-total').innerHTML = transTotal;
+      goog.dom.getElement('info-t-rev').innerHTML = transReviewed;
+      goog.dom.getElement('info-t-edi').innerHTML = transEdited;
+
+      goog.dom.getElement('info-g-touched').innerHTML = georefReviewed + georefEdited;
+      goog.dom.getElement('info-g-total').innerHTML = georefTotal;
+      goog.dom.getElement('info-g-rev').innerHTML = georefReviewed;
+      goog.dom.getElement('info-g-edi').innerHTML = georefEdited;
 
         });
   }, this);
@@ -465,16 +469,15 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(){
             + georef['impossible-reviewed'];
     var transEdited = transTotal - transReviewed - trans['fresh'];
 
-
-    if(attrs['georeference']['total'] - attrs['georeference']['finished'] === 0){
-      //display only star
+    if(georefTotal - georefEdited === 0 && transTotal - transEdited === 0){
+      //display only star, feature is finished
       styles.push(new ol.style.Style({
         image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-          anchor: [6, -6],
+          anchor: [8, -6],
           anchorOrigin: 'bottom-left',
           anchorXUnits: 'pixels',
           anchorYUnits: 'pixels',
-          size: [10, 10],
+          size: [16, 16],
           opacity: 0.75,
           src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-star.png'
 
