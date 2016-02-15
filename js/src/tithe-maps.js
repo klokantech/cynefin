@@ -69,7 +69,7 @@ cynefin.TitheMaps = function() {
       url: cynefin.TitheMaps.COUNTIES_GEOJSON,
       format: new ol.format.GeoJSON()
     }),
-     style: this.getGraphStyles(true),
+     style: this.getGraphStyles(),
     visible: true,
     minResolution: 100, //50,
     maxResolution: 1000
@@ -84,7 +84,7 @@ cynefin.TitheMaps = function() {
       url: cynefin.TitheMaps.PARISHES_GEOJSON,
       format: new ol.format.GeoJSON()
     }),
-     style: this.getGraphStyles(false),
+     style: this.getGraphStyles(),
     visible: true,
     minResolution: 0,
     maxResolution: 100
@@ -126,15 +126,29 @@ cynefin.TitheMaps = function() {
     //diagrams interaction
     this.map_.forEachFeatureAtPixel(e.pixel, function(feature) {
       var attrs = feature.getProperties();
+      var georef = attrs['georeference'];
+      var georefTotal = georef['fresh'] + georef['touched'] + georef['finished']
+            + georef['impossible'] + georef['finished-reviewed']
+            + georef['impossible-reviewed'];
+      var georefReviewed = georef['finished-reviewed']
+            + georef['impossible-reviewed'];
+      var georefEdited = georefTotal - georefReviewed - georef['fresh'];
+
+      var trans = attrs['transcription'];
+      var transTotal = trans['fresh'] + trans['touched'] + trans['finished']
+            + trans['impossible'] + trans['finished-reviewed']
+            + trans['impossible-reviewed'];
+      var transReviewed = trans['finished-reviewed']
+            + georef['impossible-reviewed'];
+      var transEdited = transTotal - transReviewed - trans['fresh'];
+
       var card = goog.dom.getElement('feature-info');
       card.className = 'active';
       var content = '<h4>' + feature.get('name') + '</h4>';
-      content += '<p>Transcribed:</span> '
-              + attrs['transcription']['finished'] + ' / ' +
-            attrs['transcription']['total'] + '</p>';
-      content += '<p class="gr">Georeferenced: '
-              + attrs['georeference']['finished'] + ' / ' +
-            attrs['georeference']['total'] + '</p>';
+      content += '<p>Transcribed:</span> ' + transEdited + ' / '
+              + transTotal + '</p>';
+      content += '<p class="gr">Georeferenced: ' + georefEdited + ' / '
+              + georefTotal + '</p>';
       card.innerHTML = content;
 
         });
@@ -418,10 +432,9 @@ cynefin.TitheMaps.prototype.handleMapSingleClick_ = function(data) {
 
 /**
  * Styling for diagrams in map
- * @param {boolean} showBackground
  * @returns {Function}
  */
-cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
+cynefin.TitheMaps.prototype.getGraphStyles = function(){
   return function (feature, resolution) {
     var styles = [];
     if (goog.DEBUG){
@@ -434,18 +447,57 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
     };
     var attrs = feature.getProperties();
 
-    if(showBackground){
+    //Georeference statistics
+    var georef = attrs['georeference'];
+    var georefTotal = georef['fresh'] + georef['touched'] + georef['finished']
+            + georef['impossible'] + georef['finished-reviewed']
+            + georef['impossible-reviewed'];
+    var georefReviewed = georef['finished-reviewed']
+            + georef['impossible-reviewed'];
+    var georefEdited = georefTotal - georefReviewed - georef['fresh'];
+
+    //Transcribed statistics
+    var trans = attrs['transcription'];
+    var transTotal = trans['fresh'] + trans['touched'] + trans['finished']
+            + trans['impossible'] + trans['finished-reviewed']
+            + trans['impossible-reviewed'];
+    var transReviewed = trans['finished-reviewed']
+            + georef['impossible-reviewed'];
+    var transEdited = transTotal - transReviewed - trans['fresh'];
+
+
+    if(attrs['georeference']['total'] - attrs['georeference']['finished'] === 0){
+      //display only star
+      styles.push(new ol.style.Style({
+        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+          anchor: [6, -6],
+          anchorOrigin: 'bottom-left',
+          anchorXUnits: 'pixels',
+          anchorYUnits: 'pixels',
+          size: [10, 10],
+          opacity: 0.75,
+          src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-star.png'
+
+        }))
+      }));
+
+    }else{
+      //display progress
+      var georefHeight = 50 - Math.round((georefEdited / georefTotal * 100) / 2);
+
       styles.push(new ol.style.Style({
         image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
           anchor: [-6, -6],
           anchorOrigin: 'bottom-left',
           anchorXUnits: 'pixels',
           anchorYUnits: 'pixels',
-          size: [8, 50],
-          opacity: 1,
-          src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-bg.png'
+          size: [8, georefHeight],
+          opacity: 0.75,
+          src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-orange.png'
         }))
       }));
+
+      var transHeight = 50 - Math.round((transEdited / transTotal * 100) / 2);
 
       styles.push(new ol.style.Style({
         image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
@@ -453,45 +505,16 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(showBackground){
           anchorOrigin: 'bottom-left',
           anchorXUnits: 'pixels',
           anchorYUnits: 'pixels',
-          size: [8, 50],
-          opacity: 1,
-          src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-bg.png'
+          size: [8, transHeight],
+          opacity: 0.75,
+          src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-blue.png'
         }))
       }));
+
     }
 
-    var georefHeight = Math.round((attrs['georeference']['finished'] /
-            attrs['georeference']['total'] * 100) / 2);
-
-    styles.push(new ol.style.Style({
-      image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-        anchor: [-6, -6],
-        anchorOrigin: 'bottom-left',
-        anchorXUnits: 'pixels',
-        anchorYUnits: 'pixels',
-        size: [8, georefHeight],
-        opacity: 0.75,
-        src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-orange.png'
-      }))
-    }));
-
-    var transcHeight = Math.round((attrs['transcription']['finished'] /
-            attrs['transcription']['total'] * 100) /2);
-
-    styles.push(new ol.style.Style({
-      image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-        anchor: [6, -6],
-        anchorOrigin: 'bottom-left',
-        anchorXUnits: 'pixels',
-        anchorYUnits: 'pixels',
-        size: [8, transcHeight],
-        opacity: 0.75,
-        src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-blue.png'
-      }))
-    }));
-
     return styles;
-  }.bind(showBackground);
+  };
 
 };
 
