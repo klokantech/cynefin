@@ -488,32 +488,35 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(){
       //display progress
       var georefHeight = 50 - Math.round((georefEdited / georefTotal * 100) / 2);
 
-      styles.push(new ol.style.Style({
-        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-          anchor: [-6, -6],
-          anchorOrigin: 'bottom-left',
-          anchorXUnits: 'pixels',
-          anchorYUnits: 'pixels',
-          size: [8, georefHeight],
-          opacity: 0.75,
-          src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-orange.png'
-        }))
-      }));
-
+      if(georefHeight >= 1){
+        styles.push(new ol.style.Style({
+          image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+            anchor: [-6, -6],
+            anchorOrigin: 'bottom-left',
+            anchorXUnits: 'pixels',
+            anchorYUnits: 'pixels',
+            size: [8, georefHeight],
+            opacity: 0.75,
+            src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-orange.png'
+          }))
+        }));
+      }
+      
       var transHeight = 50 - Math.round((transEdited / transTotal * 100) / 2);
 
-      styles.push(new ol.style.Style({
-        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-          anchor: [6, -6],
-          anchorOrigin: 'bottom-left',
-          anchorXUnits: 'pixels',
-          anchorYUnits: 'pixels',
-          size: [8, transHeight],
-          opacity: 0.75,
-          src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-blue.png'
-        }))
-      }));
-
+      if(transHeight >= 1){
+        styles.push(new ol.style.Style({
+          image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+            anchor: [6, -6],
+            anchorOrigin: 'bottom-left',
+            anchorXUnits: 'pixels',
+            anchorYUnits: 'pixels',
+            size: [8, transHeight],
+            opacity: 0.75,
+            src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-blue.png'
+          }))
+        }));
+      }
     }
 
     return styles;
