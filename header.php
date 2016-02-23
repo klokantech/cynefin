@@ -117,7 +117,7 @@
 	    .floating-btn p {font-size:11px;width:220px;margin-left:-55px;}
 
 	    .map-attribution {position:absolute;right:0;bottom:0;font-size:10px;color:#333;background:rgba(255,255,255,0.3);line-height:10px;padding:4px;}
-        
+
         #feature-info{
             display: none;
             position: absolute;
@@ -167,6 +167,18 @@
             .google-visualization-table-th, .google-visualization-table-td{border: 1px solid #d4c5a9 !important;}
             .statistics a {text-decoration:none;}
            </style>
+
+<?php if (!(is_page_template("tithe-map-accuracy.php") ||
+            is_page_template("tithe-map-georeference.php") ||
+            is_page_template("tithe-map-thismap.php") ||
+            is_page_template("tithe-map-transcribe.php") ||
+            is_page_template("tithe-map-visualize.php"))) {
+?>
+    <style>
+      #userbox{position:absolute;top:15px;right:20px;z-index:100;}
+      .languages{top:40px;}
+    </style>
+<?php } ?>
 </head>
 <body <?php body_class( $class ); ?>>
 	<script>
@@ -212,6 +224,33 @@
 				wp_nav_menu($menu_args);
 				?>
 				<hr>
+
+<?php if (!(is_page_template("tithe-map-accuracy.php") ||
+            is_page_template("tithe-map-georeference.php") ||
+            is_page_template("tithe-map-thismap.php") ||
+            is_page_template("tithe-map-transcribe.php") ||
+            is_page_template("tithe-map-visualize.php"))) {
+?>
+        <div id="userbox">
+          <?php _e("User:", "cynefin"); ?>
+          <span id="userbox-name">...</span>
+          <!--
+          <a id="userbox-name" href="http://cynefin.georeferencer.com/accounts/logout/?next=<?php echo "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" ?>">...</a>
+          -->
+          <a id="userbox-signin" href="http://cynefin.georeferencer.com/accounts/login/?next=<?php echo "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" ?>" style="display:none;"><?php _e("Sign In", "cynefin"); ?></a>
+        </div>
+        <script>
+          function jsconnect_cb(data) {
+            if (data && data.name && data.name.length > 0) {
+              document.getElementById('userbox-name').textContent = data.name;
+            } else {
+              document.getElementById('userbox-name').style.display = 'none';
+              document.getElementById('userbox-signin').style.display = 'inline';
+            }
+          }
+        </script>
+        <script src="http://cynefin.georeferencer.com/auth/jsconnect?client_id=1283165969&amp;callback=jsconnect_cb"></script>
+<?php } ?>
 
 				<div class="languages">
 				<?php
