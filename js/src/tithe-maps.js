@@ -311,7 +311,7 @@ cynefin.TitheMaps.COUNTIES_TILEJSON =
  * @define {string} url for the counties GeoJSON overlay
  */
 cynefin.TitheMaps.COUNTIES_GEOJSON =
-    'http://api.georeferencer.com/repository/15872231/collection-stats.geojson';
+    'http://cynefin.georeferencer.com/repository/15872231/collection-stats.geojson';
 
 /**
  * @define {string} url for the parishes TileJSON
@@ -323,7 +323,7 @@ cynefin.TitheMaps.PARISHES_TILEJSON =
  * @define {string} url for the parishes GeoJSON overlay
  */
 cynefin.TitheMaps.PARISHES_GEOJSON =
-    'http://api.georeferencer.com/repository/15872231/parish-stats.geojson';
+    'http://cynefin.georeferencer.com/repository/15872231/parish-stats.geojson';
 
 /**
  * @define {number} Resolution when counties and parishes layers change.
@@ -501,7 +501,7 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(){
           }))
         }));
       }
-      
+
       var transHeight = 50 - Math.round((transEdited / transTotal * 100) / 2);
 
       if(transHeight >= 1){
