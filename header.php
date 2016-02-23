@@ -234,15 +234,14 @@
         <div id="userbox">
           <?php _e("User:", "cynefin"); ?>
           <span id="userbox-name">...</span>
-          <!--
-          <a id="userbox-name" href="http://cynefin.georeferencer.com/accounts/logout/?next=<?php echo "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" ?>">...</a>
-          -->
+          <span id="userbox-signout" style="display:none;">(<a href="http://cynefin.georeferencer.com/accounts/logout/?next=<?php echo "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" ?>"><?php _e("Sign Out", "cynefin"); ?></a>)</span>
           <a id="userbox-signin" href="http://cynefin.georeferencer.com/accounts/login/?next=<?php echo "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" ?>" style="display:none;"><?php _e("Sign In", "cynefin"); ?></a>
         </div>
         <script>
           function jsconnect_cb(data) {
             if (data && data.name && data.name.length > 0) {
               document.getElementById('userbox-name').textContent = data.name;
+              document.getElementById('userbox-signout').style.display = 'inline';
             } else {
               document.getElementById('userbox-name').style.display = 'none';
               document.getElementById('userbox-signin').style.display = 'inline';
