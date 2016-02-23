@@ -137,13 +137,13 @@
             display: block;
             width: 10px;
             height: 10px;
-            background: #41768a;
+            background: #da4d00;
             margin: 0 -18px;
             content: ' ';
             position: absolute;
             opacity: 0.75;
           }
-          #feature-info .info-t:before{background:  #da4d00 !important;}
+          #feature-info .info-t:before{background: #41768a !important;}
           #feature-info small{font-size: 10px;}
 	    </style>
 	<?php }
