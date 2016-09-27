@@ -505,6 +505,10 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(){
       var transHeight = 50 - Math.round((transEdited / transTotal * 100) / 2);
 
       if(transHeight >= 1){
+        var color = 'blue';
+        if (trans['fresh'] === 0) {
+          color = 'green';
+        }
         styles.push(new ol.style.Style({
           image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
             anchor: [6, -6],
@@ -513,7 +517,7 @@ cynefin.TitheMaps.prototype.getGraphStyles = function(){
             anchorYUnits: 'pixels',
             size: [8, transHeight],
             opacity: 0.75,
-            src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-blue.png'
+            src: cynefin.TitheMaps.ICONS_BASEPATH + 'map-icon-' + color + '.png'
           }))
         }));
       }
